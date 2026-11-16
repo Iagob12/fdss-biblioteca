@@ -938,7 +938,7 @@
     if (!dlgDetalhe.open) dlgDetalhe.showModal();
     const corpo = dlgDetalhe.querySelector(".painel-corpo");
     if (corpo) corpo.scrollTop = 0;
-    const primeiro = dlgDetalhe.querySelector(".variavel input") || dlgDetalhe.querySelector(".copiar-detalhe");
+    const primeiro = dlgDetalhe.querySelector(".variavel textarea") || dlgDetalhe.querySelector(".copiar-detalhe");
     if (primeiro) primeiro.focus({ preventScroll: true });
   }
 
@@ -988,16 +988,22 @@
     if (nomes.length) {
       const campos = el("div", { class: "variaveis" }, nomes.map((nome, n) => {
         const idCampo = "var-" + n;
-        const entrada = el("input", { id: idCampo, type: "text", autocomplete: "off", placeholder: "Preencher" });
-        entrada.addEventListener("input", () => { valoresAbertos[nome] = entrada.value; pintar(); });
+        // textarea: aceita colar textos de várias linhas (ex.: o contexto do produto)
+        const entrada = el("textarea", { id: idCampo, rows: "1", placeholder: "Preencher" });
+        entrada.addEventListener("input", () => {
+          valoresAbertos[nome] = entrada.value;
+          entrada.style.height = "auto";
+          entrada.style.height = Math.min(entrada.scrollHeight + 2, 224) + "px";
+          pintar();
+        });
         entrada.addEventListener("keydown", (e) => {
-          if (e.key === "Enter") { e.preventDefault(); copiarItem(item, copiar, valoresAbertos); }
+          if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) { e.preventDefault(); copiarItem(item, copiar, valoresAbertos); }
         });
         return el("div", { class: "variavel" }, [el("label", { for: idCampo, text: "[" + nome + "]" }), entrada]);
       }));
       corpo.appendChild(el("section", { class: "secao" }, [
         el("h3", { text: "Preencha antes de copiar" }), campos,
-        el("p", { class: "ajuda", text: "O que ficar em branco é copiado como está, entre colchetes. Enter copia." })
+        el("p", { class: "ajuda", text: "O que ficar em branco é copiado como está, entre colchetes. Ctrl+Enter copia." })
       ]));
     }
 

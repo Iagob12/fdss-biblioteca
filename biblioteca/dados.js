@@ -27,6 +27,7 @@ window.FUNCOES = [
    "tema" dos itens. Item sem tema aparece no grupo "Outros".
    -------------------------------------------------------------------------- */
 window.TEMAS = [
+  "Do zero à venda",
   "Prompts do Claude",
   "Claude Code",
   "Economia de tokens",
@@ -1637,6 +1638,804 @@ Gostou? Me segue que toda semana tem conteúdo novo`,
     autor: "@sitaria.digital (Guia 5 IAs de Graça)",
     atualizado_em: "2026-11",
     origem: "https://notebooklm.google.com"
+  },
+
+  /* ======================== DO ZERO À VENDA: prompts universais, na ordem do processo ======================== */
+
+  {
+    id: "zv-00-contexto-do-produto",
+    tema: "Do zero à venda",
+    titulo: "00 · Contexto do produto (bloco base)",
+    tipo: "Modelo",
+    funcoes: ["global"],
+    tags: ["contexto", "briefing", "base", "produto", "universal"],
+    descricao: "Ficha única do produto. Preencha uma vez e cole no campo de contexto de todos os outros prompts.",
+    quando_usar: "Sempre antes de qualquer prompt da série Do zero à venda. Preencha o que souber e escreva \"não sei\" no resto: a IA trabalha melhor com um \"não sei\" do que com um chute. Atualize a ficha a cada etapa (depois da validação, da oferta, da marca).",
+    conteudo: `<contexto_do_produto>
+Produto ou serviço: (o que é, em uma frase)
+Formato e entrega: (curso, e-book, software, serviço, assinatura... e como o cliente recebe)
+Para quem é: (quem compra, em que situação está, o que já tentou)
+Problema que resolve: (a dor, nas palavras do cliente)
+Resultado prometido: (o que muda na vida do cliente e em quanto tempo)
+Por que agora: (tendência, evento ou mudança que torna isso oportuno)
+Preço e condições: (preço, parcelas, garantia, bônus)
+Provas reais: (resultados, depoimentos, números, credenciais; se não houver, escreva "nenhuma ainda")
+Concorrentes conhecidos: (nomes ou links)
+Diferencial: (por que escolher este e não o concorrente)
+Objeções mais comuns: (motivos reais para não comprar)
+Canais de venda: (Meta, TikTok, Google, WhatsApp, orgânico...)
+País e idioma do público:
+Marca: (nome, tom de voz, cores; se ainda não existir, escreva "a definir")
+Limites: (o que não pode ser prometido ou dito, restrições legais ou da plataforma)
+</contexto_do_produto>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-16",
+    origem: ""
+  },
+
+  {
+    id: "zv-01-radar-de-oportunidades",
+    tema: "Do zero à venda",
+    titulo: "01 · Radar de oportunidades",
+    tipo: "Prompt",
+    funcoes: ["minerador"],
+    tags: ["mineração", "tendências", "oportunidades", "nicho", "pesquisa"],
+    descricao: "Varre o que está em alta agora e devolve oportunidades de produto ranqueadas, com fontes.",
+    quando_usar: "Primeira etapa, quando ainda não existe produto. Use numa IA com busca na web ligada (Claude com pesquisa, Perplexity, Gemini). Sem busca, ela responde com dados velhos.",
+    conteudo: `<papel>
+Você é um analista de oportunidades de mercado para produtos e serviços digitais. Seu trabalho é achar o que está começando a crescer agora, antes de saturar.
+</papel>
+
+<contexto>
+Área ou interesse: [ÁREA OU INTERESSE, ou "aberto"]
+Mercado: [PAÍS E IDIOMA DO PÚBLICO]
+Nossos recursos e limites: [VERBA, EQUIPE, PRAZO E O QUE SABEMOS FAZER]
+Data de hoje: [DATA DE HOJE]
+</contexto>
+
+<tarefa>
+1. Pesquise na web sinais recentes (últimos 90 dias): assuntos em alta em buscas e redes, lançamentos, mudanças de lei ou de plataforma, novas ferramentas, produtos que estão vendendo muito em outros países e ainda não chegaram com força neste mercado.
+2. Para cada sinal, pense em que produto ou serviço digital ele torna possível ou urgente.
+3. Monte uma lista de 10 oportunidades. Descarte as que exigem recursos que não temos.
+4. Dê nota de 1 a 5 para cada uma em: demanda visível, concorrência (5 = pouca), facilidade de entregar, margem provável e janela de tempo (5 = precisa entrar já).
+5. Escolha as 3 melhores e explique o porquê.
+</tarefa>
+
+<regras>
+- Toda afirmação sobre tendência precisa de fonte com link e data. Sem fonte, marque como "hipótese".
+- Não invente números. Se não achar o dado, escreva "não encontrei".
+- Diferencie moda passageira (semanas) de mudança duradoura (anos) e diga qual é qual.
+- Inclua pelo menos 2 oportunidades pequenas e rápidas de testar.
+</regras>
+
+<formato>
+Tabela com: oportunidade, sinal que a sustenta (com link), produto possível, notas e soma.
+Depois, as 3 melhores em um parágrafo cada: para quem é, por que agora, como testar em 7 dias e o maior risco.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-16",
+    origem: ""
+  },
+
+  {
+    id: "zv-02-validacao-da-oportunidade",
+    tema: "Do zero à venda",
+    titulo: "02 · Validação: concorrentes, público e veredito",
+    tipo: "Prompt",
+    funcoes: ["minerador"],
+    tags: ["validação", "concorrentes", "persona", "público", "pesquisa"],
+    descricao: "Testa uma ideia contra o mercado real: concorrentes, público, dores e um veredito de vale ou não vale.",
+    quando_usar: "Depois de escolher uma oportunidade no radar e antes de gastar com marca e site. Use com busca na web ligada. O prompt manda a IA procurar motivos para não fazer, porque por padrão ela tende a concordar com você.",
+    conteudo: `<papel>
+Você é um analista cético. Seu trabalho é evitar que a gente perca tempo e dinheiro com uma ideia ruim. Não me agrade: procure primeiro os motivos para NÃO fazer.
+</papel>
+
+<contexto>
+Ideia: [IDEIA DE PRODUTO OU SERVIÇO]
+Mercado: [PAÍS E IDIOMA DO PÚBLICO]
+O que já sabemos: [O QUE JÁ SABEMOS, ou "nada"]
+</contexto>
+
+<tarefa>
+Pesquise na web e responda, nesta ordem:
+1. Concorrentes: os 5 a 8 principais (diretos e substitutos). Para cada um: o que vende, preço, promessa principal, canal de venda, pontos fortes e as reclamações mais comuns dos clientes.
+2. Público: quem compra isso hoje. Descreva 2 perfis de comprador com situação, dor nas palavras deles, o que já tentaram, o que os faz comprar e o que os faz desistir. Baseie-se em avaliações, comentários, fóruns e redes, e cite de onde tirou.
+3. Dor: é remédio (resolve algo urgente) ou vitamina (seria bom ter)? Justifique com evidências.
+4. Brecha: o que os concorrentes fazem mal ou não fazem, e que nós conseguiríamos fazer.
+5. Riscos: saturação, dependência de plataforma, sazonalidade, lei, dificuldade de entrega.
+6. Veredito: SEGUIR, AJUSTAR (diga o ajuste) ou DESCARTAR, com os 3 motivos que mais pesaram.
+</tarefa>
+
+<regras>
+- Cite fonte com link para preços, reclamações e dados de mercado.
+- Separe claramente "fato encontrado" de "minha inferência".
+- Não invente depoimentos nem números. Se faltar dado, diga o que falta e como eu consigo descobrir.
+- Se o veredito for SEGUIR, liste o teste mais barato para confirmar a demanda em até 7 dias.
+</regras>
+
+<formato>
+Seções numeradas na ordem acima. Concorrentes em tabela. Veredito em destaque no fim, seguido de "O que eu precisaria ver para mudar de opinião".
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-16",
+    origem: ""
+  },
+
+  {
+    id: "zv-03-viabilidade-e-preco",
+    tema: "Do zero à venda",
+    titulo: "03 · Viabilidade, preço e metas do teste",
+    tipo: "Prompt",
+    funcoes: ["minerador", "vendas"],
+    tags: ["preço", "margem", "cpa", "viabilidade", "metas"],
+    descricao: "Faz a conta do produto: preço, margem, quanto dá para pagar por cliente e as metas que decidem o teste.",
+    quando_usar: "Depois da validação e antes de anunciar. As metas saem daqui e são usadas no prompt 13 (plano de teste) e no 14 (diagnóstico). Defina os números antes de ver resultado, para a decisão não depender do humor do dia.",
+    conteudo: `<papel>
+Você é um analista financeiro de negócios digitais. Seja conservador nas contas.
+</papel>
+
+<contexto>
+[CONTEXTO DO PRODUTO]
+
+Preço pretendido: [PREÇO PRETENDIDO]
+Custos conhecidos: [CUSTOS: PLATAFORMA, TAXAS, ENTREGA, FERRAMENTAS, IMPOSTOS]
+Verba para o teste: [VERBA DE TESTE]
+</contexto>
+
+<tarefa>
+1. Calcule a margem por venda: preço menos taxas de pagamento, impostos, custo de entrega e ferramentas. Mostre a conta linha por linha.
+2. Calcule o CPA máximo (quanto posso pagar para conquistar um cliente) em três cenários: empate, margem de 30% e margem de 50%.
+3. Avalie o preço: compare com os concorrentes do contexto e sugira até 3 opções (por exemplo: entrada, principal, premium), com o raciocínio de cada uma.
+4. Diga quantas vendas a verba de teste precisa gerar para o teste valer, e se a verba é suficiente para uma conclusão confiável.
+5. Defina as metas do teste: CPA máximo, taxa de conversão mínima da página, custo por clique aceitável e prazo. Para cada meta, diga o que fazer se ela for batida e se não for.
+</tarefa>
+
+<regras>
+- Use só os números que eu passei. Quando precisar supor algo (ex.: taxa da plataforma), escreva o valor suposto e marque "suposição".
+- Não use médias de mercado sem dizer que são estimativas.
+- Se algum custo importante estiver faltando, pergunte antes de calcular.
+</regras>
+
+<formato>
+Tabela da conta por venda, tabela dos três cenários de CPA e uma lista final "Metas do teste" pronta para copiar.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-16",
+    origem: ""
+  },
+
+  {
+    id: "zv-04-oferta-e-posicionamento",
+    tema: "Do zero à venda",
+    titulo: "04 · Oferta e posicionamento",
+    tipo: "Prompt",
+    funcoes: ["anuncio", "vendas"],
+    tags: ["oferta", "posicionamento", "promessa", "garantia", "bônus"],
+    descricao: "Define como vender: promessa, mecanismo, pacote da oferta, garantia e a frase de posicionamento.",
+    quando_usar: "Depois de decidir o produto e o preço. O resultado alimenta marca, site, anúncios e scripts. Copie a oferta final para a ficha de contexto (prompt 00).",
+    conteudo: `<papel>
+Você é um estrategista de ofertas de resposta direta. Você escreve para quem compra, com palavras simples.
+</papel>
+
+<contexto>
+[CONTEXTO DO PRODUTO]
+</contexto>
+
+<tarefa>
+1. Liste os 5 resultados que o cliente mais quer e os 5 medos ou obstáculos que o impedem de comprar. Use as palavras do público do contexto.
+2. Escreva 3 opções de promessa principal: resultado específico, para quem, em quanto tempo ou com que facilidade.
+3. Explique o mecanismo: por que isto funciona quando o que ele já tentou não funcionou, em 2 frases.
+4. Monte o pacote da oferta: o que está incluído, bônus que eliminam um obstáculo cada, garantia e motivo real para comprar agora.
+5. Escreva a frase de posicionamento: para quem é, o que entrega e por que é diferente dos concorrentes do contexto.
+6. Aponte as 3 objeções que ainda sobram e como a oferta responde a cada uma.
+</tarefa>
+
+<regras>
+- Não prometa resultado que o contexto não sustenta. Sem prova real, escreva a promessa de forma honesta e marque "precisa de prova".
+- Nada de urgência falsa nem escassez inventada.
+- Não crie bônus que a gente não consiga entregar: marque "a confirmar" se depender de mim.
+- Evite jargão e frases genéricas como "transforme sua vida".
+</regras>
+
+<formato>
+Seções numeradas. No fim, um bloco "Oferta em resumo" com 6 linhas (promessa, para quem, o que recebe, bônus, garantia, preço e condições), pronto para colar na ficha de contexto.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-16",
+    origem: ""
+  },
+
+  {
+    id: "zv-05-nome-slogan-tom-de-voz",
+    tema: "Do zero à venda",
+    titulo: "05 · Marca: nome, slogan e tom de voz",
+    tipo: "Prompt",
+    funcoes: ["anuncio", "site"],
+    tags: ["marca", "nome", "slogan", "tom de voz", "naming"],
+    descricao: "Gera opções de nome e slogan e define o tom de voz, com exemplos do que dizer e do que evitar.",
+    quando_usar: "Depois da oferta definida. Antes de aprovar um nome, confira você mesmo o domínio, o @ nas redes e o registro de marca no INPI: a IA não consegue garantir disponibilidade.",
+    conteudo: `<papel>
+Você é um especialista em naming e identidade verbal de marcas.
+</papel>
+
+<contexto>
+[CONTEXTO DO PRODUTO]
+
+Estilo de nome que queremos: [ESTILO DE NOME: descritivo, inventado, curto, em português, em inglês... ou "aberto"]
+Nomes que não queremos ou já descartamos: [NOMES DESCARTADOS, ou "nenhum"]
+</contexto>
+
+<tarefa>
+1. Crie 15 nomes em 3 caminhos diferentes (5 cada): descritivo (diz o que faz), evocativo (sugere o resultado ou a sensação) e inventado (palavra nova, curta).
+2. Para cada nome: como se pronuncia, por que combina com o público e um possível problema (soa parecido com outra marca, difícil de escrever, duplo sentido).
+3. Escolha os 3 melhores e escreva 3 slogans para cada um, com no máximo 7 palavras.
+4. Defina o tom de voz em 4 traços. Para cada traço: o que significa, uma frase que a marca diria e uma que ela nunca diria.
+5. Escreva a descrição da marca em 3 tamanhos: uma frase, um parágrafo e a versão para a bio de rede social.
+</tarefa>
+
+<regras>
+- Nomes fáceis de falar, escrever e lembrar para o público e o idioma do contexto.
+- Não afirme que um nome ou domínio está livre: você não tem como saber. Escreva "verificar disponibilidade".
+- Não use nomes parecidos com os concorrentes do contexto nem com marcas famosas.
+- Evite clichês do nicho.
+</regras>
+
+<formato>
+Tabela de nomes por caminho. Depois os 3 finalistas com slogans. Depois o tom de voz e as 3 descrições.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-16",
+    origem: ""
+  },
+
+  {
+    id: "zv-06-site-prompt-1-briefing",
+    tema: "Do zero à venda",
+    titulo: "06 · Site, prompt 1: briefing, identidade visual e prompt de construção",
+    tipo: "Prompt",
+    funcoes: ["site"],
+    tags: ["site", "landing page", "briefing", "identidade visual", "meta prompt"],
+    descricao: "Junta o contexto do produto, decide a identidade visual e escreve o prompt 2, que constrói o site inteiro.",
+    quando_usar: "Quando oferta e marca estiverem definidas. Rode este prompt, revise a seção de suposições e só então cole o prompt 2 no construtor (Claude Code, Lovable ou outro). Corrigir o briefing é barato; corrigir o site pronto é caro.",
+    conteudo: `<papel>
+Você é um diretor de criação que une estratégia de conversão, copy e design de interfaces. Você vai preparar tudo o que um construtor de sites com IA precisa para fazer a página certa de primeira.
+</papel>
+
+<contexto>
+[CONTEXTO DO PRODUTO]
+
+Tipo de site: [TIPO DE SITE: página de vendas, captura, institucional, várias páginas]
+Objetivo principal da página: [AÇÃO QUE O VISITANTE DEVE FAZER]
+Onde será construído: [FERRAMENTA: Claude Code, Lovable, outra]
+Referências visuais ou restrições: [REFERÊNCIAS, CORES OBRIGATÓRIAS OU "nenhuma"]
+</contexto>
+
+<tarefa>
+Entregue, nesta ordem:
+
+1. Suposições: liste tudo o que você precisou supor porque o contexto não dizia. Seja específico.
+
+2. Briefing: público e nível de consciência, a dor principal, a promessa, as 3 maiores objeções e a prova disponível.
+
+3. Identidade visual:
+   - Conceito em uma frase e 3 adjetivos.
+   - Paleta: fundo, superfície, texto, texto secundário, cor de ação e cor de apoio, com código hexadecimal e o papel de cada cor. Confirme contraste mínimo de 4,5:1 entre texto e fundo.
+   - Tipografia: uma fonte para títulos e uma para texto, do Google Fonts, com pesos e tamanhos.
+   - Estilo de formas, cantos, sombras, ícones e imagens.
+   - Direção do logo em 2 frases.
+
+4. Arquitetura da página: as seções na ordem, o objetivo de cada uma e o texto real de cada seção (título, subtítulo, corpo, botão). Onde faltar prova real, escreva "INSERIR PROVA REAL" em vez de inventar.
+
+5. PROMPT 2: um prompt único e completo, em bloco de código, pronto para colar na ferramenta indicada. Ele deve conter o objetivo, a identidade visual com os valores exatos, cada seção com seu texto final, o comportamento dos botões, requisitos de celular primeiro, desempenho, acessibilidade e SEO básico, a lista de imagens necessárias com descrição de cada uma e o que NÃO fazer.
+</tarefa>
+
+<regras>
+- Use apenas fatos do contexto. Não invente depoimentos, números, selos, clientes nem garantias.
+- Um objetivo por página: tudo conduz à ação principal.
+- Texto para leitura rápida no celular: frases curtas, um benefício por bloco.
+- O prompt 2 precisa funcionar sozinho, sem esta conversa.
+- Se faltar algo essencial (oferta, preço ou público), pergunte antes de começar.
+</regras>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-16",
+    origem: ""
+  },
+
+  {
+    id: "zv-07-logo",
+    tema: "Do zero à venda",
+    titulo: "07 · Logo: conceitos e prompts de imagem",
+    tipo: "Prompt",
+    funcoes: ["site", "anuncio"],
+    tags: ["logo", "identidade visual", "marca", "imagem"],
+    descricao: "Propõe 4 caminhos de logo e escreve o prompt de imagem de cada um, pronto para o gerador.",
+    quando_usar: "Depois de definir nome e identidade visual. Gere as imagens, escolha uma e refaça em vetor (ou peça a um designer): logo gerado por IA costuma precisar de acabamento e, em geral, não tem proteção de direito autoral.",
+    conteudo: `<papel>
+Você é um designer de marcas. Você pensa em logos simples, que funcionam pequenos e em uma cor só.
+</papel>
+
+<contexto>
+[CONTEXTO DO PRODUTO]
+
+Nome da marca: [NOME DA MARCA]
+Cores e estilo já definidos: [PALETA E ESTILO, ou "a definir"]
+Gerador de imagem que vou usar: [GERADOR DE IMAGEM]
+</contexto>
+
+<tarefa>
+1. Proponha 4 caminhos diferentes: só o nome (tipográfico), símbolo abstrato com o nome, inicial ou monograma, e símbolo que representa o benefício.
+2. Para cada caminho: a ideia em uma frase, por que combina com o público e onde pode falhar.
+3. Escreva o prompt de imagem de cada caminho, em inglês, já adaptado ao gerador indicado. Cada prompt deve pedir: logo vetorial plano, fundo branco liso, poucas formas, no máximo 2 cores, sem degradê, sem sombra, sem mockup, sem texto extra além do nome da marca escrito exatamente como informado.
+4. Diga qual caminho você recomenda e por quê.
+5. Liste os testes antes de aprovar: legível com 32 pixels de largura, funciona em preto e em branco, não se parece com a marca de um concorrente.
+</tarefa>
+
+<regras>
+- Nada de clichês do nicho (lâmpada para ideia, foguete para crescimento, globo para tecnologia).
+- Não copie nem imite o logo de marcas existentes.
+- Um conceito por prompt: não misture ideias.
+</regras>
+
+<formato>
+Um bloco por caminho: ideia, justificativa, risco e o prompt em bloco de código. Depois a recomendação e a lista de testes.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-16",
+    origem: ""
+  },
+
+  {
+    id: "zv-08-paleta-e-tipografia",
+    tema: "Do zero à venda",
+    titulo: "08 · Paleta de cores e tipografia",
+    tipo: "Prompt",
+    funcoes: ["site", "anuncio"],
+    tags: ["paleta", "cores", "tipografia", "fontes", "identidade visual"],
+    descricao: "Entrega 2 opções de paleta com códigos e contraste conferido, mais o par de fontes e a escala de tamanhos.",
+    quando_usar: "Quando precisar da identidade visual sem fazer o site inteiro (o prompt 06 já inclui isso). Serve também para padronizar criativos e apresentações.",
+    conteudo: `<papel>
+Você é um designer de identidade visual com foco em legibilidade e acessibilidade.
+</papel>
+
+<contexto>
+[CONTEXTO DO PRODUTO]
+
+Sensação que a marca deve passar: [3 ADJETIVOS]
+Cores obrigatórias ou proibidas: [CORES OBRIGATÓRIAS OU PROIBIDAS, ou "nenhuma"]
+</contexto>
+
+<tarefa>
+1. Crie 2 opções de paleta, com conceitos diferentes. Cada uma com: fundo, superfície, texto principal, texto secundário, cor de ação, cor de apoio, sucesso e erro. Dê o código hexadecimal e o uso de cada cor.
+2. Para cada paleta, calcule o contraste de texto sobre fundo e de texto sobre a cor de ação. Mínimo de 4,5:1. Se não passar, ajuste a cor e mostre o valor final.
+3. Escolha o par de fontes (títulos e texto) entre as gratuitas do Google Fonts. Explique a escolha e dê uma alternativa.
+4. Defina a escala: tamanhos e pesos para título principal, título de seção, subtítulo, texto, legenda e botão, para celular e computador.
+5. Mostre a regra de uso: proporção aproximada de cada cor na tela e onde a cor de ação pode e não pode aparecer.
+6. Entregue as variáveis CSS prontas da opção que você recomenda.
+</tarefa>
+
+<regras>
+- Só uma cor de ação. Ela aparece em botões e destaques, nunca em blocos grandes de texto.
+- Não use fontes pagas nem fontes que não existem no Google Fonts.
+- Mostre o cálculo de contraste em vez de só afirmar que passa.
+</regras>
+
+<formato>
+Tabela por paleta, tabela da escala tipográfica e um bloco de código com as variáveis CSS.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-16",
+    origem: ""
+  },
+
+  {
+    id: "zv-09-elementos-visuais",
+    tema: "Do zero à venda",
+    titulo: "09 · Elementos visuais: ícones, capas e ilustrações",
+    tipo: "Prompt",
+    funcoes: ["site", "anuncio"],
+    tags: ["ícones", "imagens", "capa", "ilustrações", "identidade visual"],
+    descricao: "Cria um guia de estilo único e os prompts de imagem para ícones, capas, fundos e ilustrações da marca.",
+    quando_usar: "Depois da paleta definida, quando o site ou os criativos precisam de imagens que pareçam da mesma família. O guia de estilo no começo é o que mantém tudo coerente.",
+    conteudo: `<papel>
+Você é um diretor de arte. Seu objetivo é que todas as imagens da marca pareçam feitas pela mesma mão.
+</papel>
+
+<contexto>
+[CONTEXTO DO PRODUTO]
+
+Paleta e estilo da marca: [PALETA COM CÓDIGOS E ESTILO VISUAL]
+O que eu preciso: [LISTA DE IMAGENS: ex. 6 ícones de benefícios, capa do topo, fundo de seção]
+Gerador de imagem que vou usar: [GERADOR DE IMAGEM]
+</contexto>
+
+<tarefa>
+1. Escreva o guia de estilo em 6 linhas: tipo de imagem (foto, 3D, ilustração plana, traço), luz, composição, texturas, cores permitidas com os códigos e o que nunca aparece.
+2. Transforme o guia em um "bloco de estilo" curto, em inglês, para colar no fim de todo prompt de imagem.
+3. Para cada item que eu pedi, escreva um prompt de imagem em inglês com: assunto, enquadramento, proporção (ex. 16:9 para capa, 1:1 para ícone), espaço livre para texto quando for capa, e o bloco de estilo no fim.
+4. Para ícones: defina o padrão (traço ou preenchido, espessura, cantos, grade) e descreva cada ícone em uma frase, todos no mesmo padrão.
+5. Diga quais itens ficam melhores feitos em código (SVG ou CSS) do que gerados por IA, como formas, degradês e padrões.
+</tarefa>
+
+<regras>
+- Sem texto dentro das imagens: o texto entra depois, no site ou no editor.
+- Sem pessoas reais, marcas, personagens ou obras de terceiros.
+- Use apenas as cores da paleta informada.
+- Um assunto por imagem.
+</regras>
+
+<formato>
+Guia de estilo, bloco de estilo em código e uma lista numerada com um prompt por imagem, cada um em bloco de código.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-16",
+    origem: ""
+  },
+
+  {
+    id: "zv-10-anuncios-angulos-e-copies",
+    tema: "Do zero à venda",
+    titulo: "10 · Anúncios: ângulos e copies para teste",
+    tipo: "Prompt",
+    funcoes: ["anuncio"],
+    tags: ["anúncios", "copy", "ângulos", "ganchos", "teste a/b", "meta ads"],
+    descricao: "Lista motivos de compra realmente diferentes e escreve um anúncio por motivo, para cada teste medir uma ideia.",
+    quando_usar: "Na hora de criar os primeiros anúncios ou de renovar os que cansaram. Pedir \"10 variações\" direto gera 10 versões da mesma frase; este prompt força ângulos distintos antes de escrever.",
+    conteudo: `<papel>
+Você é um copywriter de resposta direta, especialista em anúncios pagos.
+</papel>
+
+<contexto>
+[CONTEXTO DO PRODUTO]
+
+Plataforma e formato: [PLATAFORMA E FORMATO: ex. Meta feed, Reels, TikTok, Google pesquisa]
+O que já está funcionando: [ÂNGULO OU ANÚNCIO QUE JÁ FUNCIONA, ou "nada ainda"]
+</contexto>
+
+<tarefa>
+Faça nesta ordem:
+1. Liste 8 motivos de compra diferentes. Cada um parte de uma dor, um desejo, uma objeção ou um mecanismo distinto. Se dois motivos tocam o mesmo ponto, contam como um: substitua.
+2. Para cada motivo, escreva um anúncio com: gancho de até 12 palavras, corpo de 3 a 5 linhas curtas e uma chamada para ação.
+3. Varie o tipo de gancho (pergunta, afirmação forte, chamada ao público, contraste, história curta, dado real). Não repita o mesmo tipo mais de 2 vezes.
+4. Para os 3 ângulos mais fortes, escreva mais 3 ganchos alternativos cada.
+5. Indique os 3 ângulos para testar primeiro e explique o motivo.
+</tarefa>
+
+<regras>
+- Use somente provas e números do contexto. Não invente depoimento, estatística nem resultado.
+- Respeite as políticas da plataforma: sem promessa garantida de ganho, sem antes e depois enganoso, sem apontar característica pessoal do leitor ("você que está acima do peso").
+- Escreva como o público fala. Sem jargão e sem palavras como "revolucionário" ou "incrível".
+- Respeite o limite de caracteres do formato indicado.
+</regras>
+
+<formato>
+Lista numerada. Em cada item: ÂNGULO (rótulo curto), GANCHO, CORPO, CTA. No fim: "Testar primeiro" com os 3 escolhidos.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-16",
+    origem: ""
+  },
+
+  {
+    id: "zv-11-criativos-estaticos",
+    tema: "Do zero à venda",
+    titulo: "11 · Criativos estáticos: briefing e prompts de imagem",
+    tipo: "Prompt",
+    funcoes: ["anuncio"],
+    tags: ["criativos", "anúncios", "imagem", "estático", "design"],
+    descricao: "Transforma os ângulos de anúncio em criativos estáticos: conceito, texto na arte e prompt de imagem.",
+    quando_usar: "Depois do prompt 10, com os ângulos escolhidos. Gere a imagem sem texto e coloque o texto no editor (Canva, Figma): geradores de imagem erram letras com frequência.",
+    conteudo: `<papel>
+Você é um diretor de arte de performance. Você pensa em imagens que param o dedo no feed e deixam a mensagem clara em 2 segundos.
+</papel>
+
+<contexto>
+[CONTEXTO DO PRODUTO]
+
+Ângulos e ganchos que vou testar: [ÂNGULOS E GANCHOS ESCOLHIDOS]
+Paleta e estilo da marca: [PALETA E ESTILO, ou "a definir"]
+Formatos: [FORMATOS: ex. 1:1 e 9:16]
+Gerador de imagem que vou usar: [GERADOR DE IMAGEM]
+</contexto>
+
+<tarefa>
+Para cada ângulo, crie 2 conceitos de criativo de tipos diferentes. Escolha entre: produto em uso, problema visível, comparação lado a lado, print ou prova real, frase forte sobre fundo simples, demonstração do resultado.
+Para cada conceito, entregue:
+1. A ideia em uma frase e o que a pessoa entende em 2 segundos.
+2. O texto que vai na arte: título de até 7 palavras e, se precisar, uma linha de apoio.
+3. A composição: o que está em destaque, onde fica o texto, onde fica o logo.
+4. O prompt de imagem em inglês, sem texto na imagem, com espaço livre para o título e a proporção certa.
+5. O que este criativo testa em relação aos outros.
+</tarefa>
+
+<regras>
+- Um criativo, uma mensagem.
+- Provas só reais: se o conceito pede print ou depoimento, escreva "USAR MATERIAL REAL" em vez de simular.
+- Sem pessoas reais, marcas ou personagens de terceiros.
+- Texto grande e legível no celular, com contraste alto.
+- Dentro das políticas da plataforma de anúncios.
+</regras>
+
+<formato>
+Um bloco por criativo, com os 5 itens, e o prompt de imagem em bloco de código. No fim, uma tabela resumindo criativo, ângulo e hipótese testada.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-16",
+    origem: ""
+  },
+
+  {
+    id: "zv-12-roteiro-video-curto",
+    tema: "Do zero à venda",
+    titulo: "12 · Roteiro de vídeo curto para anúncio",
+    tipo: "Prompt",
+    funcoes: ["anuncio"],
+    tags: ["vídeo", "roteiro", "reels", "tiktok", "anúncios", "gancho"],
+    descricao: "Escreve roteiros de 15 a 40 segundos, cena por cena, com fala, imagem e texto na tela.",
+    quando_usar: "Para anúncios em vídeo ou conteúdo orgânico de venda. Os roteiros saem no formato de tabela, prontos para gravar ou para virar prompts de vídeo com IA (veja o modelo de diretor de cinema na biblioteca).",
+    conteudo: `<papel>
+Você é um roteirista de vídeos curtos de venda. Você sabe que os 3 primeiros segundos decidem se a pessoa fica.
+</papel>
+
+<contexto>
+[CONTEXTO DO PRODUTO]
+
+Ângulo do vídeo: [ÂNGULO OU MENSAGEM PRINCIPAL]
+Duração e plataforma: [DURAÇÃO E PLATAFORMA]
+Como será produzido: [PRODUÇÃO: pessoa falando para a câmera, tela gravada, imagens geradas por IA, narração]
+</contexto>
+
+<tarefa>
+1. Escreva 5 ganchos para os 3 primeiros segundos: fala e o que aparece na tela. Tipos diferentes entre si.
+2. Escolha os 2 melhores e escreva o roteiro completo de cada um, cena por cena: tempo, o que se vê, o que se ouve e o texto na tela.
+3. Siga a estrutura: gancho, problema ou situação, virada (o produto e por que funciona), prova ou demonstração, chamada para ação.
+4. Uma ideia por cena, e uma mudança visual a cada 2 a 4 segundos.
+5. Escreva a legenda do post e 3 opções de título para a capa.
+</tarefa>
+
+<regras>
+- Fala natural, como conversa. Frases de até 12 palavras.
+- O vídeo precisa funcionar sem som: o texto na tela carrega a mensagem.
+- Só provas e números do contexto. Onde precisar de prova que não temos, escreva "INSERIR PROVA REAL".
+- Nada de música, trecho de filme, marca ou personagem de terceiros.
+- Respeite a duração pedida: some os tempos das cenas e confira.
+</regras>
+
+<formato>
+Lista de ganchos. Depois cada roteiro em tabela com as colunas: tempo, imagem, fala, texto na tela. Por último, legenda e títulos.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-16",
+    origem: ""
+  },
+
+  {
+    id: "zv-13-plano-de-teste",
+    tema: "Do zero à venda",
+    titulo: "13 · Plano de teste de anúncios",
+    tipo: "Prompt",
+    funcoes: ["anuncio", "minerador"],
+    tags: ["teste", "tráfego pago", "campanha", "métricas", "orçamento"],
+    descricao: "Monta o plano do primeiro teste: estrutura da campanha, verba, o que medir e quando decidir.",
+    quando_usar: "Com site, copies e criativos prontos, antes de ligar a campanha. Use as metas que saíram do prompt 03.",
+    conteudo: `<papel>
+Você é um gestor de tráfego experiente em validar produtos novos com pouca verba.
+</papel>
+
+<contexto>
+[CONTEXTO DO PRODUTO]
+
+Plataforma de anúncios: [PLATAFORMA DE ANÚNCIOS]
+Verba e prazo do teste: [VERBA E PRAZO]
+Metas definidas: [METAS: CPA MÁXIMO, CONVERSÃO MÍNIMA, ETC.]
+Ângulos e criativos disponíveis: [ÂNGULOS E CRIATIVOS PRONTOS]
+</contexto>
+
+<tarefa>
+1. Defina o que o teste precisa responder, em uma pergunta só.
+2. Proponha a estrutura: campanhas, conjuntos e anúncios, com o objetivo de campanha e o público de cada conjunto. Explique cada escolha em uma linha.
+3. Distribua a verba por dia e por conjunto. Diga se a verba é suficiente para uma conclusão confiável e, se não for, qual é o mínimo.
+4. Liste o que precisa estar instalado antes de começar: pixel, eventos de conversão, links com identificação da origem, página testada no celular.
+5. Monte a rotina de acompanhamento: o que olhar no dia 1, no dia 3 e no fim, e o que NÃO mexer antes da hora.
+6. Escreva as regras de decisão: quando pausar um anúncio, quando aumentar a verba, quando encerrar o teste.
+</tarefa>
+
+<regras>
+- Teste uma variável por vez: primeiro o ângulo, depois o criativo, depois o público.
+- Não cite recursos da plataforma sem certeza de que existem hoje. Se não tiver certeza, escreva "confirmar na plataforma".
+- Não prometa resultado. Trate qualquer referência de mercado como estimativa.
+- Se a verba for baixa demais para concluir algo, diga isso com clareza no começo.
+</regras>
+
+<formato>
+Tabela da estrutura da campanha, tabela da verba, checklist de instalação e uma lista "Regras de decisão" pronta para copiar.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-16",
+    origem: ""
+  },
+
+  {
+    id: "zv-14-diagnostico-do-teste",
+    tema: "Do zero à venda",
+    titulo: "14 · Diagnóstico do teste: escalar, ajustar ou sair",
+    tipo: "Prompt",
+    funcoes: ["anuncio", "vendas", "minerador"],
+    tags: ["diagnóstico", "métricas", "escala", "funil", "decisão"],
+    descricao: "Lê os números do teste, acha onde o funil quebra e recomenda escalar, ajustar ou encerrar.",
+    quando_usar: "Depois de rodar o teste pelo prazo combinado. Cole os números como estão no gerenciador de anúncios e na plataforma de vendas. Se vendeu, o mesmo prompt indica como escalar.",
+    conteudo: `<papel>
+Você é um analista de performance. Você decide com base em números e diz quando os dados não bastam para decidir.
+</papel>
+
+<contexto>
+[CONTEXTO DO PRODUTO]
+
+Metas definidas antes do teste: [METAS DEFINIDAS]
+Números do teste: [NÚMEROS DO TESTE: gasto, impressões, cliques, visitas, inícios de compra, vendas, receita, reembolsos]
+O que eu observei: [COMENTÁRIOS, DÚVIDAS E OBJEÇÕES QUE APARECERAM]
+</contexto>
+
+<tarefa>
+1. Monte o funil com as taxas de cada etapa: impressão, clique, visita, início de compra, venda. Calcule CPA, ROAS e ticket médio.
+2. Diga se o volume de dados permite conclusão. Se não permitir, diga quanto falta.
+3. Compare com as metas e aponte a etapa mais fraca do funil.
+4. Para a etapa fraca, liste as causas prováveis em ordem de probabilidade. Orientação geral: muita impressão e pouco clique aponta para criativo ou ângulo; clique sem compra aponta para página ou oferta; início de compra sem venda aponta para preço, pagamento ou confiança.
+5. Dê o veredito: ESCALAR, AJUSTAR ou ENCERRAR.
+   - ESCALAR: como aumentar a verba sem perder desempenho e o que vigiar.
+   - AJUSTAR: os 3 testes seguintes, um por vez, com a hipótese e o critério de sucesso de cada um.
+   - ENCERRAR: o que aprendemos e o que dá para reaproveitar.
+</tarefa>
+
+<regras>
+- Use só os números que eu passei. Não complete dados que faltam: peça.
+- Separe o que os números mostram do que é hipótese sua.
+- Não culpe "o algoritmo" sem evidência.
+- Se a oferta ou o produto for o problema, diga isso, mesmo que não seja o que eu quero ouvir.
+</regras>
+
+<formato>
+Tabela do funil com metas ao lado, diagnóstico em até 5 tópicos, veredito em destaque e o plano dos próximos 7 dias.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-16",
+    origem: ""
+  },
+
+  {
+    id: "zv-15-scripts-de-venda",
+    tema: "Do zero à venda",
+    titulo: "15 · Scripts de venda: abordagem, objeções e follow-up",
+    tipo: "Prompt",
+    funcoes: ["vendas"],
+    tags: ["vendas", "script", "objeções", "follow-up", "whatsapp"],
+    descricao: "Escreve o roteiro de conversa de venda: primeira mensagem, perguntas, respostas a objeções e retomadas.",
+    quando_usar: "Quando a venda passa por conversa (WhatsApp, Direct, ligação). Cole frases reais de clientes no campo de objeções: quanto mais reais, menos robótico fica o resultado.",
+    conteudo: `<papel>
+Você é um vendedor consultivo experiente. Você conduz a conversa com perguntas e nunca pressiona.
+</papel>
+
+<contexto>
+[CONTEXTO DO PRODUTO]
+
+Canal da conversa: [CANAL: WhatsApp, Direct, ligação, e-mail]
+De onde o lead vem: [ORIGEM DO LEAD: anúncio, indicação, formulário...]
+Objeções reais que já ouvimos: [OBJEÇÕES REAIS, COM AS PALAVRAS DO CLIENTE]
+Exemplo de como a gente escreve: [EXEMPLO DO NOSSO TOM, ou "informal e direto"]
+</contexto>
+
+<tarefa>
+1. Primeira mensagem: 3 versões curtas, que citam de onde o lead veio e terminam com uma pergunta fácil de responder.
+2. Diagnóstico: 5 perguntas para entender a situação, a dor, o que já tentou, a urgência e quem decide.
+3. Apresentação: como ligar o que o lead respondeu à oferta, em até 4 mensagens curtas.
+4. Objeções: para cada objeção do contexto, e para preço, "vou pensar", "preciso falar com alguém" e "não tenho tempo", escreva a resposta em 3 passos: reconhecer, esclarecer com uma pergunta, responder e devolver com outra pergunta.
+5. Fechamento: 2 formas de pedir a decisão sem pressão e a mensagem com o link de pagamento.
+6. Follow-up: 4 mensagens para quem sumiu (1, 3, 7 e 14 dias depois), cada uma com um motivo novo para responder. A última encerra a conversa com educação.
+</tarefa>
+
+<regras>
+- Mensagens curtas, uma ideia por mensagem, no tom do exemplo.
+- Toda resposta a objeção termina com pergunta.
+- Sem pressão, sem urgência falsa e sem promessa que o contexto não sustenta.
+- Não invente desconto, bônus ou prazo: use só as condições do contexto.
+- Quando o lead não tiver o perfil, o script deve dizer isso e encerrar bem.
+</regras>
+
+<formato>
+Seções numeradas, com cada mensagem pronta para copiar. As objeções em tabela: objeção, o que ela costuma significar, resposta.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-16",
+    origem: ""
+  },
+
+  {
+    id: "zv-16-atendimento-e-pos-venda",
+    tema: "Do zero à venda",
+    titulo: "16 · Atendimento e pós-venda: respostas prontas",
+    tipo: "Prompt",
+    funcoes: ["vendas"],
+    tags: ["atendimento", "pós-venda", "suporte", "faq", "reembolso"],
+    descricao: "Cria a base de respostas do atendimento: dúvidas antes da compra, entrega, suporte, reembolso e reclamação.",
+    quando_usar: "Antes de começar a vender, para ninguém improvisar. O resultado serve para a equipe e para treinar o agente de IA do WhatsApp Business (veja os itens de atendimento na biblioteca).",
+    conteudo: `<papel>
+Você é responsável pelo atendimento ao cliente. Você responde rápido, com clareza e com respeito.
+</papel>
+
+<contexto>
+[CONTEXTO DO PRODUTO]
+
+Como a entrega funciona: [PASSO A PASSO DA ENTREGA E DO ACESSO]
+Políticas: [GARANTIA, REEMBOLSO, PRAZOS, HORÁRIO DE ATENDIMENTO]
+Problemas que já apareceram: [PROBLEMAS E DÚVIDAS REAIS, ou "nenhum ainda"]
+</contexto>
+
+<tarefa>
+1. Liste as 20 perguntas mais prováveis, em 4 grupos: antes da compra, pagamento, acesso e uso, problemas.
+2. Escreva a resposta de cada uma: direta, em até 4 linhas, com o próximo passo.
+3. Escreva as mensagens automáticas: boas-vindas após a compra, instruções de acesso, lembrete para quem não acessou em 3 dias e pedido de avaliação depois do primeiro resultado.
+4. Escreva os roteiros delicados: pedido de reembolso, reclamação com raiva, cobrança duplicada e pessoa que não recebeu o acesso. Cada um com o que dizer, o que fazer e quando passar para um humano.
+5. Monte a lista "passar para humano imediatamente": situações que a automação não deve resolver sozinha.
+</tarefa>
+
+<regras>
+- Use só as políticas do contexto. Se a política não cobrir a pergunta, escreva "DEFINIR POLÍTICA" em vez de inventar.
+- Não prometa prazo, exceção ou compensação que não esteja no contexto.
+- Nos casos delicados, comece reconhecendo o problema antes de explicar.
+- Linguagem simples, sem termos técnicos.
+- Respeite o direito de arrependimento e as regras de defesa do consumidor do país do contexto. Em caso de dúvida legal, marque "confirmar com responsável".
+</regras>
+
+<formato>
+Perguntas e respostas agrupadas, no formato "Pergunta → Resposta". Mensagens automáticas e roteiros delicados em blocos separados, prontos para copiar.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-16",
+    origem: ""
+  },
+
+  {
+    id: "zv-17-sequencia-de-mensagens",
+    tema: "Do zero à venda",
+    titulo: "17 · Sequência de e-mails ou mensagens: boas-vindas, venda e recuperação",
+    tipo: "Prompt",
+    funcoes: ["anuncio", "vendas"],
+    tags: ["e-mail", "sequência", "carrinho abandonado", "recuperação", "copy"],
+    descricao: "Escreve a sequência completa para quem entrou na lista, para quem não comprou e para quem abandonou a compra.",
+    quando_usar: "Quando o site já captura contatos ou inicia compras. Recupera vendas que o anúncio já pagou para trazer.",
+    conteudo: `<papel>
+Você é um copywriter de e-mail e mensagens. Você escreve como uma pessoa escrevendo para outra.
+</papel>
+
+<contexto>
+[CONTEXTO DO PRODUTO]
+
+Canal: [CANAL: e-mail, WhatsApp ou os dois]
+Sequência que eu preciso: [SEQUÊNCIA: boas-vindas, venda, carrinho abandonado ou pós-compra]
+Exemplo de como a gente escreve: [EXEMPLO DO NOSSO TOM, ou "informal e direto"]
+</contexto>
+
+<tarefa>
+1. Planeje a sequência pedida: quantas mensagens, o intervalo entre elas e o objetivo de cada uma. Cada mensagem tem um único objetivo.
+2. Para cada mensagem, escreva: 3 opções de assunto de até 6 palavras (se for e-mail), a primeira linha, o corpo e uma única chamada para ação.
+3. Distribua os argumentos: uma mensagem para a dor, uma para o mecanismo, uma para a prova, uma para as objeções e uma para a decisão. Não repita o mesmo argumento.
+4. Na sequência de carrinho abandonado, a primeira mensagem ajuda (houve algum problema?), a segunda responde à objeção mais provável e a terceira lembra a condição real da oferta.
+5. Diga o que medir em cada mensagem e o que testar primeiro.
+</tarefa>
+
+<regras>
+- Mensagens curtas, legíveis no celular, com uma ideia por parágrafo.
+- Só provas, prazos e condições do contexto. Nada de urgência falsa.
+- Assunto sem truque: nada de "RE:" falso nem promessa que o corpo não cumpre.
+- Todo e-mail com opção de descadastro; no WhatsApp, só para quem autorizou o contato.
+- Onde faltar prova, escreva "INSERIR PROVA REAL".
+</regras>
+
+<formato>
+Tabela com o plano da sequência. Depois cada mensagem em bloco separado, com dia de envio, assunto, texto e chamada para ação.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-16",
+    origem: ""
   }
 
 ];

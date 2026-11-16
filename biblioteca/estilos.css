@@ -579,6 +579,8 @@ dialog[open]::backdrop { animation: surgir var(--medio) ease-out; }
 .variavel { display: grid; gap: 0.3rem; min-width: 0; }
 .variavel label { font-family: var(--mono); font-size: var(--t-pp); font-weight: 600; color: var(--acao-texto); overflow-wrap: anywhere; }
 
+.variavel textarea { min-height: 2.75rem; max-height: 14rem; resize: vertical; }
+
 .codigo {
   font-size: var(--t-p); line-height: 1.6;
   white-space: pre-wrap; overflow-wrap: anywhere;
