@@ -21,6 +21,27 @@ window.FUNCOES = [
 ];
 
 /* --------------------------------------------------------------------------
+   TEMAS
+   Agrupam os itens dentro de cada função. A ordem desta lista é a ordem na tela.
+   Para criar um tema novo: acrescente o nome aqui e use o mesmo nome no campo
+   "tema" dos itens. Item sem tema aparece no grupo "Outros".
+   -------------------------------------------------------------------------- */
+window.TEMAS = [
+  "Prompts do Claude",
+  "Claude Code",
+  "Economia de tokens",
+  "Sites e apps",
+  "Edição de vídeo",
+  "Vídeo com IA",
+  "Imagem com IA",
+  "Áudio e voz",
+  "IA local",
+  "Pesquisa de mercado",
+  "Atendimento e automação",
+  "Apresentações e materiais"
+];
+
+/* --------------------------------------------------------------------------
    BIBLIOTECA
    Um bloco { ... } por item, separados por vírgula.
    O jeito mais fácil: botão "Adicionar" no site, que gera o bloco pronto.
@@ -32,6 +53,7 @@ window.FUNCOES = [
      id: "identificador-unico",
      titulo: "Nome do item",
      tipo: "Prompt",                 // Prompt, Skill, Modelo, Link ou Referência
+     tema: "Sites e apps",           // um nome da lista TEMAS acima
      funcoes: ["site", "global"],    // ids da lista FUNCOES acima
      tags: ["tag1", "tag2"],
      descricao: "Uma linha dizendo o que é.",
@@ -52,6 +74,7 @@ window.BIBLIOTECA = [
 
   {
     id: "formula-xml-prompts-claude",
+    tema: "Prompts do Claude",
     titulo: "Fórmula XML para prompts do Claude",
     tipo: "Modelo",
     funcoes: ["global"],
@@ -70,6 +93,7 @@ window.BIBLIOTECA = [
 
   {
     id: "claude-code-setup",
+    tema: "Claude Code",
     titulo: "Claude Code Setup (plugin oficial)",
     tipo: "Skill",
     funcoes: ["global"],
@@ -90,6 +114,7 @@ Uso: "Set up Claude Code for this project" (ou "Configure o Claude Code para est
 
   {
     id: "plugin-i-have-adhd",
+    tema: "Claude Code",
     titulo: "I Have ADHD: respostas diretas no Claude Code",
     tipo: "Skill",
     funcoes: ["global"],
@@ -108,6 +133,7 @@ Uso (dentro do Claude Code): /i-have-adhd`,
 
   {
     id: "plugin-claude-mem",
+    tema: "Claude Code",
     titulo: "Claude Mem: memória entre sessões",
     tipo: "Skill",
     funcoes: ["global"],
@@ -125,6 +151,7 @@ Depois de instalar, reinicie o Claude Code ou rode /reload-plugins.`,
 
   {
     id: "comandos-economia-tokens",
+    tema: "Economia de tokens",
     titulo: "Comandos nativos para economizar tokens",
     tipo: "Referência",
     funcoes: ["global"],
@@ -144,6 +171,7 @@ Depois de instalar, reinicie o Claude Code ou rode /reload-plugins.`,
 
   {
     id: "claude-md-compact-instructions",
+    tema: "Economia de tokens",
     titulo: "Resumo automático focado (trecho para o CLAUDE.md)",
     tipo: "Modelo",
     funcoes: ["global"],
@@ -159,6 +187,7 @@ When you are using compact, please focus on test output and code changes`,
 
   {
     id: "rtk-rust-token-killer",
+    tema: "Economia de tokens",
     titulo: "RTK (Rust Token Killer): saída de terminal enxuta",
     tipo: "Skill",
     funcoes: ["global"],
@@ -182,6 +211,7 @@ rtk init -g`,
 
   {
     id: "context-mode",
+    tema: "Economia de tokens",
     titulo: "Context Mode: saídas gigantes de MCP sem lotar o contexto",
     tipo: "Skill",
     funcoes: ["global"],
@@ -200,6 +230,7 @@ rtk init -g`,
 
   {
     id: "headroom",
+    tema: "Economia de tokens",
     titulo: "Headroom: proxy local que comprime o contexto",
     tipo: "Skill",
     funcoes: ["global"],
@@ -218,6 +249,7 @@ headroom mcp install`,
 
   {
     id: "handy-ditado-offline",
+    tema: "Áudio e voz",
     titulo: "Handy: ditado por voz offline",
     tipo: "Link",
     funcoes: ["global"],
@@ -234,6 +266,7 @@ headroom mcp install`,
 
   {
     id: "plugin-superpowers",
+    tema: "Claude Code",
     titulo: "Superpowers: planejar antes de codar",
     tipo: "Skill",
     funcoes: ["site"],
@@ -248,6 +281,7 @@ headroom mcp install`,
 
   {
     id: "karpathy-skills",
+    tema: "Claude Code",
     titulo: "Karpathy Skills: código simples e cirúrgico",
     tipo: "Skill",
     funcoes: ["site"],
@@ -263,6 +297,7 @@ headroom mcp install`,
 
   {
     id: "elephant-goldfish",
+    tema: "Claude Code",
     titulo: "Elephant-Goldfish: documento de design revisado por subagentes",
     tipo: "Skill",
     funcoes: ["site"],
@@ -280,6 +315,7 @@ Abra uma nova sessão; os comandos começam com /gm.`,
 
   {
     id: "claude-octopus",
+    tema: "Claude Code",
     titulo: "Claude Octopus: segunda opinião de outros modelos",
     tipo: "Skill",
     funcoes: ["site"],
@@ -298,6 +334,7 @@ Configuração (dentro do Claude Code): /octo:setup`,
 
   {
     id: "21st-mcp",
+    tema: "Sites e apps",
     titulo: "21st MCP: componentes React prontos no Claude Code",
     tipo: "Skill",
     funcoes: ["site"],
@@ -315,6 +352,7 @@ Troque o texto de exemplo da chave pela sua chave e reinicie o Claude Code.`,
 
   {
     id: "lovable-site-uma-pagina",
+    tema: "Sites e apps",
     titulo: "Site de uma página para negócio local (Lovable)",
     tipo: "Prompt",
     funcoes: ["site"],
@@ -341,6 +379,7 @@ Textos em português do Brasil, persuasivos e curtos.`,
 
   {
     id: "lovable-ajustes",
+    tema: "Sites e apps",
     titulo: "Ajustes prontos para o site no Lovable",
     tipo: "Prompt",
     funcoes: ["site"],
@@ -359,6 +398,7 @@ Crie uma página separada /precos com a tabela completa de serviços.`,
 
   {
     id: "gemini-canvas-rabisco-app",
+    tema: "Sites e apps",
     titulo: "Rabisco no papel vira app (Gemini Canvas)",
     tipo: "Prompt",
     funcoes: ["site"],
@@ -378,6 +418,7 @@ Os botões precisam funcionar e os dados devem ficar salvos no navegador.`,
 
   {
     id: "gemini-canvas-ajustes",
+    tema: "Sites e apps",
     titulo: "Ajustes prontos para o app no Gemini Canvas",
     tipo: "Prompt",
     funcoes: ["site"],
@@ -402,6 +443,7 @@ volte para a versão anterior`,
 
   {
     id: "casa-que-se-constroi-no-scroll",
+    tema: "Sites e apps",
     titulo: "Casa que se constrói no scroll (Three.js + Nano Banana Pro + Kling)",
     tipo: "Referência",
     funcoes: ["site"],
@@ -430,6 +472,7 @@ Step 04 e 05 — Gerar 9 clipes curtos no Kling usando cada foto como end frame 
 
   {
     id: "editar-video-claude-prompt-1-dna",
+    tema: "Edição de vídeo",
     titulo: "Editar vídeo com Claude Code, parte 1: extrair o DNA de edição",
     tipo: "Prompt",
     funcoes: ["anuncio"],
@@ -812,6 +855,7 @@ been created and checked. Do not use Remotion.`,
 
   {
     id: "editar-video-claude-prompt-2-engine",
+    tema: "Edição de vídeo",
     titulo: "Editar vídeo com Claude Code, parte 2: engine reutilizável e skill",
     tipo: "Prompt",
     funcoes: ["anuncio"],
@@ -1021,6 +1065,7 @@ previous conversation, no Remotion, and no fabricated assets, source analysis, t
 
   {
     id: "rea-video-engenharia-reversa",
+    tema: "Edição de vídeo",
     titulo: "rea-video: desmontar um vídeo viral cena por cena",
     tipo: "Skill",
     funcoes: ["anuncio", "minerador"],
@@ -1044,6 +1089,7 @@ Usa o report.html para criar um vídeo com a mesma estrutura, os mesmos cortes e
 
   {
     id: "openverse-sfx",
+    tema: "Áudio e voz",
     titulo: "Openverse: efeitos sonoros com licença livre",
     tipo: "Link",
     funcoes: ["anuncio"],
@@ -1064,6 +1110,7 @@ curl "https://api.openverse.org/v1/audio/?q=impact&license_type=commercial"`,
 
   {
     id: "real-sfx",
+    tema: "Áudio e voz",
     titulo: "Real SFX: sound design no frame exato",
     tipo: "Skill",
     funcoes: ["anuncio"],
@@ -1088,6 +1135,7 @@ Uso: Adicione sound design a este render.`,
 
   {
     id: "earshot",
+    tema: "Áudio e voz",
     titulo: "Earshot: o Claude ouvindo e revisando o áudio",
     tipo: "Skill",
     funcoes: ["anuncio"],
@@ -1108,6 +1156,7 @@ Uso: Use o earshot para revisar o som deste vídeo e me diga o que corrigir.`,
 
   {
     id: "google-vids-prompt-diretor",
+    tema: "Vídeo com IA",
     titulo: "Prompt \"de diretor de cinema\" para vídeo com IA",
     tipo: "Modelo",
     funcoes: ["anuncio"],
@@ -1126,6 +1175,7 @@ CÂMERA: [se aproxima devagar / gira em volta / fixa / de cima], estilo [realist
 
   {
     id: "google-vids-anuncio-loja",
+    tema: "Vídeo com IA",
     titulo: "Vídeo de anúncio: produto girando na vitrine",
     tipo: "Prompt",
     funcoes: ["anuncio"],
@@ -1140,6 +1190,7 @@ CÂMERA: [se aproxima devagar / gira em volta / fixa / de cima], estilo [realist
 
   {
     id: "google-vids-comida",
+    tema: "Vídeo com IA",
     titulo: "Vídeo de anúncio: prato sendo servido",
     tipo: "Prompt",
     funcoes: ["anuncio"],
@@ -1154,6 +1205,7 @@ CÂMERA: [se aproxima devagar / gira em volta / fixa / de cima], estilo [realist
 
   {
     id: "google-vids-personagem",
+    tema: "Vídeo com IA",
     titulo: "Vídeo de anúncio: personagem numa padaria",
     tipo: "Prompt",
     funcoes: ["anuncio"],
@@ -1168,6 +1220,7 @@ CÂMERA: [se aproxima devagar / gira em volta / fixa / de cima], estilo [realist
 
   {
     id: "nano-banana-foto-produto",
+    tema: "Imagem com IA",
     titulo: "Foto de produto em bancada de mármore (Nano Banana)",
     tipo: "Prompt",
     funcoes: ["anuncio"],
@@ -1182,6 +1235,7 @@ CÂMERA: [se aproxima devagar / gira em volta / fixa / de cima], estilo [realist
 
   {
     id: "nano-banana-arte-post",
+    tema: "Imagem com IA",
     titulo: "Arte de post com texto de promoção (Nano Banana)",
     tipo: "Prompt",
     funcoes: ["anuncio"],
@@ -1196,6 +1250,7 @@ CÂMERA: [se aproxima devagar / gira em volta / fixa / de cima], estilo [realist
 
   {
     id: "canva-post-pizzaria",
+    tema: "Imagem com IA",
     titulo: "Post de Instagram no Canva com IA",
     tipo: "Prompt",
     funcoes: ["anuncio"],
@@ -1210,6 +1265,7 @@ CÂMERA: [se aproxima devagar / gira em volta / fixa / de cima], estilo [realist
 
   {
     id: "retro-editorial-imagem",
+    tema: "Vídeo com IA",
     titulo: "Pôster retrô editorial: imagem base",
     tipo: "Prompt",
     funcoes: ["anuncio"],
@@ -1224,6 +1280,7 @@ CÂMERA: [se aproxima devagar / gira em volta / fixa / de cima], estilo [realist
 
   {
     id: "retro-editorial-animacao",
+    tema: "Vídeo com IA",
     titulo: "Pôster retrô editorial: animação",
     tipo: "Prompt",
     funcoes: ["anuncio"],
@@ -1238,6 +1295,7 @@ CÂMERA: [se aproxima devagar / gira em volta / fixa / de cima], estilo [realist
 
   {
     id: "legenda-estilo-imagem",
+    tema: "Vídeo com IA",
     titulo: "Recriar estilo de legenda: imagem do primeiro frame",
     tipo: "Prompt",
     funcoes: ["anuncio"],
@@ -1252,6 +1310,7 @@ CÂMERA: [se aproxima devagar / gira em volta / fixa / de cima], estilo [realist
 
   {
     id: "legenda-estilo-animacao",
+    tema: "Vídeo com IA",
     titulo: "Recriar estilo de legenda: aplicar no vídeo inteiro",
     tipo: "Prompt",
     funcoes: ["anuncio"],
@@ -1266,6 +1325,7 @@ CÂMERA: [se aproxima devagar / gira em volta / fixa / de cima], estilo [realist
 
   {
     id: "desenho-antigo-4k-imagem",
+    tema: "Vídeo com IA",
     titulo: "Desenho antigo em 4K realista: imagem do primeiro frame",
     tipo: "Prompt",
     funcoes: ["anuncio"],
@@ -1280,6 +1340,7 @@ CÂMERA: [se aproxima devagar / gira em volta / fixa / de cima], estilo [realist
 
   {
     id: "desenho-antigo-4k-animacao",
+    tema: "Vídeo com IA",
     titulo: "Desenho antigo em 4K realista: animação",
     tipo: "Prompt",
     funcoes: ["anuncio"],
@@ -1294,6 +1355,7 @@ CÂMERA: [se aproxima devagar / gira em volta / fixa / de cima], estilo [realist
 
   {
     id: "drone-shot-imagem-estatica",
+    tema: "Vídeo com IA",
     titulo: "Tomada de drone a partir de uma imagem parada",
     tipo: "Prompt",
     funcoes: ["anuncio"],
@@ -1322,6 +1384,7 @@ The final result must resemble a real, high-end drone shot captured in a single 
 
   {
     id: "golpe-astral-imagem",
+    tema: "Vídeo com IA",
     titulo: "Golpe astral (alma saindo do corpo): imagem base",
     tipo: "Prompt",
     funcoes: ["anuncio"],
@@ -1336,6 +1399,7 @@ The final result must resemble a real, high-end drone shot captured in a single 
 
   {
     id: "golpe-astral-animacao",
+    tema: "Vídeo com IA",
     titulo: "Golpe astral (alma saindo do corpo): animação",
     tipo: "Prompt",
     funcoes: ["anuncio"],
@@ -1360,6 +1424,7 @@ The struck character naturally reacts with shock and disorientation, as if they 
 
   {
     id: "comfyui",
+    tema: "IA local",
     titulo: "ComfyUI: imagem, vídeo e áudio com IA no seu PC",
     tipo: "Link",
     funcoes: ["anuncio"],
@@ -1374,6 +1439,7 @@ The struck character naturally reacts with shock and disorientation, as if they 
 
   {
     id: "wan-2-1",
+    tema: "IA local",
     titulo: "Wan 2.1: gerar vídeo com IA localmente",
     tipo: "Link",
     funcoes: ["anuncio"],
@@ -1388,6 +1454,7 @@ The struck character naturally reacts with shock and disorientation, as if they 
 
   {
     id: "duix-avatar",
+    tema: "IA local",
     titulo: "Duix-Avatar: avatar realista offline",
     tipo: "Link",
     funcoes: ["anuncio"],
@@ -1402,6 +1469,7 @@ The struck character naturally reacts with shock and disorientation, as if they 
 
   {
     id: "omnivoice-studio",
+    tema: "IA local",
     titulo: "OmniVoice Studio: estúdio de voz local",
     tipo: "Link",
     funcoes: ["anuncio"],
@@ -1418,6 +1486,7 @@ The struck character naturally reacts with shock and disorientation, as if they 
 
   {
     id: "perplexity-tendencias-nicho",
+    tema: "Pesquisa de mercado",
     titulo: "Tendências do nicho no Brasil, com fontes",
     tipo: "Prompt",
     funcoes: ["minerador"],
@@ -1432,6 +1501,7 @@ The struck character naturally reacts with shock and disorientation, as if they 
 
   {
     id: "perplexity-comparar-precos",
+    tema: "Pesquisa de mercado",
     titulo: "Tabela de preços da concorrência na cidade",
     tipo: "Prompt",
     funcoes: ["minerador", "vendas"],
@@ -1446,6 +1516,7 @@ The struck character naturally reacts with shock and disorientation, as if they 
 
   {
     id: "perplexity-duvidas-produto",
+    tema: "Pesquisa de mercado",
     titulo: "As 10 dúvidas mais comuns sobre um produto",
     tipo: "Prompt",
     funcoes: ["minerador", "anuncio"],
@@ -1462,6 +1533,7 @@ The struck character naturally reacts with shock and disorientation, as if they 
 
   {
     id: "whatsapp-business-agente-ia",
+    tema: "Atendimento e automação",
     titulo: "Agente de IA do WhatsApp Business: como ativar",
     tipo: "Referência",
     funcoes: ["vendas"],
@@ -1483,6 +1555,7 @@ Ativação: Configurações → Ferramentas comerciais → Agente de IA (ou Busi
 
   {
     id: "whatsapp-faq-treinar-ia",
+    tema: "Atendimento e automação",
     titulo: "Perguntas frequentes para treinar a IA do WhatsApp",
     tipo: "Modelo",
     funcoes: ["vendas"],
@@ -1502,6 +1575,7 @@ Onde fica? → Rua ________, nº __, bairro ________.`,
 
   {
     id: "manychat-comentario-direct",
+    tema: "Atendimento e automação",
     titulo: "ManyChat: comentário no post vira Direct com link",
     tipo: "Referência",
     funcoes: ["vendas", "anuncio"],
@@ -1520,6 +1594,7 @@ Regras da Meta: 1 mensagem privada por comentário (janela de 24h para respostas
 
   {
     id: "manychat-mensagem-direct",
+    tema: "Atendimento e automação",
     titulo: "Mensagem de Direct para entregar material",
     tipo: "Modelo",
     funcoes: ["vendas", "anuncio"],
@@ -1536,6 +1611,7 @@ Gostou? Me segue que toda semana tem conteúdo novo`,
 
   {
     id: "gamma-apresentacao-comercial",
+    tema: "Apresentações e materiais",
     titulo: "Apresentação comercial de 8 slides (Gamma)",
     tipo: "Prompt",
     funcoes: ["vendas"],
@@ -1550,6 +1626,7 @@ Gostou? Me segue que toda semana tem conteúdo novo`,
 
   {
     id: "notebooklm-resumo-audio-produtos",
+    tema: "Apresentações e materiais",
     titulo: "Resumo em áudio dos produtos para cliente novo (NotebookLM)",
     tipo: "Prompt",
     funcoes: ["vendas"],

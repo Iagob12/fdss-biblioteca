@@ -65,6 +65,8 @@
       <div id="funcoes" class="faixa"></div>
     </nav>
 
+    <div id="temas" class="temas" role="group" aria-label="Filtrar por tema"></div>
+
     <div id="tipos" class="tipos" role="group" aria-label="Filtrar por tipo"></div>
 
     <section id="atalhos" class="atalhos" aria-label="Seus atalhos" hidden></section>
@@ -72,10 +74,14 @@
     <div class="barra">
       <p id="resumo" class="resumo" role="status" aria-live="polite"></p>
       <div id="filtros-ativos" class="filtros-ativos"></div>
+      <div class="vista" role="group" aria-label="Modo de exibição">
+        <button type="button" data-vista="lista" aria-pressed="true">Lista</button>
+        <button type="button" data-vista="cartoes" aria-pressed="false">Cartões</button>
+      </div>
     </div>
 
     <section id="resultados" aria-label="Resultados" tabindex="-1">
-      <ul id="grade" class="grade"></ul>
+      <div id="grade" class="grupos"></div>
       <div id="vazio" class="vazio" hidden></div>
     </section>
 
@@ -111,6 +117,12 @@
           </div>
 
           <div class="campo">
+            <label for="f-tema">Tema <span class="dica">agrupa o item na tela</span></label>
+            <input id="f-tema" name="tema" type="text" list="lista-temas" autocomplete="off">
+            <datalist id="lista-temas"></datalist>
+          </div>
+
+          <div class="campo campo-largo">
             <label for="f-tags">Tags <span class="dica">separadas por vírgula</span></label>
             <input id="f-tags" name="tags" type="text" autocomplete="off">
           </div>

@@ -9,7 +9,7 @@
   /* ---------- dados ---------- */
 
   const TIPOS_PADRAO = ["Prompt", "Skill", "Modelo", "Link", "Referência"];
-  const CHAVE = { funcao: "fdss.funcao", favoritos: "fdss.favoritos", recentes: "fdss.recentes" };
+  const CHAVE = { funcao: "fdss.funcao", favoritos: "fdss.favoritos", recentes: "fdss.recentes", vista: "fdss.vista" };
   const MAX_RECENTES = 8;
 
   const texto = (v) => (v == null ? "" : String(v));
@@ -32,6 +32,7 @@
       id,
       titulo: texto(b.titulo).trim(),
       tipo: texto(b.tipo).trim() || "Prompt",
+      tema: texto(b.tema).trim(),
       funcoes: lista(b.funcoes),
       tags: lista(b.tags),
       descricao: texto(b.descricao).trim(),
@@ -209,6 +210,20 @@
     return null;
   }
 
+  /* ---------- temas ---------- */
+
+  // A ordem vem de window.TEMAS (dados.js); temas usados só nos itens entram no fim.
+  const SEM_TEMA = "Outros";
+  const TEMAS = lista(window.TEMAS);
+  ITENS.forEach((i) => {
+    if (!i.tema) return;
+    const igual = TEMAS.find((t) => norm(t) === norm(i.tema));
+    if (igual) i.tema = igual; else TEMAS.push(i.tema);
+  });
+  const TEM_TEMAS = ITENS.some((i) => i.tema);
+  if (TEM_TEMAS && ITENS.some((i) => !i.tema)) TEMAS.push(SEM_TEMA);
+  const temaDe = (i) => i.tema || SEM_TEMA;
+
   /* ---------- memória do navegador ---------- */
 
   function ler(chave, padrao) {
@@ -227,7 +242,10 @@
 
   /* ---------- estado e URL ---------- */
 
-  const estado = { funcao: "", tipo: "", tag: "", q: "", item: "" };
+  const estado = {
+    funcao: "", tipo: "", tema: "", tag: "", q: "", item: "",
+    vista: ler(CHAVE.vista, "lista") === "cartoes" ? "cartoes" : "lista"
+  };
 
   (function lerURL() {
     const p = new URLSearchParams(location.search);
@@ -239,6 +257,8 @@
     }
     const t = p.get("tipo");
     if (t) estado.tipo = TIPOS.find((x) => norm(x) === norm(t)) || "";
+    const tm = p.get("tema");
+    if (tm) estado.tema = TEMAS.find((x) => norm(x) === norm(tm)) || "";
     estado.tag = (p.get("tag") || "").trim();
     estado.q = p.get("q") || "";
     estado.item = p.get("item") || "";
@@ -248,6 +268,7 @@
     const p = new URLSearchParams();
     p.set("funcao", estado.funcao || "todas");
     if (estado.tipo) p.set("tipo", estado.tipo);
+    if (estado.tema) p.set("tema", estado.tema);
     if (estado.tag) p.set("tag", estado.tag);
     if (estado.q.trim()) p.set("q", estado.q.trim());
     if (estado.item) p.set("item", estado.item);
@@ -315,6 +336,7 @@
   const busca = $("busca");
   const elFuncoes = $("funcoes");
   const elTipos = $("tipos");
+  const elTemas = $("temas");
   const elAtalhos = $("atalhos");
   const elResumo = $("resumo");
   const elFiltros = $("filtros-ativos");
@@ -457,6 +479,7 @@
   function passa(item, f) {
     if (f.funcao && item.funcoes.indexOf(f.funcao) === -1 && !item.funcoes.some((id) => FUNCAO[id] && FUNCAO[id].sempre)) return false;
     if (f.tipo && item.tipo !== f.tipo) return false;
+    if (f.tema && temaDe(item) !== f.tema) return false;
     if (f.tag && !item.tags.some((t) => norm(t) === norm(f.tag))) return false;
     return true;
   }
@@ -495,7 +518,7 @@
     // funções
     limpar(elFuncoes);
     [{ id: "", nome: "Todas" }].concat(FUNCOES).forEach((f) => {
-      const n = conta({ funcao: f.id, tipo: estado.tipo, tag: estado.tag });
+      const n = conta({ funcao: f.id, tipo: estado.tipo, tema: estado.tema, tag: estado.tag });
       elFuncoes.appendChild(el("button", {
         class: "funcao", type: "button", "aria-pressed": estado.funcao === f.id ? "true" : "false",
         "aria-label": f.nome + ", " + n + (n === 1 ? " item" : " itens"),
@@ -505,13 +528,34 @@
 
     // tipos
     limpar(elTipos);
+    elTipos.appendChild(el("span", { class: "rotulo", text: "Tipo" }));
     [""].concat(TIPOS).forEach((t) => {
-      const n = conta({ funcao: estado.funcao, tipo: t, tag: estado.tag });
+      const n = conta({ funcao: estado.funcao, tipo: t, tema: estado.tema, tag: estado.tag });
       elTipos.appendChild(el("button", {
         class: "tipo", type: "button", "aria-pressed": estado.tipo === t ? "true" : "false",
         "aria-label": (t || "Todos os tipos") + ", " + n + (n === 1 ? " item" : " itens"),
         onclick: () => { estado.tipo = t; aplicar(); }
       }, [el("span", { text: t || "Todos os tipos" }), el("small", { text: String(n) })]));
+    });
+
+    // temas (somem os que ficariam com zero itens)
+    limpar(elTemas);
+    elTemas.hidden = !TEM_TEMAS;
+    if (TEM_TEMAS) {
+      elTemas.appendChild(el("span", { class: "rotulo", text: "Tema" }));
+      [""].concat(TEMAS).forEach((t) => {
+        const n = conta({ funcao: estado.funcao, tipo: estado.tipo, tema: t, tag: estado.tag });
+        if (t && !n && estado.tema !== t) return;
+        elTemas.appendChild(el("button", {
+          class: "tema", type: "button", "aria-pressed": estado.tema === t ? "true" : "false",
+          "aria-label": (t || "Todos os temas") + ", " + n + (n === 1 ? " item" : " itens"),
+          onclick: () => { estado.tema = t; aplicar(); }
+        }, [el("span", { text: t || "Todos os temas" }), el("small", { text: String(n) })]));
+      });
+    }
+
+    document.querySelectorAll(".vista button").forEach((b) => {
+      b.setAttribute("aria-pressed", b.dataset.vista === estado.vista ? "true" : "false");
     });
 
     desenharAtalhos();
@@ -536,7 +580,7 @@
         onclick: () => { estado.tag = ""; aplicar(); }
       }, [el("span", { text: "#" + estado.tag }), icone("fechar")]));
     }
-    if (estado.tag || estado.tipo || estado.q.trim()) {
+    if (estado.tag || estado.tipo || estado.tema || estado.q.trim()) {
       elFiltros.appendChild(el("button", { class: "link-botao", type: "button", text: "Limpar filtros", onclick: () => limparFiltros(false) }));
     }
   }
@@ -555,9 +599,31 @@
     grade.hidden = false;
     vazio.hidden = true;
 
-    const frag = document.createDocumentFragment();
-    visiveis.forEach((a) => frag.appendChild(el("li", null, [cartao(a.item, c.termos)])));
-    grade.appendChild(frag);
+    const novaLista = () => el("ul", { class: "grade" + (estado.vista === "lista" ? " lista" : "") });
+    const doItem = (a) => el("li", null, [cartao(a.item, c.termos)]);
+
+    if (TEM_TEMAS && !c.termos.length) {
+      // sem busca: agrupa por tema, na ordem de window.TEMAS (a ordem interna é mantida)
+      const posicao = (a) => TEMAS.indexOf(temaDe(a.item));
+      visiveis = visiveis.map((a, i) => ({ a, i })).sort((x, y) => posicao(x.a) - posicao(y.a) || x.i - y.i).map((x) => x.a);
+      TEMAS.forEach((tema, n) => {
+        const itens = visiveis.filter((a) => temaDe(a.item) === tema);
+        if (!itens.length) return;
+        const ul = novaLista();
+        itens.forEach((a) => ul.appendChild(doItem(a)));
+        grade.appendChild(el("section", { class: "grupo", "aria-labelledby": "grupo-" + n }, [
+          el("h2", { class: "grupo-titulo", id: "grupo-" + n }, [
+            el("span", { text: tema }), el("span", { class: "contagem", text: String(itens.length) })
+          ]),
+          ul
+        ]));
+      });
+    } else {
+      // com busca: lista única, do mais ao menos relevante
+      const ul = novaLista();
+      visiveis.forEach((a) => ul.appendChild(doItem(a)));
+      grade.appendChild(ul);
+    }
 
     ativo = c.termos.length ? 0 : -1;
     marcarAtivo();
@@ -654,6 +720,7 @@
     const ativos = [];
     if (estado.funcao) ativos.push("função " + nomeFuncao(estado.funcao));
     if (estado.tipo) ativos.push("tipo " + estado.tipo);
+    if (estado.tema) ativos.push("tema " + estado.tema);
     if (estado.tag) ativos.push("tag #" + estado.tag);
     vazio.appendChild(el("p", {
       text: (ativos.length ? "Filtros ligados: " + ativos.join(", ") + ". " : "") +
@@ -662,11 +729,11 @@
 
     const acoes = el("div", { class: "vazio-acoes" });
     const emTodas = c.achados.length;
-    if (q && emTodas && (estado.funcao || estado.tipo || estado.tag)) {
+    if (q && emTodas && (estado.funcao || estado.tipo || estado.tema || estado.tag)) {
       acoes.appendChild(el("button", {
         class: "btn btn-acao", type: "button",
         text: "Ver " + emTodas + (emTodas === 1 ? " resultado" : " resultados") + " sem filtros",
-        onclick: () => { estado.funcao = ""; estado.tipo = ""; estado.tag = ""; gravar(CHAVE.funcao, ""); aplicar(); }
+        onclick: () => { estado.funcao = ""; estado.tipo = ""; estado.tema = ""; estado.tag = ""; gravar(CHAVE.funcao, ""); aplicar(); }
       }));
     }
     acoes.appendChild(el("button", {
@@ -722,6 +789,7 @@
 
   function limparFiltros(tudo) {
     estado.tipo = "";
+    estado.tema = "";
     estado.tag = "";
     estado.q = "";
     busca.value = "";
@@ -747,13 +815,23 @@
     if (focar) c.querySelector(".cartao-titulo").focus({ preventScroll: true });
   }
 
-  function colunas() {
+  // Cartão logo acima ou abaixo (na linha mais próxima, o mais alinhado na horizontal).
+  // Funciona com grupos de tamanhos diferentes e nos dois modos de exibição.
+  function vizinhoVertical(i, sinal) {
     const cs = grade.querySelectorAll(".cartao");
-    if (cs.length < 2) return 1;
-    const topo = cs[0].getBoundingClientRect().top;
-    let n = 1;
-    while (n < cs.length && Math.abs(cs[n].getBoundingClientRect().top - topo) < 4) n++;
-    return n;
+    if (!cs[i]) return -1;
+    const r = cs[i].getBoundingClientRect();
+    const cx = r.left + r.width / 2;
+    let melhor = -1, dy = Infinity, dx = Infinity;
+    for (let j = 0; j < cs.length; j++) {
+      if (j === i) continue;
+      const b = cs[j].getBoundingClientRect();
+      const d = sinal > 0 ? b.top - r.bottom + 4 : r.top - b.bottom + 4;
+      if (d < 0) continue;
+      const x = Math.abs(b.left + b.width / 2 - cx);
+      if (d < dy - 4 || (Math.abs(d - dy) <= 4 && x < dx)) { melhor = j; dy = d; dx = x; }
+    }
+    return melhor;
   }
 
   grade.addEventListener("focusin", (e) => {
@@ -824,7 +902,7 @@
     if (!vertical && !horizontal) return;
     if (!visiveis.length) return;
     if (naBusca ? horizontal : digitando) return;
-    if (!naBusca && alvo.closest && !alvo.closest(".grade") && alvo !== document.body) return;
+    if (!naBusca && alvo.closest && !alvo.closest(".grupos") && alvo !== document.body) return;
 
     e.preventDefault();
     const sinal = e.key === "ArrowDown" || e.key === "ArrowRight" ? 1 : -1;
@@ -833,10 +911,9 @@
       return;
     }
     if (ativo < 0) { definirAtivo(0, true); return; }
-    const passo = vertical ? colunas() : 1;
-    const novo = ativo + sinal * passo;
-    if (novo < 0) { busca.focus(); return; }
-    if (novo > visiveis.length - 1 && vertical && passo > 1) { definirAtivo(visiveis.length - 1, true); return; }
+    const novo = vertical ? vizinhoVertical(ativo, sinal) : ativo + sinal;
+    if (novo < 0) { if (sinal < 0) busca.focus(); return; }
+    if (novo > visiveis.length - 1) return;
     definirAtivo(novo, true);
   });
 
@@ -984,6 +1061,8 @@
   (function prepararFormulario() {
     const sel = $("f-tipo");
     TIPOS.forEach((t) => sel.appendChild(el("option", { value: t, text: t })));
+    const sugestoes = $("lista-temas");
+    TEMAS.filter((t) => t !== SEM_TEMA).forEach((t) => sugestoes.appendChild(el("option", { value: t })));
     const caixa = $("f-funcoes");
     FUNCOES.forEach((f) => {
       caixa.appendChild(el("label", { class: "opcao" }, [
@@ -1036,6 +1115,7 @@
       "    id: " + J(idUnico(titulo)) + ",",
       "    titulo: " + J(titulo) + ",",
       "    tipo: " + J(v("tipo")) + ",",
+      "    tema: " + J(v("tema")) + ",",
       "    funcoes: " + J(funcoes) + ",",
       "    tags: " + J(tags) + ",",
       "    descricao: " + J(v("descricao")) + ",",
@@ -1049,8 +1129,9 @@
     blocoAtual = linhas.join("\n");
     elBloco.hidden = false;
     elBloco.textContent = blocoAtual;
-    elFalta.hidden = true;
-    elFalta.classList.remove("erro");
+    const temaNovo = v("tema") && !TEMAS.some((t) => norm(t) === norm(v("tema")));
+    elFalta.hidden = !temaNovo;
+    elFalta.textContent = temaNovo ? "Tema novo: acrescente também “" + v("tema") + "” na lista window.TEMAS, no topo do dados.js, para escolher a posição dele na tela." : "";
     btnBloco.disabled = false;
   }
 
@@ -1089,6 +1170,12 @@
   });
 
   /* ---------- início ---------- */
+
+  document.querySelectorAll(".vista button").forEach((b) => b.addEventListener("click", () => {
+    estado.vista = b.dataset.vista === "cartoes" ? "cartoes" : "lista";
+    gravar(CHAVE.vista, estado.vista);
+    desenhar();
+  }));
 
   busca.value = estado.q;
   desenhar();
