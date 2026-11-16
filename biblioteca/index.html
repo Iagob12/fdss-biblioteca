@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="color-scheme" content="light">
+  <title>FDSS + · Biblioteca da equipe</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <svg class="fundo" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="onda-a" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ffffff" stop-opacity=".85"/>
+        <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="onda-b" x1="1" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#c9d6dc" stop-opacity=".55"/>
+        <stop offset="1" stop-color="#c9d6dc" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="onda-c" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#3fe0c0" stop-opacity="0"/>
+        <stop offset=".5" stop-color="#3fe0c0" stop-opacity=".5"/>
+        <stop offset="1" stop-color="#3fe0c0" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <path fill="url(#onda-b)" d="M0 520 C 260 420 420 640 720 560 S 1200 360 1440 470 V900 H0 Z"/>
+    <path fill="url(#onda-a)" d="M0 640 C 300 540 520 760 820 660 S 1260 520 1440 600 V900 H0 Z"/>
+    <path fill="url(#onda-a)" d="M1440 0 V260 C 1220 330 1080 150 860 190 S 560 120 420 0 Z"/>
+    <path fill="none" stroke="url(#onda-c)" stroke-width="2" d="M0 610 C 300 510 520 730 820 630 S 1260 490 1440 570"/>
+  </svg>
+
+  <a class="pular" href="#resultados">Pular para os resultados</a>
+
+  <header class="topo">
+    <a class="marca" href="index.html?funcao=todas" aria-label="FDSS +, início">
+      <svg class="marca-simbolo" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <circle cx="16" cy="16" r="15" fill="#1d2b31"/>
+        <path d="M9.5 19.5c3.2 2.6 6 .6 6.500-3.500s3.300-6.100 6.500-3.500" fill="none" stroke="#3fe0c0" stroke-width="2.6" stroke-linecap="round"/>
+      </svg>
+      <span class="marca-nome">FDSS <span class="marca-mais">+</span></span>
+    </a>
+
+    <div class="busca" role="search">
+      <svg class="busca-icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.500 4.500"/>
+      </svg>
+      <input id="busca" type="search" placeholder="Buscar prompts, skills e recursos"
+             aria-label="Buscar na biblioteca" autocomplete="off" autocapitalize="off"
+             spellcheck="false" enterkeyhint="search">
+      <kbd class="busca-tecla" aria-hidden="true">/</kbd>
+    </div>
+
+    <button id="btn-adicionar" class="btn btn-escuro" type="button">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg>
+      <span>Adicionar</span>
+    </button>
+  </header>
+
+  <main class="pagina">
+    <h1 class="oculto">FDSS +, biblioteca da equipe</h1>
+
+    <nav class="funcoes" aria-label="Filtrar por função">
+      <div id="funcoes" class="faixa"></div>
+    </nav>
+
+    <div id="tipos" class="tipos" role="group" aria-label="Filtrar por tipo"></div>
+
+    <section id="atalhos" class="atalhos" aria-label="Seus atalhos" hidden></section>
+
+    <div class="barra">
+      <p id="resumo" class="resumo" role="status" aria-live="polite"></p>
+      <div id="filtros-ativos" class="filtros-ativos"></div>
+    </div>
+
+    <section id="resultados" aria-label="Resultados" tabindex="-1">
+      <ul id="grade" class="grade"></ul>
+      <div id="vazio" class="vazio" hidden></div>
+    </section>
+
+    <p class="dicas" aria-hidden="true">
+      <kbd>/</kbd> buscar <span>·</span> <kbd>↑</kbd><kbd>↓</kbd> percorrer <span>·</span>
+      <kbd>Enter</kbd> abrir <span>·</span> <kbd>Ctrl</kbd><kbd>C</kbd> copiar <span>·</span> <kbd>Esc</kbd> fechar
+    </p>
+  </main>
+
+  <dialog id="detalhe" class="painel" aria-labelledby="detalhe-titulo"></dialog>
+
+  <dialog id="adicionar" class="modal" aria-labelledby="adicionar-titulo">
+    <div class="modal-interno">
+      <header class="modal-topo">
+        <h2 id="adicionar-titulo">Adicionar item</h2>
+        <button class="btn-icone" type="button" data-fechar aria-label="Fechar">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </header>
+
+      <div class="modal-corpo">
+        <p class="modal-intro">Preencha os campos. O bloco do item é montado abaixo, pronto para colar no arquivo <code>dados.js</code>.</p>
+
+        <form id="form-adicionar" class="form" novalidate>
+          <div class="campo campo-largo">
+            <label for="f-titulo">Título <span class="obrigatorio">(obrigatório)</span></label>
+            <input id="f-titulo" name="titulo" type="text" autocomplete="off" required>
+          </div>
+
+          <div class="campo">
+            <label for="f-tipo">Tipo</label>
+            <select id="f-tipo" name="tipo"></select>
+          </div>
+
+          <div class="campo">
+            <label for="f-tags">Tags <span class="dica">separadas por vírgula</span></label>
+            <input id="f-tags" name="tags" type="text" autocomplete="off">
+          </div>
+
+          <fieldset class="campo campo-largo">
+            <legend>Funções <span class="obrigatorio">(pelo menos uma)</span></legend>
+            <div id="f-funcoes" class="opcoes"></div>
+          </fieldset>
+
+          <div class="campo campo-largo">
+            <label for="f-descricao">Descrição <span class="dica">uma linha</span></label>
+            <input id="f-descricao" name="descricao" type="text" autocomplete="off">
+          </div>
+
+          <div class="campo campo-largo">
+            <label for="f-quando">Quando usar</label>
+            <textarea id="f-quando" name="quando_usar" rows="2"></textarea>
+          </div>
+
+          <div class="campo campo-largo">
+            <label for="f-conteudo">Conteúdo <span class="dica">o texto que será copiado</span></label>
+            <textarea id="f-conteudo" name="conteudo" rows="8" class="mono" spellcheck="false"></textarea>
+            <p class="ajuda">Trechos entre colchetes, como [NOME] ou [sua cidade], viram campos para preencher na hora de copiar.</p>
+          </div>
+
+          <div class="campo">
+            <label for="f-autor">Autor</label>
+            <input id="f-autor" name="autor" type="text" autocomplete="off">
+          </div>
+
+          <div class="campo">
+            <label for="f-data">Atualizado em</label>
+            <input id="f-data" name="atualizado_em" type="date">
+          </div>
+
+          <div class="campo campo-largo">
+            <label for="f-origem">Origem <span class="dica">link ou caminho, opcional</span></label>
+            <input id="f-origem" name="origem" type="text" autocomplete="off">
+          </div>
+        </form>
+
+        <section class="bloco" aria-labelledby="bloco-titulo">
+          <h3 id="bloco-titulo">Bloco pronto</h3>
+          <p id="bloco-falta" class="ajuda"></p>
+          <pre id="bloco" class="codigo" tabindex="0" aria-label="Bloco do item"></pre>
+          <ol class="passos">
+            <li>Copie o bloco.</li>
+            <li>Abra o arquivo <code>dados.js</code>, na mesma pasta do site.</li>
+            <li>Vá até o fim da lista <code>window.BIBLIOTECA</code> e cole na linha logo acima do <code>];</code></li>
+            <li>Salve e recarregue a página.</li>
+          </ol>
+        </section>
+      </div>
+
+      <footer class="modal-rodape">
+        <button class="btn btn-fantasma" type="button" data-fechar>Fechar</button>
+        <button id="btn-copiar-bloco" class="btn btn-acao" type="button">
+          <svg class="ic ic-copiar" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 9h10v10H9zM5 15V5h10"/></svg>
+          <svg class="ic ic-ok" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.500 4.500L19 7.500"/></svg>
+          <span class="btn-texto">Copiar bloco</span>
+        </button>
+      </footer>
+    </div>
+  </dialog>
+
+  <div id="aviso" class="aviso" role="status" aria-live="polite"></div>
+
+  <script src="dados.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
