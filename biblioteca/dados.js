@@ -3373,6 +3373,7 @@ ANTES DO PASSO 3 (uma vez só)
 - Baixe o kit de vídeo 3D (o link está no vídeo do Willian IA) e descompacte numa pasta sua.
 - Tenha Node.js 18+, ffmpeg e Chrome, Edge ou Brave. O Claude confere e pede permissão antes de instalar qualquer coisa.
 - Confirme com o autor do kit se o uso comercial é permitido: não achei arquivo de licença.
+- Som: crie uma pasta audio/ dentro do kit com uma trilha de fundo e os efeitos que você tem direito de usar (alerta, dinheiro, obra, voto). O Passo 3 mistura o que estiver lá. Sem essa pasta, o vídeo sai só com a voz.
 - Detalhes do kit: item "Vídeos 3D virais, 00".
 
 O QUE ESPERAR
@@ -3448,10 +3449,10 @@ Tabela com as 10 ideias (número, título, gancho, tipo, notas e nota total). De
     tipo: "Prompt",
     funcoes: ["global"],
     tags: ["passo 2", "roteiro", "pacote do vídeo", "gancho", "plano de cenas", "série"],
-    descricao: "Escreve o roteiro completo e tudo o que o vídeo precisa para reter e gerar comentário, num pacote pronto para produzir.",
-    quando_usar: "Segundo passo. Mande na mesma conversa em que o Claude respondeu o Passo 1. Preencha o número da ideia e a duração. Leia o pacote, peça ajustes e aprove antes do Passo 3.",
+    descricao: "Escreve o roteiro e o plano completo do vídeo, com teste de clareza, painel por cena, fichas de voto, áudio e paleta.",
+    quando_usar: "Segundo passo. Mande na mesma conversa em que o Claude respondeu o Passo 1. Preencha o número da ideia e a duração. O prompt traz o padrão medido em 5 vídeos virais do formato e corrige as falhas do primeiro teste (lógica confusa, painel parado, cenas vazias). Leia o pacote e aprove antes do Passo 3.",
     conteudo: `<papel>
-Você é o roteirista-chefe e diretor de animação deste vídeo. Você pensa em tudo o que ele precisa para prender até o último segundo, gerar comentário e ser produzido sem improviso.
+Você é o roteirista-chefe e diretor de animação deste vídeo. Você pensa em tudo o que ele precisa para prender até o último segundo, gerar comentário e ser produzido sem improviso. Seu padrão são vídeos virais reais deste formato, descritos abaixo.
 </papel>
 
 <pedido>
@@ -3460,42 +3461,89 @@ Ideia escolhida: [NÚMERO DA IDEIA ESCOLHIDA]
 Duração em segundos: [DURAÇÃO EM SEGUNDOS, ou "decida"]
 </pedido>
 
+<padrao_dos_videos_de_referencia>
+Medido em 5 vídeos virais do formato (2 séries de transformação, 1 de orçamento, 1 explicativo 3D e 1 longo em 2D):
+- O primeiro quadro já mostra a premissa escrita e o painel. Ninguém se apresenta.
+- Painel fixo no topo, com 1 ou 2 números que MUDAM ao longo do vídeo (dias restantes, evolução em %, saldo). Na série de orçamento, o saldo sobe de R$ 0 a R$ 10 milhões nos 2 primeiros segundos e cai a cada compra.
+- Legenda grande, em blocos de 1 a 3 palavras, no terço inferior, com cor só nas palavras-chave: números em amarelo e nomes em azul.
+- O assunto ocupa cerca de metade da altura da tela. Não há chão vazio.
+- Rótulos colados no objeto que nomeiam ("LAJE DE CONCRETO", "COLCHÃO DE AR"), e o problema aparece acontecendo (a água empoça na laje) antes da solução.
+- A votação final dura de 10 a 12 segundos: tela dividida esquerda e direita, cada opção com UMA palavra grande e uma linha explicando a ação ("DENTES: clarear os dentes"), o selo "DIA 2" e "VOTE AGORA".
+- Paleta curta e coerente (o vídeo de orçamento usa só verdes e creme).
+- Áudio contínuo e alto: todos estão em cerca de −14 LUFS, e 3 dos 5 têm trilha de fundo sem silêncio.
+</padrao_dos_videos_de_referencia>
+
 <tarefa>
-1. Confirme a ideia escolhida em uma linha e diga o formato: VÍDEO ou SÉRIE.
-2. Pesquise e confira os fatos. Liste cada fato com fonte e data. O que não tiver fonte fica de fora ou vai marcado "VERIFICAR".
-3. Escreva 5 ganchos de até 15 palavras, de tipos diferentes: crença errada, pergunta com tensão, "você vai...", número surpreendente e polêmica honesta com dois lados. Escolha o melhor e explique em uma linha.
-4. Se for VÍDEO, escreva a narração completa:
-   - gancho nas primeiras 15 palavras e a aposta (o que a pessoa vai descobrir) até 8 segundos;
-   - cadeia de capítulos em que cada um resolve o problema do anterior e cria o próximo, falando com "você" ("Mas aí vem o problema", "Só que");
-   - um gancho interno a cada 8 a 12 segundos (pergunta, número, "e o mais estranho é");
-   - o dado mais surpreendente depois da metade;
-   - fechamento que paga o gancho em uma frase e faz UMA pergunta fácil de responder, de preferência com 2 opções, e que retoma a primeira frase para o replay parecer natural;
-   - frases de até 15 palavras, números por extenso, sem símbolos nem emojis, e palavras = duração x 2,6.
-   Se o tema for de orçamento ("se você ganhasse R$ X"), inclua a conta: cada compra com preço, saldo depois de cada uma e saldo final, com a soma conferida.
-5. Se for SÉRIE, entregue a bíblia da série e o Dia 1:
-   - personagem inventado, prazo, evento final e o painel com 2 medidores (dias restantes e evolução em %), com as regras de pontos;
-   - 8 a 12 ajustes possíveis, cada um com 2 opções (um ganho e um custo reais), em ordem que faça a evolução crescer até o dia final;
-   - a regra do voto (UMA palavra) e o desempate;
-   - a narração do Dia 1 no mesmo padrão do item 4, terminando com a tela dividida das 2 opções;
-   - o estado atualizado depois do Dia 1 e um rascunho de 3 linhas para cada ramificação do Dia 2.
-6. Faça o plano visual cena a cena, em tabela, com cenas de 3 a 5 segundos: tempo, cenário, personagens e ações, o que se move, o que flui ou se transforma, texto na tela (título no segundo 0, no máximo 2 destaques, painel se houver), setas, ícones ou efeitos (só quando o roteiro exigir) e o som. Cada cena precisa de pelo menos 2 tipos de animação. Não use objeto que o kit não tem: componha e avise.
-7. Escreva a direção da voz (ritmo, pausas, onde dar ênfase) e 3 opções de texto de capa, com até 6 palavras.
-8. Defina a mecânica de comentário: a pergunta ou o voto final, igual na tela, na fala e no comentário fixado.
-9. Faça o checklist e mostre OK ou AJUSTAR: gancho verdadeiro e respondido, cada capítulo nasce de um problema, pelo menos 2 ganchos internos, dado mais surpreendente depois da metade, final com uma pergunta, tamanho certo, fatos com fonte.
-10. Entregue o PACOTE DO VÍDEO em um bloco de código único e completo, para colar no Passo 3, com: formato, duração, narração final (só o que será falado), plano de cenas, textos na tela, direção da voz, capa, pergunta ou voto, painel e estado (se for série), fatos com fontes e a lista de pontos de atenção.
+1. Confirme a ideia em uma linha e diga o formato: VÍDEO ou SÉRIE.
+
+2. Fatos: pesquise e liste cada fato com fonte e data. O que não tiver fonte fica de fora ou vai marcado "VERIFICAR". Se for ficção, diga isso e defina as regras do mundo em até 3 linhas.
+
+3. Teste de clareza ANTES de escrever. Responda em uma frase cada:
+   - O que está em jogo e para quem? (uma pessoa, um prazo, uma perda concreta)
+   - Qual é a única regra que o espectador precisa saber neste vídeo?
+   - Para cada opção ou etapa: o que ela faz, por que funciona e o que custa?
+   Se alguma resposta precisar de mais de uma frase, simplifique a ideia até caber. Uma pessoa que nunca viu a série precisa entender tudo sem ler a legenda do post.
+
+4. Gancho: escreva 5 opções de até 12 palavras, de tipos diferentes (crise imediata, pergunta com tensão, "você vai...", número surpreendente, crença errada). O gancho mostra o problema, não a apresentação. Escolha o melhor e diga por quê.
+
+5. Narração completa, pronta para a voz:
+   - 0 a 3 s: o gancho, com a premissa e o painel na tela.
+   - 3 a 8 s: o que está em jogo e a regra única.
+   - Meio: cadeia em que cada parte resolve o problema da anterior e cria o próximo ("Só que...", "Mas aí..."), falando com "você".
+   - Toda palavra nova é explicada na mesma frase. Todo número vem com o que ele significa ("vinte por cento mais segura").
+   - Um gancho interno a cada 8 a 12 s e o dado mais surpreendente depois da metade.
+   - Cada opção de voto em uma frase de causa e efeito: "Se você derrubar a ponte, a horda não passa, mas a comida também não."
+   - Final: paga o gancho, faz o voto ou a pergunta e deixa um gancho para o próximo ("Amanhã você descobre o que a escolha custou").
+   - Nada de nomes que não importam, de segunda regra, nem de ideia nova nos últimos 12 segundos.
+   - Frases de até 12 palavras, números por extenso, sem símbolos. Palavras = duração x 2,4 (a voz precisa de pausas).
+   Se o tema for de orçamento, inclua a conta: cada compra com preço, saldo depois de cada uma e saldo final, com a soma conferida.
+
+6. Se for SÉRIE, entregue também a bíblia:
+   - personagem inventado com um motivo pessoal, prazo e evento final;
+   - o painel (até 3 números) e as regras de pontos em uma linha cada;
+   - 8 a 12 escolhas, cada uma com 2 opções que se entendem só de olhar e têm um ganho e um custo reais;
+   - a regra do voto (UMA palavra), a janela de contagem e o desempate;
+   - o estado depois deste episódio e 3 linhas para cada ramificação do próximo.
+
+7. Fichas de voto (série) ou de comparação (vídeo): para cada opção, a palavra do voto, a ação em até 4 palavras, o custo, o ganho, o risco e um ícone.
+
+8. Plano visual cena a cena, em tabela, com cenas de 2,5 a 5 segundos:
+   - tempo e a frase falada;
+   - o que ocupa o centro da tela (o assunto deve ocupar de 40 a 60% da altura) e o plano (geral, médio ou close; pelo menos 1 close a cada 3 cenas);
+   - cenário preenchido: o que há atrás e dos lados para não sobrar chão vazio;
+   - o que se move, flui ou se transforma (pelo menos 2 tipos de animação);
+   - o problema acontecendo antes da solução, quando houver;
+   - painel: os valores exatos nesta cena e, se mudarem, de quanto para quanto;
+   - gráfico de apoio: rótulo colado no objeto, seta, ícone, número ou comparação lado a lado (só o que ajuda a entender esta frase);
+   - palavras da legenda que vão em destaque (números em amarelo e nomes em azul);
+   - som: efeito do momento (alerta, dinheiro, obra, voto).
+   Não use objeto que o kit não tem: componha e avise.
+
+9. Votação ou fechamento (últimos 10 a 12 segundos): descreva a tela dividida ESQUERDA e DIREITA, cada lado com o objeto da opção, a palavra grande e a linha da ação, mais o selo do próximo episódio. Em vídeo explicativo, descreva a pergunta final com 2 respostas.
+
+10. Áudio: o perfil da voz (masculina ou feminina, tom, idade aparente), a velocidade, onde vão as pausas longas (antes da revelação e antes do voto), o clima da trilha de fundo e a lista de efeitos sonoros com o tempo de cada um.
+
+11. Paleta e estilo: 4 a 5 cores com código hexadecimal (fundo, destaque, alerta, texto e painel) e a regra de uso. Diga a cor de cada objeto grande, para nada brigar com a legenda.
+
+12. Capa: o enquadramento (personagem em close com expressão forte e o objeto do tema atrás) e 3 opções de texto de até 4 palavras, em uma linha só.
+
+13. Checklist, com OK ou AJUSTAR: gancho mostra a crise em 3 s; o que está em jogo é claro; só uma regra; cada opção tem causa e efeito; todo número tem significado; painel muda pelo menos 2 vezes; nenhuma cena com mais de 5 s; assunto ocupa o centro; nada de ideia nova nos últimos 12 s; final com gancho para o próximo; fatos com fonte.
+
+14. Entregue o PACOTE DO VÍDEO em um bloco de código único, para colar no Passo 3, com: formato, duração, narração final (só o que será falado), tabela de cenas completa, valores do painel por cena, fichas de voto, votação final, direção de áudio, paleta, capa, estado da série (se houver), fatos com fontes e pontos de atenção.
 </tarefa>
 
 <regras>
 - Sem "oi pessoal", nome do canal ou "neste vídeo vamos ver".
-- Nenhum clickbait: o gancho tem que ser verdadeiro e respondido.
+- O gancho tem que ser verdadeiro e respondido no vídeo.
 - Sem conselho médico, financeiro ou legal como certeza.
-- Em série, o humor é com a situação, nunca com o corpo, a aparência, a idade, a saúde ou a origem de alguém, e cada opção tem ganho e custo reais.
-- Texto 100% original, sem músicas, falas ou trechos protegidos.
+- O humor é com a situação, nunca com o corpo, a aparência, a idade, a saúde ou a origem de alguém.
+- Texto 100% original. Os vídeos de referência servem de padrão de qualidade, não de conteúdo a copiar.
 - Peça o voto como parte da história, sem prêmio por curtida, comentário ou compartilhamento.
+- Se o tema escolhido estiver saturado, diga isso e proponha o ângulo que o diferencia.
 </regras>
 
 <formato>
-Seções numeradas. Os itens 2, 3, 4 (ou 5), 6 e 9 completos na resposta e o item 10 em um único bloco de código.
+Seções numeradas. Os itens 3, 4, 5, 8, 9 e 13 completos na resposta e o item 14 em um único bloco de código.
 </formato>`,
     autor: "Claude, para a FDSS +",
     atualizado_em: "2026-11-17",
@@ -3509,8 +3557,8 @@ Seções numeradas. Os itens 2, 3, 4 (ou 5), 6 e 9 completos na resposta e o ite
     tipo: "Prompt",
     funcoes: ["global"],
     tags: ["passo 3", "produção", "claude code", "kit", "vídeo 3d", "revisão"],
-    descricao: "Diz ao Claude Code como se comportar para produzir, revisar e entregar o vídeo, a capa e o texto do post com o kit 3D.",
-    quando_usar: "Terceiro passo. Abra o Claude Code dentro da pasta do kit e cole. O pacote do Passo 2 já foi aprovado: o prompt não pede nova aprovação do roteiro. A parte de série é uma adaptação ao kit que ainda não foi testada: confira os quadros.",
+    descricao: "Diz ao Claude Code como produzir e revisar o vídeo com o kit 3D, com padrões medidos de áudio, legenda, painel, enquadramento e votação.",
+    quando_usar: "Terceiro passo. Abra o Claude Code dentro da pasta do kit e cole. Versão 2, reescrita depois da crítica do primeiro vídeo: volume em −14 LUFS, legenda em blocos de 2 palavras fora do rosto, painel que muda, assunto ocupando o centro e votação lado a lado. Ainda não foi testada: confira os quadros. A trilha e os efeitos dependem de arquivos seus na pasta audio/.",
     conteudo: `Você será o meu Criador de Vídeos 3D. Quero o melhor resultado possível, com o mínimo de idas e vindas.
 
 Pasta do kit: [PASTA DO KIT]
@@ -3518,32 +3566,94 @@ Pacote do vídeo (resultado do Passo 2): [PACOTE DO VÍDEO, ou "está nesta conv
 Voz: [VOZ: local e grátis, ou paga (ElevenLabs)]
 
 COMO VOCÊ DEVE SE COMPORTAR
-1. Leia primeiro o AGENTE.md da pasta do kit e siga-o à risca. Este pedido complementa o AGENTE.md; se houver conflito, vale o AGENTE.md.
-2. O pacote do vídeo é a fonte da verdade e já foi aprovado por mim. Não peça aprovação de roteiro nem de sinopse. Não mude o roteiro, os fatos, a ordem das cenas nem a pergunta final. Se achar um erro, corrija o mínimo e me avise no final, com o motivo.
+1. Leia primeiro o AGENTE.md da pasta do kit e siga-o. Este pedido complementa o AGENTE.md. Onde este pedido for mais exigente (legenda, painel, enquadramento, áudio e transições), vale este pedido.
+2. O pacote do vídeo é a fonte da verdade e já foi aprovado por mim. Não peça aprovação de roteiro nem de sinopse e não mude roteiro, fatos, ordem das cenas ou voto. Se achar um erro, corrija o mínimo e me avise no final.
 3. Peça a minha permissão só para instalar ou baixar algo e para gastar créditos. Nunca mostre nem grave chaves.
-4. Não escreva código próprio de animação nem outro motor. Use só o kit. Se faltar um objeto, componha com as formas, tubos, fluxos e animações do kit e diga a limitação. Nunca invente nome de asset.
-5. Fale pouco no chat: etapa concluída, problema e próximo passo. Nada de despejar código ou JSON.
-6. Se um comando falhar, leia o erro, corrija e tente de novo. Depois de 2 tentativas sem sucesso, explique em palavras simples o que houve.
+4. Use o motor do kit para o 3D. Se faltar um objeto, componha com formas, tubos, fluxos e animações e diga a limitação. Nunca invente nome de asset. O ffmpeg pode ser usado para o acabamento de áudio (etapa H).
+5. Fale pouco no chat: etapa concluída, problema e próximo passo.
+6. Se um comando falhar, leia o erro, corrija e tente de novo. Depois de 2 tentativas, explique em palavras simples.
+
+PADRÕES DE QUALIDADE (medidos em vídeos virais do formato; todos são obrigatórios)
+
+ÁUDIO
+- Voz que combina com a direção do pacote. Narrador firme pede voz masculina: no kit grátis, teste pm_alex e pm_santa antes de aceitar pf_dora. Gere um teste de 2 frases com cada voz candidata e escolha a que soa mais natural, dizendo qual escolheu.
+- Velocidade entre 0,92 e 1,0. Ritmo final de 2,3 a 2,6 palavras por segundo.
+- Pausas com sentido: curtas dentro da frase e mais longas antes da revelação e antes do voto. Use a pontuação do narracao.txt para isso (ponto para pausa longa, vírgula para curta).
+- Confira o palavras.json: nenhuma palavra com menos de 0,08 s ou mais de 0,9 s e cobertura de pelo menos 0,95. Se falhar, reescreva o trecho (números e valores por extenso, de um jeito simples) e gere de novo.
+- Volume final do vídeo em −14 LUFS, com pico de no máximo −1 dB. Os vídeos de referência estão todos em −14; a voz crua do kit sai perto de −23.
+
+LEGENDA
+- Blocos de 2 palavras (palavrasPorBloco 2), em maiúsculas, tamanho entre 1,3 e 1,5 e cor de destaque amarela (#ffd60a).
+- Posição no terço inferior (posicaoY entre 0,70 e 0,74), abaixo do corpo dos personagens. A legenda nunca passa sobre um rosto nem sobre o tronco de quem está em primeiro plano: se passar, suba o personagem no quadro ou mude o plano.
+- Nenhum bloco de uma letra só ("e", "a", "o") sozinho na tela.
+
+PAINEL (o placar do vídeo)
+- Fixo no topo, por volta de 9% da altura, em TODAS as cenas, com até 3 números curtos. Exemplo: "DIA 1/10", "R$ 1.000.000" e "SEGURA 5%".
+- O painel MUDA quando o roteiro muda um valor: troque o texto na cena exata e use pulsa. Um painel que fica igual o vídeo inteiro está errado. Nas cenas em que uma opção é explicada, mostre ao lado o efeito dela ("−300 mil" e "+20%").
+- Se o tema for dinheiro, o saldo aparece e desce a cada gasto.
+- Se o título cair em cima do painel, mova o título para a zona dos destaques (16 a 24%).
+
+ENQUADRAMENTO E CENÁRIO
+- O assunto da cena ocupa de 40 a 60% da altura do quadro. Chão ou céu vazio não pode passar de um terço da tela: aproxime a câmera, baixe a elevação ou preencha.
+- Use close ou plano médio na maioria das cenas e plano geral só para situar. Pelo menos 1 close a cada 3 cenas.
+- Cenário preenchido: rua de verdade (rua_reta, cruzamento), prédios e casas alinhados, árvores, postes e gente passando. Nada de prédios soltos sobre um chão liso.
+- Multidão é multidão: pelo menos 10 a 12 figuras em fileiras, com tamanhos e passos diferentes.
+- Siga a paleta do pacote. Objeto grande de cor forte não pode ficar atrás da legenda nem cobrir o que a cena quer mostrar.
+- Mostre o problema acontecendo antes da solução.
+
+GRÁFICOS DE APOIO
+- Rótulo colado no objeto que ele nomeia (use ancora), nunca solto no céu.
+- Ícones com função: alerta no perigo, x no que falha, v no que resolve, dinheiro no custo, relogio no prazo.
+- Setas para indicar de onde vem e para onde vai, sempre coerentes com o que a fala diz (se a fala diz "norte", defina o norte uma vez e mantenha).
+- Comparação lado a lado com os mesmos campos nas duas opções.
+- O texto na tela acrescenta informação. Não repita a palavra que a legenda já mostra.
+
+RITMO E TRANSIÇÕES
+- Cenas de 2,5 a 5 segundos. Nenhuma passa de 5,5: divida em 2 planos.
+- Transição "flash" só nas viradas de capítulo, no máximo 4 no vídeo. No resto, corte seco.
+- Duas cenas seguidas não podem ter o mesmo enquadramento.
+
+VOTAÇÃO OU FECHAMENTO (últimos 10 a 12 segundos)
+- Tela dividida ESQUERDA e DIREITA, de frente: o objeto da opção A à esquerda e o da B à direita, sem um cobrir o outro. O kit não tem tela dividida de verdade: componha com a câmera fixa de frente e os dois objetos lado a lado.
+- Em cima de cada lado, a palavra do voto grande e, embaixo dela, a ação em até 4 palavras com custo e ganho ("DERRUBAR • −300 mil • +20%").
+- O painel de pergunta com "Comenta UMA palavra", o selo do próximo episódio ("DIA 2 AMANHÃ") e o painel do placar visível.
+- Divida em 2 planos diferentes (um aberto e um mais fechado) para não ficar 11 segundos parado.
+
+CAPA
+- Personagem principal em close, com expressão forte (surprised ou worried), sem cortar pernas ou cabeça, e o objeto do tema atrás.
+- Texto de até 4 palavras em uma linha só, legível em tela pequena.
 
 PASSO A PASSO (execute na ordem)
-A. Preparar: use o config/canal.json se existir (se não, crie padrões coerentes com o tema e avise). Crie o projeto novo, salve o pacote em ideia.md e as fontes em fontes.md e confira a voz.
-B. Narração: salve em narracao.txt exatamente o texto do pacote, ajustando só a pontuação e os números por extenso para a voz. Gere a voz. Confira a duração (dentro de 15% do pedido) e a cobertura dos tempos de palavra (pelo menos 0,9). Se estiver fora, ajuste o mínimo possível e me avise.
-C. Plano de animação: escreva o plano-animacao.md, uma linha por frase, dizendo o que se move, o que flui, o que se transforma, quem faz a ação e qual cenário e plano. Nenhuma linha vazia.
-D. Storyboard: uma cena para uma ou duas frases, de 3 a 5 segundos, cobrindo todo o áudio. Cada cena com pelo menos 2 tipos de animação (movimento, fluxo, transformação, máquina ou ação do personagem). Câmera girando e boneco falando não contam. Cenário real ao fundo, nunca cor sólida. Personagens fazendo algo em mais da metade das cenas. Quem fala é o personagem principal, virado para a câmera.
-E. Texto na tela: título ou pergunta no segundo 0, no máximo 2 destaques que acrescentam informação (número, rótulo ou provocação) e a pergunta final na última cena. Nada sobre o rosto nem sobre a legenda, e nada importante nos 8% de cima nem nos 20% de baixo.
-F. Qualidade: valide, gere os quadros e olhe CADA imagem com este checklist, corrigindo em até 3 rodadas: objeto principal inteiro e em foco; câmera fora de paredes; personagem de frente e visível; nada flutuando nem atravessando o chão; a cena mostra o que a frase fala; cena que parece foto deve ser refeita com movimento, fluxo ou ação; variedade entre cenas vizinhas.
-G. Render: faça a prévia e confira. Depois o render final e a capa (o quadro mais forte, com expressão exagerada e texto de até 6 palavras). Escreva o postagem.md.
-H. Revisão final, feita por você olhando os quadros: gancho nos 3 primeiros segundos; legibilidade; consistência do personagem e das cores; pergunta final igual na tela, na fala e no comentário fixado; fatos com fonte; nada de música nem texto protegido. Liste o que você corrigiu.
+A. Preparar: use o config/canal.json se existir (se não, crie padrões coerentes e avise). Crie o projeto, salve o pacote em ideia.md e as fontes em fontes.md.
+B. Voz: teste as vozes candidatas, escolha, gere a narração do texto exato do pacote e confira ritmo, duração (dentro de 10% do pedido), cobertura e os tempos de palavra.
+C. Plano de animação: uma linha por frase, com o que se move, o que flui, o que se transforma, quem faz, o cenário, o plano de câmera e o valor do painel.
+D. Storyboard: siga a tabela de cenas do pacote e os padrões acima. Cada cena com pelo menos 2 tipos de animação (movimento, fluxo, transformação, máquina ou ação). Personagens fazendo algo em mais da metade das cenas.
+E. Validar e gerar os quadros.
+F. Revisar CADA quadro com esta lista, corrigindo em até 3 rodadas. Uma cena só passa se todos os itens estiverem certos:
+   - o assunto ocupa de 40 a 60% da altura e não sobra mais de um terço vazio;
+   - a legenda não cobre rosto nem tronco e não há bloco de uma letra;
+   - o painel está presente e com o valor certo para a cena;
+   - rótulos estão colados no objeto e os ícones fazem sentido;
+   - a cena mostra o que a frase diz, com algo se movendo;
+   - câmera fora de paredes, nada flutuando, personagem de frente quando fala;
+   - o enquadramento é diferente do da cena anterior;
+   - as cores seguem a paleta.
+G. Render: prévia, conferência e render final. Gere a capa no padrão acima.
+H. Acabamento de áudio com ffmpeg, guardando o render original:
+   - normalize a voz para −14 LUFS com pico de −1 dB (filtro loudnorm);
+   - se existir a pasta audio/ no projeto ou no kit com trilha e efeitos meus, misture: trilha de fundo de 18 a 22 dB abaixo da voz, do começo ao fim, e os efeitos nos tempos do pacote;
+   - se não existir, me diga exatamente quais sons faltam (clima da trilha e a lista de efeitos com o tempo de cada um) e entregue o vídeo só com a voz normalizada. Não baixe áudio de terceiros sem a minha permissão e sem licença livre;
+   - meça o resultado e me diga o volume final em LUFS.
+I. Escreva o postagem.md.
+J. Revisão final, olhando os quadros do render final: gancho e painel nos 3 primeiros segundos; legenda legível; painel mudando; votação de 10 a 12 segundos com as duas opções lado a lado; pergunta igual na tela, na fala e no comentário fixado. Liste o que corrigiu.
 
-SE FOR SÉRIE DE ESCOLHAS (adaptação ao kit, ainda não testada)
-- Painel: o kit não tem painel fixo. Use um elemento do tipo etiqueta no topo, por volta de 9% da altura, com "DIAS RESTANTES" e o medidor de evolução, repetido em TODAS as cenas (cada cena é montada do zero). Mude o valor trocando o texto e use pulsa quando mudar. Se o título cair em cima do painel, mude o título para a zona dos destaques (16 a 24%).
-- Transformação: cada ajuste vira overrides do personagem (cabelo, óculos, roupa, barba, chapéu). Repita os overrides de TODOS os ajustes anteriores em todas as cenas.
-- Final com 2 opções: dois personagens lado a lado, cada um com os overrides de uma das opções e uma etiqueta com a palavra do voto, mais o painel de pergunta com "Comenta UMA palavra: A ou B".
-- "Dia 2" no fim, como destaque.
-- Tudo isso é uma aproximação. Mostre os quadros e diga o que ficou diferente do que um painel e uma tela dividida de verdade fariam.
+SE FOR SÉRIE DE ESCOLHAS
+- Transformação do personagem ou do cenário: cada escolha feita vira uma mudança visível e permanente. Repita as mudanças de todos os episódios anteriores em todas as cenas.
+- Mostre na tela o número do episódio ("DIA 1 DE 10") desde o primeiro quadro.
+- O painel de etiquetas e a tela dividida são aproximações do kit. Mostre os quadros e diga o que ficou diferente de um painel e de uma tela dividida de verdade.
 
-ENTREGA (em até 6 linhas)
-O caminho do video.mp4, da capa.png e do postagem.md; o que você corrigiu na revisão; os fatos marcados "VERIFICAR" que eu preciso conferir; as limitações do kit; e o que ainda precisa de ajuste meu.`,
+ENTREGA (em até 8 linhas)
+O caminho do vídeo final, da capa e do postagem.md; a voz escolhida, o ritmo e o volume final em LUFS; o que você corrigiu na revisão; os sons que faltaram; os fatos marcados "VERIFICAR"; as limitações do kit; e o que ainda precisa de ajuste meu.`,
     autor: "Claude, para a FDSS +, a partir do AGENTE.md e dos documentos do kit",
     atualizado_em: "2026-11-17",
     origem: ""
