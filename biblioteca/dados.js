@@ -27,7 +27,10 @@ window.FUNCOES = [
    "tema" dos itens. Item sem tema aparece no grupo "Outros".
    -------------------------------------------------------------------------- */
 window.TEMAS = [
+  "Passo a passo (do zero ao post)",
   "Do zero à venda",
+  "Vídeos 3D virais (kit)",
+  "Séries animadas virais",
   "Prompts do Claude",
   "Claude Code",
   "Economia de tokens",
@@ -2435,6 +2438,1249 @@ Tabela com o plano da sequência. Depois cada mensagem em bloco separado, com di
 </formato>`,
     autor: "Claude, para a FDSS +",
     atualizado_em: "2026-11-16",
+    origem: ""
+  },
+
+  /* ======================== EDIÇÃO DE VÍDEO: itens da lista que tinham ficado de fora ======================== */
+
+  {
+    id: "claude-animation-studio",
+    tema: "Edição de vídeo",
+    titulo: "Claude Animation Studio: skill de animação por estilo",
+    tipo: "Skill",
+    funcoes: ["anuncio"],
+    tags: ["animação", "skill", "pixel art", "flat vector", "claude.ai", "estilos"],
+    descricao: "Skill para o claude.ai que anima um roteiro em vários estilos (pixel art, vetor plano, quadrinhos, 3D e outros).",
+    quando_usar: "Para testar rápido um episódio animado a partir de um roteiro. ATENÇÃO: o download é um ZIP de um link do Google Drive que eu não consegui verificar. Antes de instalar, baixe, abra o SKILL.md e os scripts e leia tudo: skill executa código. Os atalhos /dankoe e /zackdfilms imitam o estilo de criadores específicos; evite-os para a sua série não parecer cópia.",
+    conteudo: `Download da skill (ZIP): https://drive.google.com/file/d/1LBu519PXLAIwf7N1vC6AjX1utaRjhmFc/view?usp=sharing
+
+Instalação, no claude.ai:
+1. Configurações → Capacidades: ative "Code execution and file creation".
+2. Personalizar → Skills → + → Create skill → Upload a skill.
+3. Envie o arquivo .zip e ative a Animation Studio.
+
+Modelo de uso:
+Use /Animation Studio /pixelart
+Script: [paste your script here]
+Visual directions (optional): [add them here]
+
+Atalhos de estilo: /pixelart, /chalkboard, /glowsketch, /ps2, /comicart, /flatvector, /dankoe, /cgimotion, /legostyle, /zackdfilms`,
+    autor: "Claude Animation Studio, Beginner's Guide (PDF)",
+    atualizado_em: "",
+    origem: "https://drive.google.com/file/d/1LBu519PXLAIwf7N1vC6AjX1utaRjhmFc/view?usp=sharing"
+  },
+
+  {
+    id: "retro-animacao-fluxo-4-passos",
+    tema: "Vídeo com IA",
+    titulo: "Animação retrô em 4 passos: primeiro quadro, último quadro e vídeo",
+    tipo: "Referência",
+    funcoes: ["anuncio"],
+    tags: ["animação", "retrô", "primeiro quadro", "último quadro", "seedance", "gpt"],
+    descricao: "Fluxo que gera a imagem inicial, a imagem final e o vídeo entre as duas.",
+    quando_usar: "Para animações com começo e fim definidos (transformações, revelações). Usar dois quadros-chave dá mais controle do que deixar o gerador de vídeo decidir o final sozinho.",
+    conteudo: `1. Peça ao Claude (com uma skill de animação) para gerar 3 prompts: o prompt da imagem do primeiro quadro (Start Frame), o prompt da imagem do último quadro (End Frame) e o prompt de geração do vídeo.
+2. Gere o primeiro quadro no GPT 2.0 com o prompt do Start Frame.
+3. Suba o primeiro quadro no GPT 2.0 e gere o último quadro com o prompt do End Frame.
+4. No Seedance 2.0 ou no Google Omni Flash, suba o primeiro quadro, o último quadro e o prompt de geração do vídeo.`,
+    autor: "@theaigeekk",
+    atualizado_em: "",
+    origem: "Untitled document (8).pdf"
+  },
+
+  /* ======================== SÉRIES ANIMADAS VIRAIS ======================== */
+
+  {
+    id: "sv-00-mapa-dos-formatos",
+    tema: "Séries animadas virais",
+    titulo: "00 · Mapa dos formatos: o que os 6 vídeos virais têm em comum",
+    tipo: "Referência",
+    funcoes: ["anuncio"],
+    tags: ["viral", "formatos", "animação", "série", "análise"],
+    descricao: "Resumo da análise de 6 vídeos animados verticais: dois formatos, o que repete e o que não copiar.",
+    quando_usar: "Antes de escolher o formato da sua série. Baseado só nas imagens e legendas dos vídeos; o áudio não foi analisado.",
+    conteudo: `FORMATO A: explicativo animado, um assunto por vídeo (74 a 77 s)
+- Exemplos analisados: círculos girando que desenham um mapa, o CPF explicado em cubos 3D e o processo de uma usina de cana em 3D.
+- Estrutura: pergunta ou problema logo no começo, 3 a 5 etapas visuais, uma ideia por cena, fecho com pergunta que vira o próximo tema.
+- Texto: legenda palavra por palavra no centro, palavra-chave em destaque (amarelo), rótulos em caixa alta para termos técnicos.
+- Visual: fundo escuro ou cenário limpo, uma cor de destaque, elementos de interface (contador, termômetro, etiqueta).
+
+FORMATO B: série interativa em que os comentários decidem (54 a 102 s)
+- Exemplos analisados: série de "30 dias" com personagem cartoon e painel de jogo (dias, dinheiro, saúde), vila em pixel art que cresce com os seguidores e "um dia por episódio" com escolha A ou B.
+- Estrutura: resumo do episódio anterior, conflito, escolha, consequência, final com 2 opções para o público votar nos comentários.
+- Mecânica: o próximo episódio mostra o resultado da votação. Isso gera comentários, seguidores e um motivo para voltar.
+- Visual: o mesmo personagem sempre, painel fixo no topo, cenários repetidos.
+
+O QUE OS 6 TÊM EM COMUM
+- Vertical 9:16, entre 54 e 102 segundos.
+- Gancho nos primeiros segundos, sem introdução.
+- Um personagem ou objeto central e um visual consistente.
+- Final que pede comentário.
+
+O QUE NÃO COPIAR
+- Personagens, nomes, marcas, textos e músicas dos canais analisados. Use a estrutura, e crie personagem, nome e mundo seus.
+
+COMO FORAM FEITOS (não sei; é dedução pelas imagens)
+- Painéis, contadores e legendas parecem feitos em código ou editor. Personagem e cenários podem ser 3D, ilustração ou IA.`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-17",
+    origem: ""
+  },
+
+  {
+    id: "sv-01-conceito-da-serie",
+    tema: "Séries animadas virais",
+    titulo: "01 · Conceito da série e ficha da série",
+    tipo: "Prompt",
+    funcoes: ["anuncio"],
+    tags: ["série", "conceito", "nicho", "calendário", "instagram", "tiktok"],
+    descricao: "Escolhe o formato, propõe 3 conceitos de série, recomenda um e entrega a ficha que alimenta todos os outros prompts.",
+    quando_usar: "Primeiro passo, antes de qualquer imagem. Com busca na web ligada, ele checa o que está em alta no nicho. O bloco FICHA DA SÉRIE que ele devolve é o que você cola nos prompts 02 a 06.",
+    conteudo: `<papel>
+Você é um estrategista de conteúdo para vídeos curtos (Reels, TikTok e Shorts), especializado em séries animadas que crescem e viram negócio.
+</papel>
+
+<contexto>
+Nicho ou assunto: [NICHO OU ASSUNTO, ou "aberto"]
+Público: [PÚBLICO]
+Formato: [FORMATO: A explicativo, B série interativa, ou "decida por mim"]
+Como vamos produzir: [FERRAMENTAS E ORÇAMENTO]
+Objetivo de dinheiro: [OBJETIVO: afiliados, produto próprio, publicidade...]
+Horas por semana: [HORAS POR SEMANA]
+Data de hoje: [DATA DE HOJE]
+</contexto>
+
+<tarefa>
+1. Se tiver busca na web, pesquise o que está em alta no nicho nos últimos 60 dias e cite as fontes. Sem busca, diga isso e marque tudo como hipótese.
+2. Proponha 3 conceitos de série. Para cada um: nome provisório, personagem ou elemento central, ritmo de um episódio, o motivo para a pessoa voltar, o caminho de dinheiro e o maior risco.
+3. Recomende um e explique por quê, considerando o que um criador sozinho consegue produzir toda semana com as ferramentas informadas.
+4. Entregue a FICHA DA SÉRIE em bloco de código, para colar nos próximos prompts: conceito, público, formato, duração-alvo, personagem central, estilo visual em uma frase, tom, estrutura fixa do episódio, mecânica de comentário e o que nunca aparece.
+5. Liste os 14 primeiros episódios com título e gancho de cada um.
+</tarefa>
+
+<regras>
+- Tudo original: nada de personagem, nome, marca, música ou estilo reconhecível de terceiros. Os vídeos de referência servem para entender a estrutura, não para copiar.
+- Fatos e números do nicho com fonte, ou marcados como "VERIFICAR".
+- Sem promessa de ganho nem de viralização.
+- Conteúdo de autoria sua e rotulado como gerado por IA onde as plataformas exigirem.
+</regras>
+
+<formato>
+Seções numeradas. Os 3 conceitos em tabela. A ficha e a lista de episódios em blocos separados.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-17",
+    origem: ""
+  },
+
+  {
+    id: "sv-02-personagem-e-mundo",
+    tema: "Séries animadas virais",
+    titulo: "02 · Personagem e mundo: guia de estilo para ficar igual em todo episódio",
+    tipo: "Prompt",
+    funcoes: ["anuncio"],
+    tags: ["personagem", "consistência", "guia de estilo", "imagem", "cenário"],
+    descricao: "Define o personagem e o cenário em detalhes fixos e gera os prompts de imagem da folha de personagem.",
+    quando_usar: "Depois da ficha da série. A folha de personagem gerada aqui vai como imagem de referência em todas as cenas seguintes; é isso que mantém o visual consistente.",
+    conteudo: `<papel>
+Você é um diretor de arte de animação. Seu objetivo é que o personagem e o mundo pareçam idênticos em todos os episódios.
+</papel>
+
+<contexto>
+[FICHA DA SÉRIE]
+
+Gerador de imagem: [GERADOR DE IMAGEM]
+Gerador de vídeo: [GERADOR DE VÍDEO]
+</contexto>
+
+<tarefa>
+1. Descreva o personagem com detalhes fixos: proporções, formas, cores com código hexadecimal, roupa, um acessório marcante e as expressões base (feliz, surpreso, pensativo, preocupado). Personagem inventado: nada de pessoa real nem de personagem que já exista.
+2. Descreva o mundo: de 3 a 5 cenários principais, paleta com hexadecimal, luz, câmera padrão (ângulo e distância) e textura.
+3. Escreva o BLOCO DE ESTILO em inglês, de até 80 palavras, para colar no fim de todo prompt de imagem, e o BLOCO NEGATIVO com o que nunca aparece.
+4. Escreva os prompts de imagem em inglês para: a folha do personagem (frente, lado, costas e 4 expressões, em fundo liso), cada cenário principal vazio e um quadro de teste com o personagem em um cenário.
+5. Explique como manter a consistência: sempre enviar a folha como imagem de referência, mudar uma coisa por vez e usar o último quadro de um clipe como primeiro do próximo quando a cena continuar.
+6. Liste os testes antes de aprovar: o personagem é reconhecível em miniatura, as cores não mudam entre 5 imagens e mãos e rosto não deformam.
+</tarefa>
+
+<regras>
+- Sem texto dentro das imagens: o texto entra depois, no editor ou no código.
+- Estilo simples o bastante para o gerador repetir. Detalhe demais gera variação entre as imagens.
+- Use só as cores da paleta definida.
+</regras>
+
+<formato>
+Ficha do personagem, ficha do mundo, bloco de estilo e bloco negativo em blocos de código, e uma lista numerada com um prompt de imagem por item.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-17",
+    origem: ""
+  },
+
+  {
+    id: "sv-03-roteiro-explicativo",
+    tema: "Séries animadas virais",
+    titulo: "03 · Roteiro de episódio explicativo (formato A)",
+    tipo: "Prompt",
+    funcoes: ["anuncio"],
+    tags: ["roteiro", "explicativo", "gancho", "legenda", "retenção"],
+    descricao: "Escreve o roteiro cena por cena de um vídeo que explica uma coisa só, com fatos checados e fecho que gera comentário.",
+    quando_usar: "Para os vídeos do tipo \"como funciona\": o CPF, o mapa desenhado por círculos, a usina. Use com busca na web ligada, porque o conteúdo é informativo e não pode ter erro.",
+    conteudo: `<papel>
+Você é um roteirista de vídeos explicativos curtos. Você torna um assunto complicado simples sem errar o fato.
+</papel>
+
+<contexto>
+[FICHA DA SÉRIE]
+
+Tema do episódio: [TEMA DO EPISÓDIO]
+Duração-alvo: [DURAÇÃO EM SEGUNDOS]
+</contexto>
+
+<tarefa>
+1. Pesquise o tema em fontes confiáveis (órgãos oficiais, universidades, documentação técnica) e liste os fatos que o vídeo vai usar, cada um com a fonte. O que não tiver fonte fica de fora ou vai marcado "VERIFICAR".
+2. Escreva 5 ganchos para os 3 primeiros segundos, de tipos diferentes (pergunta, contradição, número surpreendente, desafio, \"você sabia\" apenas se for verdadeiro).
+3. Escolha o melhor e escreva o roteiro completo, cena por cena, nesta estrutura: gancho, promessa em uma frase, 3 a 5 etapas (uma ideia por cena), uma curiosidade ou virada e o fecho com uma pergunta que vira o tema do próximo episódio.
+4. Para cada cena dê: tempo, o que se vê, a fala, o texto na tela (com a palavra-chave a destacar) e o efeito sonoro. Uma mudança visual a cada 2 a 4 segundos.
+5. Some os tempos e confira a duração-alvo.
+6. Escreva a legenda do post e 3 opções de título de capa.
+</tarefa>
+
+<regras>
+- Fala simples, frases de até 12 palavras, sem jargão. Se usar um termo técnico, explique na mesma cena.
+- O vídeo precisa fazer sentido sem som: o texto na tela carrega a mensagem.
+- Nada de afirmação sem fonte, número inventado ou exagero para gerar clique.
+- Assuntos sensíveis (saúde, dinheiro, segurança, dados pessoais): trate com cuidado e não dê conselho que dependa de profissional.
+</regras>
+
+<formato>
+Lista de fatos com fontes, lista de ganchos, roteiro em tabela (tempo, imagem, fala, texto na tela, som), legenda e títulos.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-17",
+    origem: ""
+  },
+
+  {
+    id: "sv-04-episodio-interativo",
+    tema: "Séries animadas virais",
+    titulo: "04 · Episódio interativo: resultado da votação, roteiro e nova escolha (formato B)",
+    tipo: "Prompt",
+    funcoes: ["anuncio"],
+    tags: ["série", "interativo", "comentários", "roteiro", "continuidade"],
+    descricao: "Aplica a escolha que ganhou nos comentários, escreve o episódio e deixa a próxima votação pronta.",
+    quando_usar: "A cada episódio da série interativa. Cole o estado da história do episódio anterior e o que o público escolheu. Guarde o estado devolvido: ele alimenta o episódio seguinte.",
+    conteudo: `<papel>
+Você é o roteirista de uma série interativa animada, em que o público decide o rumo nos comentários. Sua prioridade é a continuidade e escolhas que importam.
+</papel>
+
+<contexto>
+[FICHA DA SÉRIE]
+
+Estado da história até agora (resumo, painel e regras): [ESTADO DA HISTÓRIA]
+Escolha que ganhou nos comentários: [ESCOLHA VENCEDORA]
+Duração-alvo: [DURAÇÃO EM SEGUNDOS]
+</contexto>
+
+<tarefa>
+1. Aplique a escolha vencedora: descreva a consequência de forma coerente com o estado e as regras do painel (dias, dinheiro, saúde ou o que a série usar). Mostre a conta, em uma linha por valor alterado.
+2. Escreva o roteiro do episódio, cena por cena: resumo do episódio anterior em uma frase, um conflito, a consequência da escolha e uma virada.
+3. Termine com uma nova escolha entre 2 opções que sejam claras, diferentes e sem resposta óbvia. Cada opção tem um ganho e um custo reais.
+4. Para cada cena dê: tempo, o que se vê, a fala, o texto na tela e o painel atualizado.
+5. Escreva o ESTADO ATUALIZADO em bloco de código, para colar no próximo episódio.
+6. Escreva um rascunho de 3 linhas para cada ramificação possível do próximo episódio.
+7. Escreva o texto de chamada para o voto e o comentário para fixar.
+</tarefa>
+
+<regras>
+- Respeite o estado e as regras da série: não mude valores sem explicar e não ressuscite o que a história encerrou.
+- Escolhas sem conteúdo sensível, perigoso ou que incentive risco real.
+- Peça o voto como parte da história. Não prometa prêmio em troca de curtida, comentário ou compartilhamento: esse tipo de pedido pode reduzir o alcance nas plataformas.
+- Se o resultado da votação for empate, diga como a série resolve.
+</regras>
+
+<formato>
+Conta da consequência, roteiro em tabela, estado atualizado, rascunhos das ramificações e textos de votação.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-17",
+    origem: ""
+  },
+
+  {
+    id: "sv-05-cenas-imagem-e-animacao",
+    tema: "Séries animadas virais",
+    titulo: "05 · Do roteiro às cenas: prompts de imagem, animação e o que fazer em código",
+    tipo: "Prompt",
+    funcoes: ["anuncio"],
+    tags: ["cenas", "prompts de imagem", "animação", "html", "produção"],
+    descricao: "Converte o roteiro em lista de produção: prompt de imagem e de animação de cada cena, e o que vai em código.",
+    quando_usar: "Com roteiro aprovado e guia de estilo pronto. Painéis, contadores, mapas e legendas costumam ficar melhores em código (HTML, SVG, canvas) do que gerados por IA; o prompt separa os dois e liga ao sistema de edição da biblioteca.",
+    conteudo: `<papel>
+Você é um diretor de produção de animação. Você transforma um roteiro em uma lista de cenas que um criador sozinho consegue executar.
+</papel>
+
+<contexto>
+[FICHA DA SÉRIE]
+
+Guia de estilo (bloco de estilo e bloco negativo): [GUIA DE ESTILO]
+Roteiro aprovado: [ROTEIRO]
+Gerador de imagem: [GERADOR DE IMAGEM]
+Gerador de vídeo: [GERADOR DE VÍDEO]
+Limite de duração por clipe do gerador de vídeo: [DURAÇÃO MÁXIMA POR CLIPE]
+</contexto>
+
+<tarefa>
+1. Divida o roteiro em cenas. Cada cena tem uma ação e dura entre 3 e 5 segundos, respeitando o limite do gerador.
+2. Classifique cada cena: IA (personagem e cenário gerados), CÓDIGO (painel, contador, mapa, gráfico, texto animado, legenda: HTML, SVG ou canvas) ou MISTA.
+3. Para cenas de IA: escreva o prompt de imagem em inglês, terminando com o bloco de estilo, e o prompt de animação em inglês (movimento do personagem, movimento de câmera, duração, o que não muda). Diga qual imagem de referência anexar.
+4. Para cenas de CÓDIGO: descreva o elemento, o comportamento (entra, anima, sai) e o tempo em segundos, de modo que dê para montar num projeto HTML.
+5. Marque as cenas que continuam em sequência e devem usar o último quadro como primeiro do clipe seguinte.
+6. Liste os efeitos sonoros por cena e o texto na tela com a palavra-chave em destaque.
+7. Termine com um checklist de consistência para revisar antes de editar.
+</tarefa>
+
+<regras>
+- Uma ação por clipe. Sem texto gerado dentro de imagem ou vídeo.
+- Não invente elementos que o roteiro não pede.
+- Todas as cenas na proporção 9:16 e com área livre para a legenda no centro ou na parte de baixo.
+- Cada prompt funciona sozinho: copiável sem precisar das outras cenas.
+</regras>
+
+<formato>
+Tabela de cenas (número, tempo, tipo, resumo) e, abaixo, um bloco por cena com os prompts em blocos de código. Checklist no fim.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-17",
+    origem: ""
+  },
+
+  {
+    id: "sv-06-publicacao-e-metricas",
+    tema: "Séries animadas virais",
+    titulo: "06 · Publicação e métricas: textos do post, checklist e diagnóstico",
+    tipo: "Prompt",
+    funcoes: ["anuncio", "vendas"],
+    tags: ["publicação", "métricas", "retenção", "instagram", "tiktok", "diagnóstico"],
+    descricao: "Escreve capa, legenda e comentário fixado, confere o checklist e lê os números dos últimos vídeos.",
+    quando_usar: "No dia de postar. Depois de uns 10 vídeos, cole as métricas para ele apontar onde as pessoas saem e quais temas manter. Ele só usa os números que você passar.",
+    conteudo: `<papel>
+Você é um estrategista de conteúdo e analista de métricas de vídeos curtos.
+</papel>
+
+<contexto>
+[FICHA DA SÉRIE]
+
+Plataformas: [PLATAFORMAS]
+Roteiro final do vídeo de hoje: [ROTEIRO FINAL]
+Números dos últimos vídeos (visualizações, retenção em 3 segundos, percentual assistido, compartilhamentos, salvamentos, seguidores ganhos): [MÉTRICAS DOS ÚLTIMOS VÍDEOS, ou "ainda não tenho"]
+</contexto>
+
+<tarefa>
+1. Escreva 3 opções de título para a capa (até 6 palavras, legíveis em tela pequena), a legenda do post com um gancho e uma pergunta, 5 hashtags e o texto do comentário para fixar.
+2. Escreva as respostas para os 10 comentários mais prováveis, no tom da série.
+3. Confira o checklist de publicação e diga o que falta: rótulo de conteúdo gerado por IA ligado, sem marca d'água de outro app, música da biblioteca da própria plataforma ou licenciada, capa legível e legenda correta.
+4. Horário: se houver métricas, use-as; se não, proponha testar 2 horários por semana e comparar. Não afirme um horário universal.
+5. Se houver métricas: aponte em que ponto os vídeos perdem as pessoas, quais temas seguraram mais, o que fazer a mais e o que cortar. Diga se há dados suficientes para concluir.
+6. Defina a meta dos próximos 10 vídeos e a regra para decidir manter, mudar ou encerrar o tema.
+</tarefa>
+
+<regras>
+- Use somente os números que eu passei. Sem inventar benchmarks.
+- Separe o que os números mostram do que é hipótese sua.
+- Sem promessa de alcance, de seguidores ou de ganho.
+- Peça comentário como parte da série, sem prêmio por curtida ou compartilhamento.
+</regras>
+
+<formato>
+Textos do post em blocos copiáveis, respostas em lista, checklist com marcação, diagnóstico em tópicos curtos e a meta em uma linha.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-17",
+    origem: ""
+  },
+
+  {
+    id: "sv-07-plano-de-30-dias",
+    tema: "Séries animadas virais",
+    titulo: "07 · Plano de 30 dias e regras de monetização",
+    tipo: "Referência",
+    funcoes: ["anuncio"],
+    tags: ["plano", "30 dias", "monetização", "instagram", "tiktok", "rotina"],
+    descricao: "Rotina, formatos, métricas e o que as plataformas pedem para pagar, com aviso de conferir no app.",
+    quando_usar: "Quando for começar o canal. Os requisitos de monetização vêm de guias de terceiros (nov/2026) e mudam: confirme no aplicativo antes de planejar em cima deles.",
+    conteudo: `ROTINA
+- Semana 1: escolher o nicho e o formato (prompt 01), criar o personagem e o mundo (prompt 02) e escrever 7 roteiros.
+- Semanas 2 a 4: 1 vídeo por dia no começo, ou o que for sustentável com a sua produção. Consistência vale mais do que volume que você não aguenta manter.
+- Toda semana: olhar as métricas (prompt 06) e ajustar o tema.
+
+FORMATOS
+- Vídeo principal entre 60 e 120 segundos: é o tamanho que a recompensa por vídeos mais longos costuma exigir.
+- Corte de 20 a 35 segundos do melhor trecho, para alcance.
+- No Instagram, suba o arquivo original, sem a marca d'água de outro app.
+- Fixe um comentário com a pergunta do próximo episódio e responda aos melhores.
+
+O QUE MEDIR
+- Retenção nos 3 primeiros segundos, percentual assistido, salvamentos, compartilhamentos e seguidores ganhos por vídeo.
+- Depois de 10 a 15 vídeos, dobre a aposta nos 2 temas que seguraram mais e corte o resto.
+
+MONETIZAÇÃO (fontes de terceiros, nov/2026: confirmar no app)
+- TikTok, programa de recompensas: guias citam 10 mil seguidores, 100 mil visualizações em 30 dias e vídeos originais acima de 1 minuto.
+- Instagram: presentes nos Reels a partir de 500 seguidores, assinaturas a partir de 10 mil e bônus só por convite.
+- O pagamento por visualização costuma ser baixo. Afiliados, publicidade e um produto próprio rendem mais: use a série "Do zero à venda" para esse caminho.
+
+REGRAS PARA NÃO PERDER ALCANCE
+- Conteúdo original e de autoria sua. TikTok e Instagram reduzem o alcance de conteúdo copiado, repostado ou produzido em massa sem autoria.
+- Marque o conteúdo gerado por IA com o rótulo da plataforma.
+- Música licenciada ou da biblioteca da plataforma. Sem personagens ou marcas de terceiros.`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-17",
+    origem: ""
+  },
+
+  /* ======================== VÍDEOS 3D VIRAIS COM O KIT: fluxo enxuto ======================== */
+
+  {
+    id: "v3d-00-guia-do-caminho-curto",
+    tema: "Vídeos 3D virais (kit)",
+    titulo: "00 · Guia: o caminho mais curto para vídeos 3D virais com o kit",
+    tipo: "Referência",
+    funcoes: ["anuncio"],
+    tags: ["vídeo 3d", "kit", "fluxo", "viral", "instagram", "tiktok", "three.js"],
+    descricao: "O que é o kit de vídeos 3D, o que a revisão achou, o fluxo em 3 etapas e o risco de todo mundo usar o mesmo visual.",
+    quando_usar: "Leia antes de começar. Resume o kit do Willian IA (pasta com motor 3D, personagens, cenário, voz e regras para o agente), os dois vídeos analisados e os comentários. A segurança foi uma revisão rápida, não uma auditoria completa.",
+    conteudo: `O QUE É O KIT
+- Uma pasta com um motor 3D em JavaScript (Three.js), 11 personagens low-poly, 20 animações, 57 itens de cenário, voz grátis (Kokoro + Whisper) ou paga (ElevenLabs), legendas, capa e texto de postagem.
+- Você dá a ideia e a duração. O agente (Claude Code ou outro que leia arquivos e rode comandos) pesquisa, escreve o roteiro, gera a voz, monta o storyboard, valida, renderiza o MP4 1080x1920 e entrega a capa e o postagem.md.
+- Não usa gerador de vídeo por IA: o 3D é código. Por isso o custo por vídeo é baixo. No teste do autor, um vídeo de 1 minuto gastou cerca de 6% do limite diário do Claude Pro (varia por vídeo e por plano).
+- Exige: Node.js 18+, ffmpeg e Chrome, Edge ou Brave. Para a voz grátis: Python 3.9 a 3.12 e uns 2 a 3 GB livres.
+
+REVISÃO DE SEGURANÇA (rápida)
+- Li a documentação e procurei no código chamadas de rede, execução de comandos e leitura de chaves. Só achei o esperado: baixar o modelo de voz (GitHub e pacotes Python), chamar a API do ElevenLabs com a SUA chave do arquivo .env, e rodar ffmpeg e o navegador para renderizar. Não vi envio de dados para terceiros.
+- Mesmo assim: rode numa pasta sua, deixe o agente pedir permissão antes de instalar e nunca cole a chave no chat.
+- Não achei arquivo de licença na pasta. Antes de monetizar, confirme com o autor que o uso comercial dos personagens e do cenário é permitido.
+
+O CAMINHO MAIS CURTO: 3 ETAPAS
+1. Uma vez só: prompt 01 (canal). Gera o config/canal.json e define o que torna o seu canal diferente.
+2. Uma vez por semana: prompt 02 (radar de temas) e prompt 03 (lote semanal). Saída: 7 pedidos prontos.
+3. Para cada vídeo: prompt 05, dentro da pasta do kit. Saída: video.mp4, capa.png e postagem.md. Se quiser aprovar o roteiro antes, rode o 04 primeiro.
+Depois de postar: prompt 06 da série "Publicação e métricas" (sv-06) e o 06 daqui para a ponte até o produto.
+
+POR QUE ESSE FORMATO PRENDE (dos dois vídeos e do kit)
+- Roteiro de problema e solução: cada etapa resolve um problema e cria o próximo.
+- Cena nova a cada 3 a 5 segundos, sempre com algo se movendo e alguém fazendo.
+- Legenda de uma palavra por vez, título na tela no segundo 0 e uma pergunta final fácil de responder.
+- Vídeos acima de 1 minuto: o autor cita que o TikTok paga mais por eles. Confirme no app.
+
+O QUE OS CRIADORES RELATAM (não são medições)
+- Um deles diz fazer de 3 a 5 vídeos por dia no plano Pro do Claude.
+- Na comparação do outro, o resultado foi misto: o Claude fez melhor o processo de animação no asfalto, e o ChatGPT ficou mais animado no prédio, mas gastou mais do limite diário (11% contra 6%).
+
+O RISCO REAL: TODO MUNDO USA O MESMO KIT
+- O vídeo do kit tem mais de 250 mil visualizações. Muita gente vai postar o mesmo visual, e TikTok e Instagram reduzem o alcance de conteúdo repetitivo e sem autoria.
+- Diferencie: nicho próprio, ângulo próprio, elenco e cores trocados, voz própria, formato de série e uma pergunta de fechamento sua. O prompt 01 força essa definição.
+
+LIMITES DO KIT
+- Cenário e personagens simples de propósito. Não existem elevador, metrô, estádio nem interior de casa: o agente compõe com o que há e avisa.
+- A voz grátis em português deve ser avaliada de ouvido; a paga é mais natural.
+- Em computador fraco o render é lento.
+- Os fatos precisam da sua revisão: o agente pode errar.`,
+    autor: "Claude, para a FDSS +, a partir do kit e de 2 vídeos do YouTube",
+    atualizado_em: "2026-11-17",
+    origem: "https://www.youtube.com/watch?v=3UbOzkPHcT4"
+  },
+
+  {
+    id: "v3d-01-canal-diferente",
+    tema: "Vídeos 3D virais (kit)",
+    titulo: "01 · Canal: identidade, elenco e config/canal.json (uma vez só)",
+    tipo: "Prompt",
+    funcoes: ["anuncio"],
+    tags: ["canal", "identidade", "elenco", "bio", "diferenciação", "kit"],
+    descricao: "Define o que torna o seu canal único, o nome, a bio, o elenco e entrega o config/canal.json pronto para o kit.",
+    quando_usar: "Antes do primeiro vídeo. Ele é a defesa contra o canal parecer cópia: o kit é o mesmo para todo mundo, então o ângulo, o elenco e as cores precisam ser seus. Salve o resultado em config/canal.json dentro da pasta do kit.",
+    conteudo: `<papel>
+Você é um estrategista de marca para canais de vídeos curtos animados. Seu trabalho é fazer o canal parecer único, mesmo usando um kit que outras pessoas também usam.
+</papel>
+
+<contexto>
+Nicho ou assunto: [NICHO OU ASSUNTO]
+Público: [PÚBLICO]
+Objetivo de dinheiro no futuro: [OBJETIVO: afiliados, produto, serviço, publicidade...]
+Plataformas: [PLATAFORMAS: Instagram, TikTok ou os dois]
+Voz da narração: [VOZ: a minha, local e grátis, ou ElevenLabs]
+Personagens do kit: construtor, engenheiro, engenheira, servente, homem, mulher, velhinho, velhinha, crianca, menina, motorista. Podem ter cor de roupa, cabelo, chapéu e acessório trocados.
+</contexto>
+
+<tarefa>
+1. Defina o que torna o canal diferente: um ângulo, um mecanismo único (o que o espectador vê ou faz em todo vídeo), um elenco com papéis fixos e uma assinatura visual (cores de roupa, chapéu, acessório). Dê 3 opções e recomende uma.
+2. Crie 10 opções de nome e de @, curtas e fáceis de falar, sem marca conhecida, e recomende 3. Eu confiro a disponibilidade do @ e do domínio.
+3. Escreva a bio do Instagram e do TikTok (até 150 caracteres cada) e a frase de posicionamento.
+4. Defina a abertura e o fechamento padrão, com um exemplo de cada.
+5. Entregue o config/canal.json no formato do kit, em bloco de código, com os campos: nomeCanal, idioma, nicho, tom, estiloNarracao, elenco, estiloVisual, mecanismoUnico, abertura, fechamento, capa, postagem (hashtagsFixas, videoRelacionado, linkFixo) e duracaoPadraoSegundos. Descreva em estiloVisual as cores e acessórios de cada personagem.
+6. Liste o que NÃO fazer para não parecer cópia dos outros canais que usam o mesmo kit.
+</tarefa>
+
+<regras>
+- Nenhum nome, bordão, personagem ou visual copiado de outro canal.
+- O mesmo personagem no mesmo papel em todos os vídeos.
+- Sem promessa de ganho nem de resultado.
+- Se faltar informação importante, pergunte antes de escrever.
+</regras>
+
+<formato>
+Seções numeradas. O item 5 em bloco de código. Termine com o que eu preciso conferir sozinho (disponibilidade de @ e domínio, registro de marca).
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-17",
+    origem: ""
+  },
+
+  {
+    id: "v3d-02-radar-de-temas",
+    tema: "Vídeos 3D virais (kit)",
+    titulo: "02 · Radar de temas virais para vídeos 3D explicativos",
+    tipo: "Prompt",
+    funcoes: ["anuncio", "minerador"],
+    tags: ["temas", "radar", "pesquisa", "gancho", "nicho", "viral"],
+    descricao: "Acha assuntos que as pessoas querem entender e que o kit consegue mostrar, ranqueados, com gancho e fontes.",
+    quando_usar: "Uma vez por semana, antes do lote semanal. Use com busca na web ligada. Ele descarta o que o kit não mostra bem e o que depende de fato sem fonte.",
+    conteudo: `<papel>
+Você é um caçador de temas para vídeos 3D explicativos curtos (Reels, TikTok e Shorts). Você acha assuntos que as pessoas já querem entender e que dá para mostrar com bonecos e cenário simples.
+</papel>
+
+<contexto>
+Nicho ou área: [NICHO OU ÁREA, ou "aberto"]
+País e idioma: [PAÍS E IDIOMA]
+Ficha do canal (se já existir): [FICHA DO CANAL, ou "ainda não"]
+Vídeos que já postei, para não repetir: [VÍDEOS JÁ POSTADOS, ou "nenhum"]
+Data de hoje: [DATA DE HOJE]
+O que o kit consegue mostrar: casas, prédios, ruas, obras, máquinas, fábricas, veículos, campo, cidade, litoral, deserto, indústria e salas, com bonecos low-poly. Não tem elevador, metrô, estádio nem interior de casa.
+</contexto>
+
+<tarefa>
+1. Se tiver busca na web, pesquise (a) o que está em alta agora em vídeos explicativos curtos do nicho, (b) perguntas que as pessoas fazem e não acham resposta curta (buscas, comentários, fóruns) e (c) obras, invenções, lugares e fenômenos em notícia nos últimos 60 dias. Cite as fontes. Sem busca, avise e marque tudo como hipótese.
+2. Liste 15 temas. Para cada um: título provisório, o gancho em uma frase, a cadeia em 3 a 5 passos de problema e solução, o dado surpreendente com fonte e "o kit mostra?" (sim, parcial ou não, e o que faltaria).
+3. Dê nota de 1 a 5 para: curiosidade imediata (o gancho funciona sem contexto), processo visível (dá para ver coisa se movendo), dado surpreendente verificado, risco de erro factual (5 = baixo) e originalidade frente ao que já circula.
+4. Descarte os que o kit não mostra bem e os que dependem de afirmação sem fonte.
+5. Escolha os 5 melhores, ordene e explique por quê.
+6. Para cada um dos 5, escreva a pergunta final de comentar, com 2 opções.
+</tarefa>
+
+<regras>
+- Nada que exija conselho médico, financeiro ou legal, nem tragédia real com vítimas, política, ou pessoa e marca de terceiros em tom negativo.
+- Todo fato com fonte; o que for incerto fica "VERIFICAR".
+- Prefira temas do dia a dia (rua, casa, comida, energia, água, internet) com etapas claras.
+- Evite os temas mais óbvios do nicho. Procure o ângulo que ninguém está usando.
+</regras>
+
+<formato>
+Tabela dos 15 (título, gancho, processo visível, kit mostra, notas). Depois os 5 escolhidos, cada um com gancho, cadeia, dado surpreendente com fonte e pergunta final.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-17",
+    origem: ""
+  },
+
+  {
+    id: "v3d-03-lote-semanal",
+    tema: "Vídeos 3D virais (kit)",
+    titulo: "03 · Lote semanal: 7 pedidos prontos para o kit",
+    tipo: "Prompt",
+    funcoes: ["anuncio"],
+    tags: ["lote", "semana", "calendário", "pauta", "série", "ganchos"],
+    descricao: "Planeja a semana inteira de uma vez e entrega um pedido pronto por vídeo, com gancho, cadeia e pergunta final.",
+    quando_usar: "Depois do radar. Reduz o trabalho: em vez de pensar em cada vídeo, você cola um pedido por dia no prompt 05. Inclui 2 vídeos para testar ganchos diferentes do mesmo tema.",
+    conteudo: `<papel>
+Você é o editor-chefe de uma série de vídeos 3D explicativos. Você planeja a semana inteira de uma vez, com continuidade e com testes.
+</papel>
+
+<contexto>
+Ficha do canal (config/canal.json): [FICHA DO CANAL]
+Temas escolhidos ou resultado do radar: [TEMAS ESCOLHIDOS, ou "use o radar"]
+Quantos vídeos nesta semana: [QUANTIDADE DE VÍDEOS]
+Duração padrão em segundos: [DURAÇÃO PADRÃO]
+Vídeos já postados, para não repetir: [VÍDEOS JÁ POSTADOS, ou "nenhum"]
+</contexto>
+
+<tarefa>
+1. Monte a semana com mistura planejada: a maioria de temas atemporais, 1 assunto em alta e, se houver, 1 parte 2 de um vídeo que já foi bem. Coloque os 2 mais fortes primeiro, para ter dados mais cedo.
+2. Para cada vídeo, escreva um PEDIDO PRONTO para colar no prompt 05, com: ideia, duração, a frase exata do gancho, a cadeia de problema e solução em 3 a 6 passos, o dado surpreendente com fonte, a pergunta final com 2 opções, o cenário e os personagens sugeridos do kit e o que verificar antes de postar.
+3. Cuide da continuidade: os mesmos papéis e personagens, e a abertura e o fechamento padrão do canal.
+4. Indique 2 vídeos que usam o mesmo tema com ganchos diferentes (teste A e B) e como comparar: retenção nos 3 primeiros segundos, percentual assistido e compartilhamentos.
+5. Liste o que preparar uma vez só (voz, pasta do kit, lista de fontes).
+</tarefa>
+
+<regras>
+- Um tema por vídeo e uma ideia por frase.
+- Todo fato com fonte; o que for incerto fica "VERIFICAR".
+- Só o que o kit consegue mostrar. Se faltar um objeto, diga como compor com o que existe.
+- Nada copiado de outros canais.
+</regras>
+
+<formato>
+Tabela da semana (dia, tema, gancho, tipo: atemporal, em alta, parte 2 ou teste). Depois os pedidos, cada um em bloco de código, prontos para copiar.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-17",
+    origem: ""
+  },
+
+  {
+    id: "v3d-04-roteiro-viral-para-aprovar",
+    tema: "Vídeos 3D virais (kit)",
+    titulo: "04 · Roteiro viral para aprovar antes de produzir",
+    tipo: "Prompt",
+    funcoes: ["anuncio"],
+    tags: ["roteiro", "gancho", "problema e solução", "narração", "retenção"],
+    descricao: "Escreve 5 ganchos, a cadeia de problema e solução e a narração pronta para voz, com checklist e fontes.",
+    quando_usar: "Opcional. Use nos primeiros vídeos ou quando quiser aprovar o roteiro antes de gastar tempo e limite renderizando. O texto sai no formato do narracao.txt do kit (só o que é falado).",
+    conteudo: `<papel>
+Você é um roteirista de vídeos explicativos curtos que prendem até o fim. Você escreve para ser falado, em português do Brasil.
+</papel>
+
+<contexto>
+Ficha do canal: [FICHA DO CANAL, ou "ainda não"]
+Tema: [TEMA DO VÍDEO]
+Duração em segundos: [DURAÇÃO EM SEGUNDOS]
+Pedido do lote (gancho, cadeia, pergunta), se existir: [PEDIDO DO LOTE, ou "decida"]
+</contexto>
+
+<tarefa>
+1. Pesquise o tema em fontes confiáveis (órgãos oficiais, universidades, documentação técnica) e liste os fatos que vai usar, cada um com a fonte. O que não tiver fonte fica de fora ou vai marcado "VERIFICAR".
+2. Escreva 5 ganchos de até 15 palavras, de tipos diferentes: crença errada, pergunta com tensão, "você vai..." (você como protagonista), número surpreendente e polêmica honesta com dois lados. Escolha o melhor e explique em uma linha.
+3. Escreva a narração completa:
+   - Gancho nas primeiras 15 palavras e a aposta (o que a pessoa vai descobrir) até 8 segundos.
+   - Uma cadeia de capítulos em que cada um resolve o problema do anterior e cria o próximo, falando com "você". Use conectores como "Mas aí vem o problema" e "Só que".
+   - Um gancho interno a cada 8 a 12 segundos (pergunta, número, "e o mais estranho é").
+   - O dado mais surpreendente depois da metade.
+   - Fechamento que paga o gancho em uma frase, faz UMA pergunta fácil de responder (de preferência com duas opções) e convida a comentar.
+4. Escreva só o que será falado: frases de até 15 palavras, números por extenso, sem símbolos, parênteses, emojis nem marcações de cena. O número de palavras deve ser a duração multiplicada por 2,6.
+5. Faça o checklist e mostre cada item como OK ou AJUSTAR: gancho verdadeiro e respondido, cada capítulo nasce de um problema, pelo menos 2 ganchos internos, fato mais surpreendente depois da metade, final com uma pergunta, tamanho certo.
+</tarefa>
+
+<regras>
+- Sem "oi pessoal", sem nome do canal e sem "neste vídeo vamos ver".
+- Polêmica só com ângulo real e verdadeiro. Nada de clickbait que o vídeo não entrega.
+- Sem conselho médico, financeiro ou legal apresentado como certeza.
+- Texto 100% original, sem trechos de livros, músicas ou falas protegidas.
+</regras>
+
+<formato>
+Fatos com fontes, ganchos, narração em um bloco de código (pronto para salvar como narracao.txt), contagem de palavras e o checklist.
+</formato>`,
+    autor: "Claude, para a FDSS +, a partir de docs/roteiro-viral.md do kit",
+    atualizado_em: "2026-11-17",
+    origem: ""
+  },
+
+  {
+    id: "v3d-05-pedido-de-producao-ao-kit",
+    tema: "Vídeos 3D virais (kit)",
+    titulo: "05 · Pedido de produção ao kit: um vídeo completo numa mensagem",
+    tipo: "Prompt",
+    funcoes: ["anuncio"],
+    tags: ["kit", "produção", "agente", "claude code", "vídeo 3d", "pedido"],
+    descricao: "Substitui o prompt inicial do kit: leva o briefing completo e as regras de qualidade, e entrega vídeo, capa e postagem.",
+    quando_usar: "Abra o Claude Code dentro da pasta do kit e cole. O AGENTE.md do kit continua mandando; este pedido só acrescenta o briefing e os critérios. Nos 5 primeiros vídeos, use o modo com aprovação da sinopse; depois, o automático.",
+    conteudo: `Você será o meu Criador de Vídeos 3D.
+
+Primeiro leia o arquivo AGENTE.md da pasta [PASTA DO KIT] e siga-o à risca. O que está abaixo complementa o AGENTE.md; se houver conflito, vale o AGENTE.md.
+
+PEDIDO
+Ideia do vídeo: [IDEIA DO VÍDEO]
+Duração: [DURAÇÃO EM SEGUNDOS] segundos
+Voz: [VOZ: local e grátis, ou paga (ElevenLabs)]
+Modo: [MODO: automático, ou com aprovação da sinopse]
+Plataforma principal: [PLATAFORMA: Instagram Reels ou TikTok]
+
+BRIEFING (o que eu deixar em branco, decida você e me diga o que escolheu)
+Gancho desejado: [GANCHO: a frase exata, ou "decida"]
+Cadeia de problema e solução: [CADEIA: os passos, ou "decida"]
+Dado surpreendente depois da metade: [DADO SURPREENDENTE, ou "pesquise"]
+Pergunta final com 2 opções: [PERGUNTA FINAL, ou "crie"]
+Fatos que eu já conferi: [FATOS CONFERIDOS, ou "nenhum"]
+Roteiro aprovado (prompt 04), se houver: [ROTEIRO APROVADO, ou "escreva você"]
+
+REGRAS EXTRAS
+1. Use o config/canal.json se existir. Se não existir, crie com padrões coerentes com o tema e me avise.
+2. Antes de escrever, pesquise e anote fatos e fontes em ideia.md e fontes.md. Fato sem fonte fica de fora ou vai marcado "VERIFICAR", e você me avisa no final.
+3. Escreva 3 ganchos diferentes e escolha o melhor, dizendo por quê em uma linha.
+4. Roteiro: se eu colei um roteiro aprovado acima, use exatamente esse texto como narracao.txt (só ajuste a pontuação para a voz) e pule a escrita. Se não, escreva: cadeia de problema e solução falando com "você", frases de até 15 palavras, um gancho interno a cada 8 a 12 segundos, o dado mais surpreendente depois da metade e um final que paga o gancho e termina em UMA pergunta fácil de responder. Palavras da narração = duração x 2,6.
+5. Mostre cada passo do processo acontecendo na tela, com cenário real e personagens fazendo. Nenhuma cena parada. Siga o docs/processos.md e escreva o plano de animação antes do storyboard.
+6. Título na tela já no segundo 0, no máximo 2 destaques e a pergunta final na última cena. Nada sobre o rosto nem sobre a legenda.
+7. Rode a validação e confira os quadros cena por cena. Corrija em até 3 rodadas antes do render final.
+8. Peça permissão antes de instalar qualquer coisa ou gastar créditos. Nunca mostre nem grave chaves.
+9. Se o kit não tiver algo que o tema pede, componha com o que existe e diga a limitação.
+10. Sem músicas ou textos protegidos por direitos autorais.
+
+ENTREGA (em até 5 linhas no chat)
+O caminho do video.mp4, da capa.png e do postagem.md; a lista de fatos marcados "VERIFICAR"; o que ficou limitado pelo kit; e uma sugestão de tema para o próximo vídeo da série.`,
+    autor: "Claude, para a FDSS +, a partir de PROMPT.md e AGENTE.md do kit",
+    atualizado_em: "2026-11-17",
+    origem: ""
+  },
+
+  {
+    id: "v3d-06-ponte-para-produto",
+    tema: "Vídeos 3D virais (kit)",
+    titulo: "06 · Ponte do perfil para produto ou serviço (monetizar sem quebrar a retenção)",
+    tipo: "Prompt",
+    funcoes: ["anuncio", "vendas"],
+    tags: ["monetização", "funil", "oferta", "bio", "direct", "afiliados"],
+    descricao: "Define o que fazer em cada fase do perfil, as ofertas que combinam e como levar a audiência até elas.",
+    quando_usar: "Depois dos primeiros vídeos no ar, ou antes, se já souber o que quer vender. Se ainda não tiver oferta, ele propõe testes baratos para descobrir. Combina com os itens de ManyChat e de scripts de venda da biblioteca.",
+    conteudo: `<papel>
+Você é um estrategista de monetização de perfis de vídeo curto. Você conecta audiência a ofertas sem enganar ninguém e sem estragar a retenção dos vídeos.
+</papel>
+
+<contexto>
+Ficha do canal: [FICHA DO CANAL]
+Público: [PÚBLICO]
+O que posso vender ou divulgar: [OFERTAS POSSÍVEIS: afiliado, serviço, produto digital, nada ainda]
+Estágio do perfil: [ESTÁGIO: seguidores e visualizações médias, ou "começando"]
+Plataformas: [PLATAFORMAS]
+País: [PAÍS]
+</contexto>
+
+<tarefa>
+1. Diga o que priorizar em cada fase do perfil: começando (até 1 mil seguidores), com tração (1 mil a 10 mil) e com audiência (acima de 10 mil). Para cada fase: foco, o que ainda não vale fazer e a meta.
+2. Liste 8 ofertas que combinam com este público e este conteúdo (afiliado, serviço local, produto digital, consultoria, patrocínio...). Ordene por esforço contra retorno e dê o primeiro teste barato de cada uma.
+3. Monte a ponte do vídeo até a oferta: bio e link, comentário fixado, palavra-chave nos comentários para receber o material no Direct, e 1 vídeo de oferta a cada 5 vídeos de conteúdo.
+4. Escreva: 2 versões da bio, 3 comentários fixados, a mensagem de Direct para quem comentar a palavra-chave e o roteiro de um vídeo de oferta de 30 a 45 segundos, no estilo da série.
+5. Liste os riscos e as regras a respeitar.
+</tarefa>
+
+<regras>
+- Sem promessa de ganho, de cura ou de resultado garantido, e sem urgência ou escassez falsas.
+- Afiliado, patrocínio e parceria com aviso claro de publicidade, usando o recurso de parceria paga da plataforma e as regras de publicidade do país.
+- Automação de Direct só para quem comentou; confira os limites vigentes da Meta.
+- Os requisitos de monetização das plataformas mudam: peça para eu confirmar no aplicativo.
+- Não dependa de uma só plataforma: leve a audiência para um canal seu (lista de contatos).
+</regras>
+
+<formato>
+Tabela por fase do perfil, tabela das 8 ofertas, depois os textos prontos em blocos separados e a lista de riscos.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-17",
+    origem: ""
+  },
+
+  /* ======================== SÉRIES ANIMADAS VIRAIS: formatos dos 5 vídeos analisados ======================== */
+
+  {
+    id: "sv-08-serie-voce-decide-n-dias",
+    tema: "Séries animadas virais",
+    titulo: "08 · Série \"você decide\" de N dias: transformação com painel e votação",
+    tipo: "Prompt",
+    funcoes: ["anuncio"],
+    tags: ["série", "transformação", "você decide", "dias", "votação", "painel"],
+    descricao: "Escreve cada episódio de uma transformação em 7 ou 30 dias, com painel de prazo, evolução em % e tela dividida para o voto.",
+    quando_usar: "Para séries no molde \"Dia 1 de 30\": um personagem, um prazo, um evento final e o público escolhendo um ajuste por dia. No Dia 1 ele cria o painel e as regras; do Dia 2 em diante, aplica a escolha vencedora e guarda o estado. Combine com o prompt 02 (personagem) e o 05 (cenas).",
+    conteudo: `<papel>
+Você é o roteirista-chefe de uma série animada em que o público decide a transformação de um personagem, um dia por vez, até um evento final. Você escreve cada episódio curto e claro, com continuidade rígida.
+</papel>
+
+<contexto>
+Ficha da série: [FICHA DA SÉRIE, ou "ainda não"]
+Personagem e situação inicial: [PERSONAGEM E PROBLEMA]
+Prazo e evento final: [PRAZO E EVENTO: ex. 30 dias até um encontro, 7 dias até a formatura]
+Episódio de hoje: [DIA DE HOJE: "Dia 1" ou o número do dia]
+Estado atual do painel (vazio no Dia 1): [ESTADO ATUAL, ou "dia 1"]
+Escolha que ganhou nos comentários (vazia no Dia 1): [ESCOLHA VENCEDORA, ou "dia 1"]
+Duração-alvo em segundos: [DURAÇÃO EM SEGUNDOS]
+</contexto>
+
+<tarefa>
+1. Se for o Dia 1: defina o painel fixo no topo, com 2 medidores (dias restantes e evolução em %), as regras de pontos (quanto cada ajuste vale e o que custa em tempo, dinheiro ou esforço) e a lista de 8 a 12 ajustes possíveis, cada um com 2 opções (um ganho e um custo). Ordene para a evolução crescer até o dia final e para o último ajuste ser o mais visível.
+2. Se for do Dia 2 em diante: aplique a escolha vencedora. Atualize os medidores mostrando a conta, uma linha por valor. O ajuste é permanente: ele aparece de novo nos episódios seguintes.
+3. Escreva o roteiro do episódio, cena por cena:
+   - 0 a 3 s: o prazo e a situação na tela (gancho), com o painel visível.
+   - 3 a 12 s: o resumo do que mudou. No Dia 1, o problema, mostrado com humor leve.
+   - Cenas de 3 a 4 s com o ajuste do dia acontecendo e o efeito no painel.
+   - Uma reviravolta: algo que atrapalha ou surpreende, para dar vontade de ver o próximo.
+   - Últimos 8 a 10 s: tela dividida com as 2 opções de UMA palavra, o ganho e o custo de cada uma e a frase "Comenta UMA palavra: A ou B. A mais votada vira o dia seguinte."
+4. Para cada cena dê: tempo, o que se vê, a fala ou o texto, o painel atualizado e o efeito sonoro. Legenda grande, palavra por palavra, no centro.
+5. Escreva o ESTADO ATUALIZADO em bloco de código (dia, medidores, ajustes feitos e pendentes) para colar no próximo episódio.
+6. Escreva um rascunho de 3 linhas para cada uma das 2 ramificações do próximo dia.
+7. Escreva a descrição do post: primeira linha com o prazo e um emoji, a regra do voto, "Segue pra não perder" e 5 hashtags, uma delas da série.
+</tarefa>
+
+<regras>
+- O personagem é inventado. Sem pessoa real, celebridade ou marca.
+- O humor é com a situação, nunca com o corpo, a aparência, a idade, a saúde ou a origem de alguém. A transformação é feita de escolhas e hábitos, não de vergonha.
+- Nenhum conselho médico ou de saúde apresentado como certeza.
+- Cada opção tem um ganho e um custo reais. Nada de opção obviamente melhor.
+- Respeite o estado: não mude valores sem mostrar a conta e não desfaça um ajuste já feito.
+- Peça o voto como parte da história. Não prometa prêmio por curtida, comentário ou compartilhamento.
+- Em caso de empate, diga como a série resolve.
+</regras>
+
+<formato>
+Painel e regras (só no Dia 1), conta do dia, roteiro em tabela (tempo, imagem, fala ou texto, painel, som), estado atualizado em bloco de código, rascunhos das ramificações e a descrição do post.
+</formato>`,
+    autor: "Claude, para a FDSS +, a partir da análise de 2 vídeos de transformação",
+    atualizado_em: "2026-11-17",
+    origem: ""
+  },
+
+  {
+    id: "sv-09-simulacao-de-orcamento",
+    tema: "Séries animadas virais",
+    titulo: "09 · Simulação de orçamento: \"se você ganhasse R$ X\" com saldo na tela",
+    tipo: "Prompt",
+    funcoes: ["anuncio"],
+    tags: ["orçamento", "simulação", "custos", "saldo", "parte 2", "explicativo"],
+    descricao: "Pesquisa os custos reais, faz a conta fechar e escreve o vídeo com saldo caindo a cada compra e convite para a parte 2.",
+    quando_usar: "Para vídeos do tipo \"você ganhou R$ 10 milhões e vai montar uma fazenda\": cada compra com o preço na tela e uma pergunta de estimativa no começo. Use com busca na web ligada, porque os preços precisam de fonte. No kit 3D, repita o texto do saldo em todas as cenas (o kit monta cada cena do zero).",
+    conteudo: `<papel>
+Você é um roteirista de vídeos de simulação de orçamento: "se você ganhasse R$ X e quisesse montar Y". Você mostra o preço de cada passo e deixa a conta fechar de verdade.
+</papel>
+
+<contexto>
+Ficha da série: [FICHA DA SÉRIE, ou "ainda não"]
+Tema: [TEMA: ex. montar uma fazenda de soja, abrir uma padaria, construir uma casa]
+Valor inicial: [VALOR INICIAL]
+País e região: [PAÍS E REGIÃO]
+Duração-alvo em segundos: [DURAÇÃO EM SEGUNDOS]
+Marca parceira, se houver: [MARCA PARCEIRA, ou "nenhuma"]
+Data de hoje: [DATA DE HOJE]
+</contexto>
+
+<tarefa>
+1. Pesquise na web os custos reais do tema na região (fontes oficiais, tabelas de mercado, notícias recentes). Monte a lista de itens na ordem lógica de compra, cada um com o preço arredondado, a faixa de variação e a fonte com a data. Sem busca, avise e marque tudo como estimativa.
+2. Faça a conta: saldo inicial, cada compra, saldo depois de cada compra e saldo final. Confira que a soma fecha. Se o saldo ficar negativo, diga isso: a conta honesta vale mais do que o final bonito.
+3. Escreva o roteiro cena por cena:
+   - Gancho (0 a 3 s): "Você ganhou R$ X" e a pergunta de estimativa: "Quanto você acha que sobra no fim?" Saldo visível no topo.
+   - Cada compra em uma cena de 3 a 5 s: o que é, o problema que ela resolve (por que não dá para pular), o preço na tela e o saldo atualizado.
+   - Um gancho interno a cada 8 a 12 s ("só que ainda falta...", "e aqui o dinheiro acaba mais rápido").
+   - Reviravolta depois da metade: o gasto que ninguém lembra ou que custa mais do que parece.
+   - Final: o saldo e o convite para a parte 2, como "Vai dar lucro? Descubra na parte 2."
+4. Para cada cena dê: tempo, o que se vê, a fala, o texto na tela (item, preço e saldo) e o efeito sonoro.
+5. Entregue a tabela da conta em bloco de código, com os mesmos valores do roteiro.
+6. Esboce a parte 2: simulação de safras, meses ou anos, com receita, custos recorrentes e o resultado, usando o mesmo painel.
+7. Escreva a descrição do post: a pergunta de estimativa, a lista do que será comprado, o aviso "Valores ilustrativos, para fins de explicação" e a chamada para a parte 2.
+</tarefa>
+
+<regras>
+- Valores arredondados e marcados como ilustrativos. Cada preço com fonte e data, ou marcado "VERIFICAR".
+- Sem conselho financeiro e sem promessa de lucro.
+- Se houver marca parceira, o vídeo e a descrição indicam publicidade (use o recurso de parceria paga da plataforma). Não use a logomarca de nenhuma marca sem autorização.
+- Nada de afirmação sem fonte nem de número inventado.
+</regras>
+
+<formato>
+Lista de itens e fontes, tabela da conta, roteiro em tabela (tempo, imagem, fala, texto na tela, som), esboço da parte 2 e a descrição do post.
+</formato>`,
+    autor: "Claude, para a FDSS +, a partir da análise de um vídeo de orçamento",
+    atualizado_em: "2026-11-17",
+    origem: ""
+  },
+
+  {
+    id: "sv-10-descricao-e-voto-nos-comentarios",
+    tema: "Séries animadas virais",
+    titulo: "10 · Descrição, voto nos comentários e comentário fixado",
+    tipo: "Prompt",
+    funcoes: ["anuncio"],
+    tags: ["legenda", "comentários", "votação", "cta", "instagram", "tiktok", "hashtags"],
+    descricao: "Escolhe o melhor tipo de voto para o vídeo e escreve legenda, comentário fixado, respostas e o texto do próximo episódio.",
+    quando_usar: "No dia de postar qualquer vídeo de série. Cobre os 4 tipos de voto vistos nos vídeos analisados: palavra A ou B, identidade (sabia ou não sabia), estimativa e previsão. Completa o prompt 06 (publicação e métricas).",
+    conteudo: `<papel>
+Você é um estrategista de conteúdo que escreve os textos de publicação de séries animadas em que o público participa. Seu objetivo é comentário de qualidade, seguidores e continuidade entre episódios.
+</papel>
+
+<contexto>
+Ficha da série: [FICHA DA SÉRIE]
+Formato: [FORMATO: transformação, simulação de orçamento ou explicativo]
+Roteiro final do episódio: [ROTEIRO FINAL]
+Plataformas: [PLATAFORMAS]
+Dia ou parte: [DIA OU PARTE: ex. Dia 1 de 30, Parte 1]
+</contexto>
+
+<tarefa>
+1. Escolha o melhor tipo de voto para este vídeo, entre os 4, e explique por quê:
+   a) Palavra A ou B, para decidir a história: "Comenta UMA palavra: A ou B."
+   b) Identidade, para explicativos: "Se você sabia, comenta X. Se não sabia, comenta Y."
+   c) Estimativa, para orçamento: "Quanto você acha que sobra no fim?"
+   d) Previsão: "Vai dar certo? Comenta SIM ou NÃO."
+2. Escreva 3 versões da legenda. Primeira linha com o gancho (número, prazo ou pergunta) e, se couber, um emoji. Depois a regra do voto, a promessa do próximo episódio e "Segue pra não perder".
+3. Adapte para cada plataforma: Instagram (5 a 6 hashtags específicas do assunto, uma delas da série) e TikTok (uma frase que as pessoas buscam e 3 a 5 hashtags).
+4. Escreva o comentário fixado com a regra do voto e a regra de desempate.
+5. Escreva as respostas para os 10 comentários mais prováveis, no tom da série.
+6. Escreva a abertura do próximo episódio que anuncia o resultado ("Ontem, X ganhou com N votos"), sem mostrar nome de usuário.
+7. Liste os avisos que valem para este vídeo (valores ilustrativos, conteúdo gerado por IA, parceria paga) e onde colocar cada um.
+</tarefa>
+
+<regras>
+- Sem prêmio por curtida, comentário ou compartilhamento e sem "marque 3 amigos": esse tipo de pedido pode reduzir o alcance.
+- Não mostre nome ou foto de quem comentou sem permissão.
+- Palavras de voto curtas, fáceis de digitar e bem diferentes entre si, para a contagem ser simples.
+- Sem promessa de ganho nem de resultado.
+- Respeite o limite de caracteres de cada plataforma.
+- Hashtags específicas do assunto. Nada de lista genérica de 30.
+</regras>
+
+<formato>
+Tipo de voto escolhido com a justificativa, as 3 legendas, as adaptações por plataforma, o comentário fixado, as 10 respostas, a abertura do próximo episódio e a lista de avisos, cada um em bloco copiável.
+</formato>`,
+    autor: "Claude, para a FDSS +, a partir das descrições de 4 vídeos analisados",
+    atualizado_em: "2026-11-17",
+    origem: ""
+  },
+
+  /* ======================== PASSO A PASSO: DO ZERO AO POST ======================== */
+
+  {
+    id: "pp-00-comece-aqui",
+    tema: "Passo a passo (do zero ao post)",
+    titulo: "00 · Comece aqui: qual trilha seguir e o que você precisa",
+    tipo: "Referência",
+    funcoes: ["global"],
+    tags: ["passo a passo", "começar", "trilha", "ferramentas", "plano"],
+    descricao: "Escolha entre a Trilha A (vídeo 3D com o kit) e a Trilha B (série \"você decide\" em 2D) e veja o que preparar.",
+    quando_usar: "Antes de tudo. Os outros itens deste tema são os passos de cada trilha, na ordem de uso. Os tempos são relatos dos criadores e estimativas minhas, não garantias.",
+    conteudo: `ESCOLHA A TRILHA (uma conta, um formato)
+
+TRILHA A: vídeo 3D explicativo ou de orçamento (kit)
+- Exemplos: como é feito o asfalto, como um telhado funciona, "se você ganhasse R$ 10 milhões e montasse uma fazenda".
+- Ferramenta: o kit de vídeo 3D, que já está pronto. Você dá a ideia e a duração, e ele entrega vídeo, capa e texto do post.
+- Esforço: o menor. Dá para postar o primeiro vídeo logo no começo.
+- Limite: o visual é o mesmo de outros canais que usam o kit. Diferencie pelo nicho, pelo elenco e pelo ângulo.
+
+TRILHA B: série "você decide" em 2D (transformação em N dias)
+- Exemplos: "Dia 1 de 30", um personagem que o público ajuda a mudar com um voto por dia.
+- Ferramenta: você monta uma vez um motor 2D no Claude Code (prompt 03 deste tema). Depois, cada episódio é um roteiro e um storyboard.
+- Esforço: maior no começo (motor e personagem), menor depois.
+- Força: o voto nos comentários e o "Dia 2" dão motivo para voltar e seguir.
+
+RECOMENDAÇÃO
+1. Comece pela Trilha A para aprender o processo inteiro (ideia, roteiro, vídeo, post e métricas) com a ferramenta que já existe.
+2. Monte a Trilha B em paralelo, nos dias de folga, e lance quando o personagem e o motor estiverem testados.
+3. No começo, não misture os dois formatos na mesma conta. Um formato por conta ajuda a plataforma a entender para quem mostrar. É uma recomendação minha, não uma regra das plataformas.
+
+O QUE VOCÊ PRECISA
+- Claude com o Claude Code (os criadores dos vídeos usam os planos Pro ou Max), Node.js 18+, ffmpeg e Chrome, Edge ou Brave.
+- Voz: a sua, a grátis no computador (Kokoro) ou ElevenLabs (paga). Na Trilha B você pode usar só a legenda palavra por palavra.
+- Trilha B: um gerador de imagem para o personagem e os cenários.
+- Som: efeitos com licença livre (Openverse e Real SFX, na biblioteca).
+
+QUANTO TEMPO LEVA
+- Preparar: de 1 a 2 horas na Trilha A; um dia ou mais na B.
+- Cada vídeo na Trilha A: os criadores falam em 30 a 60 minutos, mais a sua revisão.
+- Cada episódio na Trilha B, com o motor pronto: um roteiro, um storyboard e um render.
+
+REGRAS DE CONTA
+- Conteúdo original e de autoria sua, com o rótulo de conteúdo gerado por IA onde a plataforma exigir.
+- Pedir voto é permitido. Prometer prêmio por curtida ou compartilhamento pode reduzir o alcance.
+- Os requisitos de monetização mudam: confirme no aplicativo.`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-17",
+    origem: ""
+  },
+
+  {
+    id: "pp-01-trilha-a-video-3d-com-o-kit",
+    tema: "Passo a passo (do zero ao post)",
+    titulo: "01 · Trilha A: vídeo 3D com o kit, do zero ao post (11 passos)",
+    tipo: "Referência",
+    funcoes: ["global"],
+    tags: ["passo a passo", "trilha a", "kit", "vídeo 3d", "postagem"],
+    descricao: "Cada passo diz o prompt a usar, o que sai dele e o que conferir, da preparação até as métricas.",
+    quando_usar: "Para fazer o primeiro vídeo 3D e depois repetir toda semana. Os passos 0 e 1 são feitos uma vez; os 2 e 3, uma vez por semana; os 5 a 9, a cada vídeo.",
+    conteudo: `PASSO 0 · PREPARAR (uma vez, de 1 a 2 horas)
+- Baixe o kit pelo link do vídeo do Willian IA, descompacte numa pasta sua e abra o Claude Code dentro dela.
+- Leia o guia "Vídeos 3D virais, 00".
+- Escolha a voz: a sua, grátis no computador ou ElevenLabs. O agente confere o computador e pede permissão antes de instalar qualquer coisa.
+- Confira Node.js 18+, ffmpeg e Chrome, Edge ou Brave.
+- Confirme com o autor do kit se o uso comercial é permitido: não achei arquivo de licença.
+
+PASSO 1 · CANAL (uma vez)
+- Prompt: Vídeos 3D virais, 01 (Canal).
+- Saída: config/canal.json. Salve na pasta config do kit.
+- Confira: o canal tem ângulo, elenco e cores só seus.
+
+PASSO 2 · TEMAS (toda semana)
+- Prompt: Vídeos 3D virais, 02 (Radar de temas). Rode numa IA com busca na web.
+- Saída: 5 temas ordenados, com gancho e fontes.
+- Confira: os links das fontes abrem e dizem o que o radar afirma.
+
+PASSO 3 · PEDIDOS DA SEMANA
+- Prompt: Vídeos 3D virais, 03 (Lote semanal).
+- Saída: 7 pedidos prontos, um por vídeo.
+- Confira: o gancho é verdadeiro e o vídeo vai respondê-lo.
+
+PASSO 4 · ROTEIRO (nos 5 primeiros vídeos; depois pode pular)
+- Prompt: Vídeos 3D virais, 04 (Roteiro para aprovar).
+- Saída: a narração pronta para voz e os fatos com fontes.
+- Aprove ou peça mudanças. Cole o roteiro aprovado no campo "Roteiro aprovado" do passo 5.
+
+PASSO 5 · PRODUÇÃO
+- Prompt: Vídeos 3D virais, 05 (Pedido de produção). Cole no Claude Code aberto na pasta do kit.
+- Modo: "com aprovação da sinopse" nos 5 primeiros; depois, "automático".
+- Saída: video.mp4, capa.png e postagem.md.
+
+PASSO 6 · REVISÃO
+- Peça ao agente os quadros do vídeo (o kit tem uma opção que gera 2 imagens por cena) e use o prompt "Passo a passo, 04 (Revisão final)".
+- Confira você mesmo os fatos marcados "VERIFICAR", nas fontes.
+- Ouça a voz inteira uma vez.
+
+PASSO 7 · AJUSTES
+- Mande correções curtas, uma cena por vez. Exemplos: "Na cena 6, o personagem está de costas: vire para a câmera." e "Troque o destaque da cena 3 por: ...".
+- Rode de novo a prévia e depois o render final.
+
+PASSO 8 · TEXTOS DO POST
+- Prompt: Séries animadas virais, 10 (Descrição e voto). Use também o postagem.md do kit como base.
+- Saída: legenda, comentário fixado, respostas e o tipo de voto.
+
+PASSO 9 · POSTAR
+- Use o checklist "Passo a passo, 05".
+- Suba o arquivo original no Instagram e no TikTok, sem marca d'água de outro aplicativo.
+
+PASSO 10 · DEPOIS DE POSTAR
+- Primeira hora: responda os primeiros comentários.
+- 24 horas: veja a retenção nos 3 primeiros segundos e o percentual assistido.
+- Toda semana: prompt Séries animadas virais, 06 (Publicação e métricas).
+- Com cerca de 10 vídeos no ar: prompt Vídeos 3D virais, 06 (Ponte para produto).`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-17",
+    origem: ""
+  },
+
+  {
+    id: "pp-02-trilha-b-serie-voce-decide-2d",
+    tema: "Passo a passo (do zero ao post)",
+    titulo: "02 · Trilha B: série \"você decide\" em 2D, do zero ao post (12 passos)",
+    tipo: "Referência",
+    funcoes: ["global"],
+    tags: ["passo a passo", "trilha b", "série", "2d", "você decide", "personagem"],
+    descricao: "Do conceito ao Dia 2: personagem, motor 2D feito uma vez e um ciclo curto por episódio.",
+    quando_usar: "Para a série no molde \"Dia 1 de 30\". O trabalho pesado (personagem e motor) é feito uma vez; depois, cada episódio é roteiro, storyboard, render e post. Esta trilha usa o prompt do motor, que ainda não foi testado: teste com o episódio de teste antes de confiar.",
+    conteudo: `PASSO 0 · PREPARAR (uma vez)
+- Claude Code, Node.js 18+, ffmpeg, um navegador (Chrome, Edge ou Brave) e uma pasta nova só para a série.
+- Escolha o gerador de imagem e, se for narrar, a voz.
+
+PASSO 1 · CONCEITO E FICHA
+- Prompt: Séries animadas virais, 01. Escolha o formato B.
+- Saída: ficha da série (personagem, prazo, evento final, painel e regra do voto) e os 14 primeiros episódios.
+- Confira: personagem inventado, prazo e evento claros, e nada que humilhe alguém.
+
+PASSO 2 · PERSONAGEM E CENÁRIOS
+- Prompt: Séries animadas virais, 02.
+- Gere a folha do personagem, as expressões (neutro, feliz, surpreso, triste, pensativo e irritado) e de 4 a 6 cenários.
+- No personagem, peça fundo liso de uma cor e depois recorte para PNG com fundo transparente.
+- Confira: 5 imagens seguidas com as mesmas cores e traços, e mãos e rosto sem deformar.
+
+PASSO 3 · MONTAR O MOTOR 2D (uma vez)
+- Prompt: Passo a passo, 03 (Motor 2D). Cole no Claude Code, numa pasta nova.
+- Coloque os PNG nas pastas que o agente pedir.
+- Saída: motor, validador, comandos de prévia e render, AGENTE.md e um episódio de teste.
+- Confira: o episódio de teste foi renderizado e você viu os quadros. Se o agente não testou, peça.
+
+PASSO 4 · ROTEIRO DO DIA 1
+- Prompt: Séries animadas virais, 08, com "Dia 1".
+- Saída: painel e regras, roteiro cena por cena, estado atualizado e rascunho das 2 ramificações.
+
+PASSO 5 · STORYBOARD
+- No Claude Code, na pasta do motor: "Leia o AGENTE.md e crie o storyboard deste episódio com o roteiro abaixo: ..."
+- Saída: storyboard.json validado.
+- Confira: cenas de 2 a 6 segundos, painel coerente e texto dentro das zonas seguras.
+
+PASSO 6 · VOZ, LEGENDA E SOM
+- Voz: sua, local grátis ou ElevenLabs. Sem voz, a legenda palavra por palavra carrega o episódio.
+- Efeitos sonoros com licença livre: Openverse e Real SFX (na biblioteca).
+
+PASSO 7 · RENDER E REVISÃO
+- Prévia, depois os quadros, depois a revisão com o prompt "Passo a passo, 04", depois o render final e a capa.
+
+PASSO 8 · TEXTOS DO POST
+- Prompt: Séries animadas virais, 10, com o voto de palavra A ou B.
+- Saída: legenda, comentário fixado com a regra do voto e de desempate.
+
+PASSO 9 · POSTAR
+- Use o checklist "Passo a passo, 05".
+- Mesmo dia e horário para toda a série: o público espera o próximo dia.
+
+PASSO 10 · CONTAR O VOTO E FAZER O DIA 2
+- Conte os comentários da janela combinada (por exemplo, as primeiras 24 horas) e aplique a regra de desempate.
+- Prompt: Séries animadas virais, 08, com ESTADO ATUAL e ESCOLHA VENCEDORA preenchidos.
+- Repita os passos 5 a 9. Do Dia 2 em diante, cada episódio é um roteiro, um storyboard e um render.
+
+PASSO 11 · AO FIM DA SÉRIE
+- O Dia N entrega o evento final e abre a próxima série.
+- Use as métricas (Séries animadas virais, 06) para escolher a próxima e a ponte para o produto (Vídeos 3D virais, 06).
+
+ALTERNATIVA MAIS RÁPIDA E MENOS CONTROLADA
+- Gerar cada cena com ferramentas de imagem e de vídeo por IA (veja Séries animadas virais, 05) e editar no CapCut. Serve para testar a ideia, mas custa mais por episódio e o personagem tende a mudar entre cenas.
+- A skill Animation Studio (na biblioteca) é outra opção. Eu não a verifiquei: leia antes de instalar.`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-17",
+    origem: ""
+  },
+
+  {
+    id: "pp-03-motor-2d-da-serie",
+    tema: "Passo a passo (do zero ao post)",
+    titulo: "03 · Motor 2D da série: construir uma vez no Claude Code",
+    tipo: "Prompt",
+    funcoes: ["global"],
+    tags: ["motor", "2d", "claude code", "storyboard", "render", "série", "ffmpeg"],
+    descricao: "Manda o Claude Code montar um motor que lê um storyboard e renderiza episódios 2D em MP4, com painel, legenda e tela dividida.",
+    quando_usar: "Passo 3 da Trilha B. Cole numa pasta nova e vazia. É um prompt de construção que eu escrevi e que ainda não foi testado: o agente precisa renderizar o episódio de teste e mostrar os quadros antes de você confiar nele.",
+    conteudo: `Você vai construir, do zero, um motor para produzir episódios curtos de séries animadas 2D, nesta pasta. Trabalhe em português do Brasil e mostre o progresso por etapa.
+
+<objetivo>
+Um episódio é descrito por um arquivo storyboard.json e renderizado em MP4 vertical 1080x1920, a 30 quadros por segundo, sem gerador de vídeo por IA. O personagem e os cenários são imagens PNG, criadas uma vez e reaproveitadas em todos os episódios.
+</objetivo>
+
+<ambiente>
+- Verifique node (18 ou mais), ffmpeg e um navegador (Chrome, Edge ou Brave). Se algo faltar, diga como instalar e só instale com a minha permissão.
+- Use HTML, CSS, JavaScript e Canvas. O render abre o navegador sem janela, avança o tempo quadro a quadro, salva os quadros e junta com o áudio pelo ffmpeg.
+- Sem serviços pagos e sem enviar meus arquivos para fora do computador.
+</ambiente>
+
+<assets>
+- assets/personagem/ : PNG com fundo transparente, uma pose neutra e as expressões neutro, feliz, surpreso, triste, pensativo e irritado.
+- assets/cenarios/ : PNG 1080x1920.
+- assets/props/ : objetos soltos em PNG.
+- Se ainda não houver assets, crie um conjunto de TESTE desenhado em código, marcado como teste, só para validar o motor.
+</assets>
+
+<storyboard>
+O formato do storyboard.json deve ter: série, episódio, duração, áudio (opcional), palavras com tempo (opcional), painel (medidores fixos com rótulo, valor e animação de mudança) e a lista de cenas. Cada cena tem: início, fim, cenário, personagem (expressão, posição, escala, entrada e saída, balanço leve), textos (título e destaque), tela dividida (2 opções com palavra de voto, ganho e custo), efeitos (zoom, tremor, flash, preto e branco) e transição (corte, flash ou deslizar).
+</storyboard>
+
+<recursos_obrigatorios>
+1. Painel fixo no topo com 2 medidores que mudam com animação suave entre cenas.
+2. Legenda grande, de uma a três palavras por vez, no centro ou no terço inferior, branca com contorno preto, com a palavra falada em destaque (amarelo). Se não houver áudio, estime o tempo de cada palavra pelo tamanho do texto e avise.
+3. Personagem com troca de expressão, respiração (balanço leve) e movimento de entrada.
+4. Tela dividida com 2 versões do personagem, 2 palavras de voto e a chamada final ("Dia 2" ou "Parte 2").
+5. Zonas seguras: nada importante nos 8% de cima e nos 20% de baixo da tela.
+6. Transições e efeitos curtos, de 150 a 300 ms.
+7. Tudo é função do tempo: o mesmo storyboard gera sempre o mesmo vídeo.
+8. Modo prévia (540x960, rápido) e modo quadros (2 imagens por cena, para revisão).
+9. Validador do storyboard: cenas cobrindo o episódio inteiro sem buracos, cena de 2 a 6 segundos, assets que existem, painel coerente e texto dentro das zonas seguras.
+10. Voz opcional: um arquivo de áudio meu, com tempos de palavra de um transcritor local (só se eu aceitar a instalação), ou ElevenLabs com a chave no arquivo .env. Nunca mostre nem grave a chave em outro lugar.
+</recursos_obrigatorios>
+
+<entregas>
+- Pastas organizadas e um README curto em português.
+- Comandos: novo episódio, validar, quadros, prévia, render e capa.
+- Um arquivo AGENTE.md com as regras para uma IA criar episódios: formato da série, como escrever o storyboard a partir de um roteiro e o checklist de qualidade.
+- Modelos de storyboard.
+- Um episódio de teste renderizado com os assets de teste, para provar que o motor funciona.
+- No fim, uma lista do que foi testado e do que não foi.
+</entregas>
+
+<regras>
+- Teste cada recurso antes de seguir para o próximo.
+- Não declare pronto sem rodar o episódio de teste e me mostrar os quadros.
+- Se algo não funcionar, diga o que foi e o que você tentou, sem esconder.
+- Peça permissão antes de instalar ou baixar qualquer coisa.
+- Não use música nem imagens de terceiros.
+</regras>`,
+    autor: "Claude, para a FDSS +, a partir do formato do kit de vídeo 3D e dos vídeos de série analisados",
+    atualizado_em: "2026-11-17",
+    origem: ""
+  },
+
+  {
+    id: "pp-04-revisao-final-qa",
+    tema: "Passo a passo (do zero ao post)",
+    titulo: "04 · Revisão final com os quadros: pode postar?",
+    tipo: "Prompt",
+    funcoes: ["global"],
+    tags: ["revisão", "qa", "qualidade", "checklist", "quadros", "antes de postar"],
+    descricao: "Confere o vídeo quadro a quadro: gancho, legibilidade, consistência, fatos, regras e texto do post, com veredito.",
+    quando_usar: "Antes de postar, com os quadros do vídeo anexados (2 imagens por cena, ou uma folha de contato). Ele só julga o que aparece nas imagens e avisa o que precisa conferir fora delas, como áudio e música.",
+    conteudo: `<papel>
+Você é um revisor de qualidade de vídeos curtos animados. Você só julga o que consegue ver nos quadros enviados e diz o que não consegue avaliar.
+</papel>
+
+<contexto>
+Formato: [FORMATO: explicativo 3D, orçamento ou série "você decide"]
+Roteiro final: [ROTEIRO FINAL]
+Texto do post: [TEXTO DO POST]
+Quadros anexados (tempos ou números das cenas): [QUADROS ANEXADOS]
+Plataformas: [PLATAFORMAS]
+</contexto>
+
+<tarefa>
+1. Para cada item abaixo, responda OK, AJUSTAR ou NÃO DÁ PARA AVALIAR, com a evidência (qual quadro) e, se for AJUSTAR, a correção:
+   - Gancho: o prazo ou a pergunta está na tela nos 3 primeiros segundos?
+   - Retenção: cada cena muda algo (ângulo, plano, cenário ou personagem)? Alguma parece uma foto parada?
+   - Legibilidade: a legenda é grande, com contraste e fora das zonas seguras (8% de cima e 20% de baixo)? Algo cobre o rosto?
+   - Consistência: personagem, cores, painel e fonte são iguais em todos os quadros? Mãos e rostos estão sem deformação?
+   - Mensagem: o que está na tela mostra o que a fala diz? O texto repete a legenda sem acrescentar nada?
+   - Fatos e números: quais afirmações, valores e números aparecem, e quais precisam de fonte?
+   - Regras: algo que envergonhe pessoas pela aparência, dê conselho de saúde ou de dinheiro como certeza, use marca ou logo de terceiros ou pareça publicidade sem aviso?
+   - Final: a pergunta ou o voto está claro, com opções diferentes e fáceis de digitar, e é igual ao do texto do post?
+   - Texto do post: gancho na primeira linha, regra do voto, avisos obrigatórios e hashtags específicas?
+2. Liste o que precisa de conferência fora dos quadros: áudio (volume, voz e ritmo), sincronia da legenda e música.
+3. Resuma em até 5 correções, da mais importante para a menos, escritas como comandos curtos para o agente que gerou o vídeo. Exemplo: "Na cena 6, vire o personagem para a câmera."
+4. Dê o veredito: PODE POSTAR, POSTAR APÓS AJUSTES ou NÃO POSTAR, com o motivo.
+</tarefa>
+
+<regras>
+- Nunca invente o que não está nos quadros. Se um quadro não mostra, diga "NÃO DÁ PARA AVALIAR".
+- Seja específico: número do quadro e o que mudar. Nada de elogio genérico.
+- Não sugira recursos que o formato não tem.
+</regras>
+
+<formato>
+Tabela com os itens, depois as conferências fora dos quadros, as 5 correções e o veredito.
+</formato>`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-17",
+    origem: ""
+  },
+
+  {
+    id: "pp-05-checklist-de-postagem-e-rotina",
+    tema: "Passo a passo (do zero ao post)",
+    titulo: "05 · Checklist de postagem e rotina semanal",
+    tipo: "Modelo",
+    funcoes: ["global"],
+    tags: ["checklist", "postagem", "rotina", "instagram", "tiktok", "métricas"],
+    descricao: "O que conferir antes de postar, o que fazer na primeira hora, em 24 horas e na semana, e uma rotina sugerida.",
+    quando_usar: "Em todo vídeo, no passo de postar. Copie, marque os itens e adapte a rotina ao seu tempo.",
+    conteudo: `ANTES DE POSTAR (todos precisam estar OK)
+[ ] Os 3 primeiros segundos mostram o gancho e o prazo ou a pergunta na tela.
+[ ] O vídeo funciona sem som: a legenda carrega a mensagem.
+[ ] A legenda é legível no celular e fica nas zonas seguras (nada nos 8% de cima nem nos 20% de baixo).
+[ ] Todo fato tem fonte ou foi cortado. Os itens "VERIFICAR" foram resolvidos.
+[ ] Valores ilustrativos avisados, parceria paga marcada e rótulo de conteúdo gerado por IA ligado.
+[ ] Sem marca d'água de outro aplicativo e sem logo de terceiros.
+[ ] Música licenciada ou da biblioteca da plataforma.
+[ ] A pergunta ou o voto do final é igual ao do comentário fixado.
+[ ] Capa legível, com até 6 palavras.
+[ ] O texto do post tem o gancho na primeira linha, a regra do voto e a chamada para seguir.
+[ ] Personagem, painel e cores iguais aos dos episódios anteriores.
+
+NA HORA DE POSTAR
+- Instagram: Reel com o arquivo original, capa escolhida e de 5 a 6 hashtags específicas do assunto.
+- TikTok: o mesmo arquivo, uma frase que as pessoas buscam na legenda e de 3 a 5 hashtags.
+- Fixe o comentário assim que publicar.
+- Séries: mesmo dia e mesmo horário. Nos outros formatos, teste 2 horários por semana e compare.
+
+PRIMEIRA HORA
+- Responda os comentários e curta os melhores. Não discuta.
+
+24 HORAS
+- Veja a retenção nos 3 primeiros segundos, o percentual assistido, compartilhamentos, salvamentos e seguidores ganhos.
+- Se for série de voto: conte os votos, aplique a regra de desempate e anuncie o resultado no início do próximo episódio, sem mostrar nome de usuário.
+
+SEMANA
+- Prompt Séries animadas virais, 06 (métricas).
+- Mantenha os 2 temas que mais seguraram e corte o resto.
+
+ROTINA SEMANAL SUGERIDA (ajuste ao seu tempo)
+- Domingo: radar e lote (Trilha A) ou ramificações do próximo dia (Trilha B).
+- Dias de produção: de 1 a 2 vídeos por sessão.
+- Todo dia: postar no mesmo horário.
+- Sexta: métricas e decisão da semana seguinte.`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-17",
     origem: ""
   }
 
