@@ -417,17 +417,22 @@
     let m;
     RE_VAR.lastIndex = 0;
     while ((m = RE_VAR.exec(conteudo))) {
-      if (!ehVariavel(m[1], conteudo.charAt(m.index - 1))) continue;
-      if (m.index > pos) partes.push({ texto: conteudo.slice(pos, m.index) });
+      const antes = conteudo.charAt(m.index - 1);
+      if (antes === "\\") continue;   // \[texto] é colchete literal (ex.: marcações de voz), não campo
+      if (!ehVariavel(m[1], antes)) continue;
+      if (m.index > pos) partes.push({ texto: semEscape(conteudo.slice(pos, m.index)) });
       partes.push({ variavel: m[1], texto: m[0] });
       pos = m.index + m[0].length;
     }
-    if (pos < conteudo.length) partes.push({ texto: conteudo.slice(pos) });
+    if (pos < conteudo.length) partes.push({ texto: semEscape(conteudo.slice(pos)) });
     return partes;
   }
 
+  // Tira a barra de "\[" na exibição e na cópia.
+  function semEscape(t) { return t.replace(/\\\[/g, "["); }
+
   function textoParaCopiar(item, valores) {
-    const base = item.conteudo.trim() ? item.conteudo : item.origem || item.titulo;
+    const base = item.conteudo.trim() ? semEscape(item.conteudo) : item.origem || item.titulo;
     if (!valores || !item.conteudo.trim()) return base;
     return partesDe(item.conteudo)
       .map((p) => (p.variavel && texto(valores[p.variavel]).trim() ? valores[p.variavel] : p.texto))

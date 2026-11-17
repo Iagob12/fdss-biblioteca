@@ -27,7 +27,7 @@ window.FUNCOES = [
    "tema" dos itens. Item sem tema aparece no grupo "Outros".
    -------------------------------------------------------------------------- */
 window.TEMAS = [
-  "Vídeo viral em 4 passos",
+  "Vídeo viral em 5 passos",
   "Do zero à venda",
   "Vídeos 3D virais (kit)",
   "Séries animadas virais",
@@ -3333,53 +3333,47 @@ Tipo de voto escolhido com a justificativa, as 3 legendas, as adaptações por p
 
   {
     id: "pp-00-comece-aqui",
-    tema: "Vídeo viral em 4 passos",
-    titulo: "Passo 0 · Comece aqui: o fluxo em 4 passos",
+    tema: "Vídeo viral em 5 passos",
+    titulo: "Passo 0 · Comece aqui: o fluxo em 5 passos",
     tipo: "Referência",
     funcoes: ["global"],
-    tags: ["passo a passo", "começar", "fluxo", "4 passos", "vídeo viral"],
-    descricao: "Os 4 passos, do tema ao post, com o que preencher em cada prompt e onde fazer.",
-    quando_usar: "Leia primeiro. Depois abra os itens \"Passo 1\", \"Passo 2\", \"Passo 3\" e \"Passo 4\", nesta ordem. Cada passo tem um prompt só, com poucos campos.",
-    conteudo: `O FLUXO EM 4 PASSOS
+    tags: ["passo a passo", "começar", "fluxo", "5 passos", "vídeo viral"],
+    descricao: "Os 5 passos, do tema ao post: ideia, roteiro, narração com emoção, animação (3D ou 2D) e postagem.",
+    quando_usar: "Leia primeiro. Depois abra os itens Passo 1, 2, 3, 4A ou 4B e 5, nesta ordem. Cada passo tem um prompt só, com poucos campos.",
+    conteudo: `O FLUXO EM 5 PASSOS
 
-PASSO 1 · IDEIA
-- Prompt: "Passo 1 · Ideias de vídeo ou série".
-- Você preenche 2 campos: o tipo (vídeo explicativo ou série de escolhas) e o tema central.
-- O Claude pesquisa e devolve 10 ideias numeradas, com a recomendada.
-- Você responde com o número da ideia.
+PASSO 1 · IDEIA (no Claude, com a busca na web ligada)
+- Prompt "Passo 1". Você preenche o tipo (vídeo explicativo ou série de escolhas) e o tema central.
+- Sai: 10 ideias numeradas, com a recomendada. Você responde com o número.
 
-PASSO 2 · ROTEIRO
-- Prompt: "Passo 2 · Roteiro e pacote do vídeo". Mande na mesma conversa do passo 1.
-- Você preenche 2 campos: o número da ideia e a duração.
-- O Claude confere os fatos e devolve o PACOTE DO VÍDEO: roteiro, plano de cenas, textos na tela, capa e fontes.
-- Leia, peça ajustes e aprove.
+PASSO 2 · ROTEIRO (mesma conversa)
+- Prompt "Passo 2". Você preenche o número da ideia e a duração.
+- Sai: fatos checados (verdade, lenda ou exagero), roteiro, plano de cenas e o PACOTE DO VÍDEO, com a NARRAÇÃO LIMPA no topo.
+- Duração: para testar um tema novo, de 25 a 35 segundos. Para um formato que já funcionou, de 60 a 90 segundos.
 
-PASSO 3 · VÍDEO
-- Prompt: "Passo 3 · Produção do vídeo ou da série". Mande no Claude Code aberto dentro da pasta do kit.
-- Você preenche 3 campos: a pasta do kit, o pacote (ou "está nesta conversa") e a voz.
-- O Claude produz, revisa e entrega o vídeo, a capa e o texto do post.
+PASSO 3 · NARRAÇÃO COM EMOÇÃO (mesma conversa + site de voz)
+- Prompt "Passo 3". Você escolhe o motor: ElevenLabs (v3 ou v4) ou MiniMax (Speech 2.8).
+- Sai: o roteiro com marcações de emoção e pausa no formato certo do motor, e os ajustes do gerador.
+- Você cola no site de voz, gera, ouve uma vez e baixa o MP3.
 
-PASSO 4 · POSTAGEM
-- Prompt: "Passo 4 · Descrição e estratégia de postagem (Instagram e TikTok)". Mande na mesma conversa.
-- Você preenche 2 campos: o estágio do perfil e os dados dos últimos vídeos.
-- O Claude entrega capa, legendas, comentário fixado, plano de publicação e o que medir.
+PASSO 4 · ANIMAÇÃO (escolha um caminho)
+- 4A · 3D com o kit: prompt "Passo 4A" no Claude Code, aberto na pasta do kit. Ele usa o seu MP3, alinha a legenda, monta as cenas e entrega vídeo, capa e texto. Melhor para "como é feito", obras e orçamento.
+- 4B · 2D com a Animation Studio: prompt "Passo 4B" numa conversa nova do Claude, com o MP3 anexado. Você escolhe um estilo (pixel art, quadrinhos, vetor plano, giz e outros). Melhor para histórias, curiosidades e séries com personagem.
 
-COMO FAZER DO JEITO MAIS SIMPLES
-- Abra o Claude Code dentro da pasta do kit e faça os 4 passos na MESMA conversa. Assim o Claude lembra de tudo e você não copia nada entre os passos.
-- Se fizer os passos 1 e 2 em outro lugar (o aplicativo do Claude, por exemplo), copie o PACOTE DO VÍDEO do passo 2 e cole no campo do passo 3.
-- Os passos 1, 2 e 4 funcionam melhor com a busca na web ligada.
+PASSO 5 · POSTAGEM (mesma conversa do Passo 2)
+- Prompt "Passo 5". Você preenche o estágio do perfil e os dados dos últimos vídeos.
+- Sai: capa, legendas de Instagram e TikTok, comentário fixado, plano de publicação e o que medir.
 
-ANTES DO PASSO 3 (uma vez só)
-- Baixe o kit de vídeo 3D (o link está no vídeo do Willian IA) e descompacte numa pasta sua.
-- Tenha Node.js 18+, ffmpeg e Chrome, Edge ou Brave. O Claude confere e pede permissão antes de instalar qualquer coisa.
-- Confirme com o autor do kit se o uso comercial é permitido: não achei arquivo de licença.
-- Som: crie uma pasta audio/ dentro do kit com uma trilha de fundo e os efeitos que você tem direito de usar (alerta, dinheiro, obra, voto). O Passo 3 mistura o que estiver lá. Sem essa pasta, o vídeo sai só com a voz.
-- Detalhes do kit: item "Vídeos 3D virais, 00".
+ANTES DE COMEÇAR (uma vez só)
+- Voz: uma conta no ElevenLabs ou no MiniMax. Para as marcações de emoção funcionarem, gere no Eleven v3 ou v4 (os modelos mais antigos podem ler as marcações em voz alta) ou no MiniMax Speech 2.8.
+- Caminho 4A: baixe o kit de vídeo 3D (link no vídeo do Willian IA), tenha Node.js 18+, ffmpeg e Chrome, Edge ou Brave, e confirme com o autor o uso comercial (não achei arquivo de licença). Para alinhar a legenda ao seu MP3, o kit usa o Whisper da voz grátis: o Claude pede permissão antes de instalar.
+- Caminho 4B: a skill Animation Studio já está instalada na sua conta. Na versão web ela pode não conseguir exportar o MP4; nesse caso entrega o pacote para renderizar no Claude Code.
+- Som: crie uma pasta audio/ dentro do kit com a trilha e os efeitos que você tem direito de usar. O Passo 4A mistura o que estiver lá.
 
-O QUE ESPERAR
-- A série de escolhas no kit é uma adaptação (o painel e a tela dividida ficam aproximados) e ainda não foi testada.
-- Nenhum prompt garante viralização. Eles aumentam as chances com o que funcionou nos vídeos analisados.
-- Confira você mesmo os fatos, a voz e o que o texto promete antes de postar.`,
+ESTILO E AUTENTICIDADE
+- Escolha um estilo e mantenha nos vídeos da mesma conta: personagem, paleta e jeito de narrar viram a sua marca.
+- Use os vídeos de sucesso para entender estrutura e ritmo, nunca para copiar personagem, traço ou texto de outro canal. Na Animation Studio, evite os estilos que imitam criadores específicos (Dan Koe e ZackD Films).
+- Nenhum prompt garante viralização. Confira você mesmo os fatos, a voz e o que o texto promete antes de postar.`,
     autor: "Claude, para a FDSS +",
     atualizado_em: "2026-11-17",
     origem: ""
@@ -3387,7 +3381,7 @@ O QUE ESPERAR
 
   {
     id: "pp-01-ideias",
-    tema: "Vídeo viral em 4 passos",
+    tema: "Vídeo viral em 5 passos",
     titulo: "Passo 1 · Ideias de vídeo ou série (2 campos)",
     tipo: "Prompt",
     funcoes: ["global"],
@@ -3404,7 +3398,7 @@ Tema central: [TEMA CENTRAL]
 </pedido>
 
 <o_que_cada_tipo_significa>
-- VÍDEO EXPLICATIVO: um assunto por vídeo, de 60 a 120 segundos, no estilo "como é feito" ou "se você ganhasse R$ X e montasse Y". Cadeia de problema e solução, processo sempre se movendo na tela e uma pergunta final para comentar.
+- VÍDEO EXPLICATIVO: um assunto por vídeo, de 30 a 90 segundos, no estilo "como é feito" ou "se você ganhasse R$ X e montasse Y". Cadeia de problema e solução, processo sempre se movendo na tela e uma pergunta final para comentar.
 - SÉRIE DE ESCOLHAS: um personagem com um prazo e um evento final (por exemplo, "Dia 1 de 30") em que o público decide um ajuste por dia, votando com UMA palavra nos comentários. Cada episódio mostra o resultado do voto anterior.
 </o_que_cada_tipo_significa>
 
@@ -3444,13 +3438,13 @@ Tabela com as 10 ideias (número, título, gancho, tipo, notas e nota total). De
 
   {
     id: "pp-02-roteiro",
-    tema: "Vídeo viral em 4 passos",
+    tema: "Vídeo viral em 5 passos",
     titulo: "Passo 2 · Roteiro e pacote do vídeo (2 campos)",
     tipo: "Prompt",
     funcoes: ["global"],
     tags: ["passo 2", "roteiro", "pacote do vídeo", "gancho", "plano de cenas", "série"],
     descricao: "Escreve o roteiro e o plano completo do vídeo, com teste de clareza, painel por cena, fichas de voto, áudio e paleta.",
-    quando_usar: "Segundo passo. Mande na mesma conversa em que o Claude respondeu o Passo 1. Preencha o número da ideia e a duração. O prompt traz o padrão medido em 5 vídeos virais do formato e corrige as falhas do primeiro teste (lógica confusa, painel parado, cenas vazias). Leia o pacote e aprove antes do Passo 3.",
+    quando_usar: "Segundo passo. Mande na mesma conversa em que o Claude respondeu o Passo 1. Preencha o número da ideia e a duração. Inclui a checagem de verdade, lenda ou exagero e entrega a NARRAÇÃO LIMPA para o Passo 3 e o PACOTE DO VÍDEO para o Passo 4. Leia e aprove antes de seguir.",
     conteudo: `<papel>
 Você é o roteirista-chefe e diretor de animação deste vídeo. Você pensa em tudo o que ele precisa para prender até o último segundo, gerar comentário e ser produzido sem improviso. Seu padrão são vídeos virais reais deste formato, descritos abaixo.
 </papel>
@@ -3474,9 +3468,9 @@ Medido em 5 vídeos virais do formato (2 séries de transformação, 1 de orçam
 </padrao_dos_videos_de_referencia>
 
 <tarefa>
-1. Confirme a ideia em uma linha e diga o formato: VÍDEO ou SÉRIE.
+1. Confirme a ideia em uma linha e diga o formato: VÍDEO ou SÉRIE. Se eu não decidi a duração: 30 segundos para testar um tema novo, 60 a 75 segundos para série ou tema que já funcionou.
 
-2. Fatos: pesquise e liste cada fato com fonte e data. O que não tiver fonte fica de fora ou vai marcado "VERIFICAR". Se for ficção, diga isso e defina as regras do mundo em até 3 linhas.
+2. Fatos: pesquise e liste cada afirmação com fonte e data, e classifique: VERDADE (fonte sólida), LENDA (história popular sem prova: só entra dita como lenda), EXAGERO (corrija o número) ou INCERTO (fica de fora). Se for ficção, diga isso e defina as regras do mundo em até 3 linhas.
 
 3. Teste de clareza ANTES de escrever. Responda em uma frase cada:
    - O que está em jogo e para quem? (uma pessoa, um prazo, uma perda concreta)
@@ -3521,7 +3515,7 @@ Medido em 5 vídeos virais do formato (2 séries de transformação, 1 de orçam
 
 9. Votação ou fechamento (últimos 10 a 12 segundos): descreva a tela dividida ESQUERDA e DIREITA, cada lado com o objeto da opção, a palavra grande e a linha da ação, mais o selo do próximo episódio. Em vídeo explicativo, descreva a pergunta final com 2 respostas.
 
-10. Áudio: o perfil da voz (masculina ou feminina, tom, idade aparente), a velocidade, onde vão as pausas longas (antes da revelação e antes do voto), o clima da trilha de fundo e a lista de efeitos sonoros com o tempo de cada um.
+10. Áudio (a voz é gerada no Passo 3, no ElevenLabs ou no MiniMax): o perfil da voz (masculina ou feminina, tom, idade aparente), a velocidade, onde vão as pausas longas (antes da revelação e antes do voto), o clima da trilha de fundo e a lista de efeitos sonoros com o tempo de cada um.
 
 11. Paleta e estilo: 4 a 5 cores com código hexadecimal (fundo, destaque, alerta, texto e painel) e a regra de uso. Diga a cor de cada objeto grande, para nada brigar com a legenda.
 
@@ -3529,7 +3523,7 @@ Medido em 5 vídeos virais do formato (2 séries de transformação, 1 de orçam
 
 13. Checklist, com OK ou AJUSTAR: gancho mostra a crise em 3 s; o que está em jogo é claro; só uma regra; cada opção tem causa e efeito; todo número tem significado; painel muda pelo menos 2 vezes; nenhuma cena com mais de 5 s; assunto ocupa o centro; nada de ideia nova nos últimos 12 s; final com gancho para o próximo; fatos com fonte.
 
-14. Entregue o PACOTE DO VÍDEO em um bloco de código único, para colar no Passo 3, com: formato, duração, narração final (só o que será falado), tabela de cenas completa, valores do painel por cena, fichas de voto, votação final, direção de áudio, paleta, capa, estado da série (se houver), fatos com fontes e pontos de atenção.
+14. Entregue a NARRAÇÃO LIMPA (só o que será falado, sem nenhuma marcação) em um bloco de código próprio, para o Passo 3. Depois entregue o PACOTE DO VÍDEO em um bloco de código único, para o Passo 4, com: formato, duração, narração final, tabela de cenas completa, valores do painel por cena, fichas de voto, votação final, direção de áudio, paleta, capa, estado da série (se houver), fatos com fontes e pontos de atenção.
 </tarefa>
 
 <regras>
@@ -3551,19 +3545,77 @@ Seções numeradas. Os itens 3, 4, 5, 8, 9 e 13 completos na resposta e o item 1
   },
 
   {
+    id: "pp-03-narracao-com-emocao",
+    tema: "Vídeo viral em 5 passos",
+    titulo: "Passo 3 · Narração com emoção (ElevenLabs ou MiniMax)",
+    tipo: "Prompt",
+    funcoes: ["global"],
+    tags: ["passo 3","narração","voz","elevenlabs","minimax","emoção"],
+    descricao: "Marca o roteiro com emoção, ritmo e pausas no formato certo de cada motor de voz, sem mudar nenhuma palavra.",
+    quando_usar: "Terceiro passo, na mesma conversa do Passo 2. Escolha o motor de voz. As marcações só funcionam no Eleven v3 ou v4 (entre colchetes, em inglês) e no MiniMax Speech 2.8 (sons entre parênteses e pausas com <#0.5#>). Cole o texto marcado no site de voz, gere, ouça uma vez e baixe o MP3.",
+    conteudo: `<papel>
+Você é um diretor de voz para vídeos curtos. Você transforma um roteiro pronto em texto para gerador de voz, com marcações que dão emoção e ritmo, sem mudar nenhuma palavra.
+</papel>
+
+<pedido>
+Narração aprovada: [NARRAÇÃO LIMPA, ou "está nesta conversa"]
+Motor de voz: [MOTOR: ElevenLabs v3 ou v4, ou MiniMax Speech 2.8]
+</pedido>
+
+<regras_do_motor>
+ELEVENLABS (Eleven v3 ou v4)
+- Marcações entre colchetes, em inglês, logo antes das palavras que elas mudam. Use estas: \\[curious], \\[excited], \\[whispers], \\[softly], \\[nervously], \\[mischievously], \\[sarcastic], \\[shouts], \\[sighs], \\[laughs], \\[chuckles], \\[gasps].
+- Pausa curta: reticências (...). Pausa longa: a frase curta sozinha numa linha.
+- Os modelos antigos (Multilingual v2 e Flash) não interpretam marcações e podem lê-las em voz alta. Gere no v3 ou no v4.
+- Marcações em português podem funcionar, mas as documentadas são em inglês. Prefira inglês.
+
+MINIMAX (Speech 2.8 HD ou Turbo)
+- Sons entre parênteses, só desta lista: (laughs), (chuckle), (sighs), (breath), (inhale), (exhale), (gasps), (clear-throat), (emm), (humming).
+- Pausa com a marca <#segundos#>: <#0.5#> para pausa curta e <#1.2#> para pausa longa.
+- A emoção não vai no texto: é um ajuste do gerador (happy, sad, angry, fearful, surprised, calm, whisper e outros). Se a emoção mudar no meio do roteiro, divida em blocos e diga a emoção de cada bloco.
+</regras_do_motor>
+
+<tarefa>
+1. Defina o perfil da voz em 3 linhas (gênero, idade aparente, tom e ritmo), de acordo com o roteiro e o público. Sugira 2 tipos de voz para procurar na biblioteca do motor, em português do Brasil.
+2. Marque o roteiro EXATO, sem mudar, tirar ou acrescentar nenhuma palavra:
+   - no máximo uma marcação a cada 1 ou 2 frases;
+   - o gancho com energia, a revelação mais lenta e o final mais baixo e firme;
+   - pausa antes da revelação e antes do voto ou da pergunta final;
+   - nada de marcação em cima de número ou de nome próprio.
+3. Entregue o texto pronto para colar no gerador, em um bloco de código.
+4. Entregue os ajustes do gerador: modelo e velocidade; no ElevenLabs, estabilidade (mais baixa deixa mais expressivo) e similaridade; no MiniMax, a emoção de cada bloco.
+5. Entregue a NARRAÇÃO LIMPA (o mesmo texto, sem nenhuma marcação) em outro bloco de código. Ela é usada na legenda e no alinhamento do Passo 4.
+6. Liste o que conferir depois de gerar: nenhuma marcação lida em voz alta, números e nomes pronunciados certo e duração dentro de 10% do pedido. Para cada problema, diga como corrigir só o trecho.
+</tarefa>
+
+<regras>
+- Não altere o conteúdo do roteiro. Não reescreva frases.
+- Use marcação só quando ela ajudar na emoção, no ritmo ou na pausa. Menos é mais.
+- Não imite a voz de uma pessoa real nem de outro canal.
+</regras>
+
+<formato>
+Perfil da voz, texto marcado em bloco de código, ajustes do gerador, NARRAÇÃO LIMPA em bloco de código e a lista de conferência.
+</formato>`,
+    autor: "Claude, para a FDSS +, a partir de um prompt de narração enviado pela equipe",
+    atualizado_em: "2026-11-17",
+    origem: "https://elevenlabs.io/docs/overview/capabilities/text-to-speech/best-practices"
+  },
+
+  {
     id: "pp-03-producao",
-    tema: "Vídeo viral em 4 passos",
-    titulo: "Passo 3 · Produção do vídeo ou da série (o prompt principal)",
+    tema: "Vídeo viral em 5 passos",
+    titulo: "Passo 4A · Animação 3D com o kit (Claude Code)",
     tipo: "Prompt",
     funcoes: ["global"],
     tags: ["passo 3", "produção", "claude code", "kit", "vídeo 3d", "revisão"],
-    descricao: "Diz ao Claude Code como produzir e revisar o vídeo com o kit 3D, com padrões medidos de áudio, legenda, painel, enquadramento e votação.",
-    quando_usar: "Terceiro passo. Abra o Claude Code dentro da pasta do kit e cole. Versão 2, reescrita depois da crítica do primeiro vídeo: volume em −14 LUFS, legenda em blocos de 2 palavras fora do rosto, painel que muda, assunto ocupando o centro e votação lado a lado. Ainda não foi testada: confira os quadros. A trilha e os efeitos dependem de arquivos seus na pasta audio/.",
+    descricao: "O Claude Code usa o seu MP3, alinha a legenda e produz, revisa e entrega o vídeo 3D, com padrões de áudio, legenda, painel, enquadramento e votação.",
+    quando_usar: "Quarto passo, caminho 3D. Abra o Claude Code dentro da pasta do kit, cole e informe o caminho do MP3 do Passo 3. Melhor para \"como é feito\", obras e orçamento. Ainda não foi testado com MP3 externo: confira os quadros. A trilha e os efeitos dependem de arquivos seus na pasta audio/.",
     conteudo: `Você será o meu Criador de Vídeos 3D. Quero o melhor resultado possível, com o mínimo de idas e vindas.
 
 Pasta do kit: [PASTA DO KIT]
 Pacote do vídeo (resultado do Passo 2): [PACOTE DO VÍDEO, ou "está nesta conversa"]
-Voz: [VOZ: local e grátis, ou paga (ElevenLabs)]
+Narração: [NARRAÇÃO: caminho do MP3 do Passo 3, ou "gerar no kit"]
 
 COMO VOCÊ DEVE SE COMPORTAR
 1. Leia primeiro o AGENTE.md da pasta do kit e siga-o. Este pedido complementa o AGENTE.md. Onde este pedido for mais exigente (legenda, painel, enquadramento, áudio e transições), vale este pedido.
@@ -3576,7 +3628,9 @@ COMO VOCÊ DEVE SE COMPORTAR
 PADRÕES DE QUALIDADE (medidos em vídeos virais do formato; todos são obrigatórios)
 
 ÁUDIO
-- Voz que combina com a direção do pacote. Narrador firme pede voz masculina: no kit grátis, teste pm_alex e pm_santa antes de aceitar pf_dora. Gere um teste de 2 frases com cada voz candidata e escolha a que soa mais natural, dizendo qual escolheu.
+- Se eu passar um MP3 (Passo 3), ele é a narração final: não gere outra voz e não mude o ritmo. Copie para o projeto como narracao.mp3 e salve em narracao.txt e narracao.falado.txt a NARRAÇÃO LIMPA do pacote, sem nenhuma marcação. Alinhe as palavras com o alinhador do kit (tools/voz/py/alinhar.py, idioma pt), que usa o Whisper da voz grátis; se ele não estiver instalado, peça permissão e instale com o comando de instalação da voz do kit. Se o alinhador não aceitar MP3, converta para WAV com ffmpeg. Gere palavras.json, frases.json e voz.json no mesmo formato que o kit gera e use o MP3 como áudio do storyboard.
+- Se eu pedir para gerar no kit com ElevenLabs: o modelo padrão do kit (eleven_multilingual_v2) não interpreta marcações de emoção, então mande o texto limpo.
+- Se eu pedir para gerar no kit: voz que combina com a direção do pacote. Narrador firme pede voz masculina: no kit grátis, teste pm_alex e pm_santa antes de aceitar pf_dora. Gere um teste de 2 frases com cada voz candidata e escolha a que soa mais natural, dizendo qual escolheu.
 - Velocidade entre 0,92 e 1,0. Ritmo final de 2,3 a 2,6 palavras por segundo.
 - Pausas com sentido: curtas dentro da frase e mais longas antes da revelação e antes do voto. Use a pontuação do narracao.txt para isso (ponto para pausa longa, vírgula para curta).
 - Confira o palavras.json: nenhuma palavra com menos de 0,08 s ou mais de 0,9 s e cobertura de pelo menos 0,95. Se falhar, reescreva o trecho (números e valores por extenso, de um jeito simples) e gere de novo.
@@ -3625,7 +3679,7 @@ CAPA
 
 PASSO A PASSO (execute na ordem)
 A. Preparar: use o config/canal.json se existir (se não, crie padrões coerentes e avise). Crie o projeto, salve o pacote em ideia.md e as fontes em fontes.md.
-B. Voz: teste as vozes candidatas, escolha, gere a narração do texto exato do pacote e confira ritmo, duração (dentro de 10% do pedido), cobertura e os tempos de palavra.
+B. Narração: use o MP3 que eu passei (alinhando como descrito em ÁUDIO) ou, se eu pedi para gerar no kit, teste as vozes candidatas, escolha e gere a narração do texto exato do pacote. Nos dois casos, confira ritmo, duração (dentro de 10% do pedido), cobertura e os tempos de palavra.
 C. Plano de animação: uma linha por frase, com o que se move, o que flui, o que se transforma, quem faz, o cenário, o plano de câmera e o valor do painel.
 D. Storyboard: siga a tabela de cenas do pacote e os padrões acima. Cada cena com pelo menos 2 tipos de animação (movimento, fluxo, transformação, máquina ou ação). Personagens fazendo algo em mais da metade das cenas.
 E. Validar e gerar os quadros.
@@ -3660,9 +3714,44 @@ O caminho do vídeo final, da capa e do postagem.md; a voz escolhida, o ritmo e 
   },
 
   {
+    id: "pp-04b-animation-studio",
+    tema: "Vídeo viral em 5 passos",
+    titulo: "Passo 4B · Animação 2D com a Animation Studio (Claude)",
+    tipo: "Prompt",
+    funcoes: ["global"],
+    tags: ["passo 4","animação","animation studio","2d","estilos","mp3"],
+    descricao: "Pede à skill Animation Studio o vídeo vertical no estilo escolhido, usando o seu MP3, com legenda, painel e votação.",
+    quando_usar: "Quarto passo, caminho 2D. Abra uma conversa nova no Claude, anexe o MP3 do Passo 3 e cole. A skill já está instalada na sua conta. Por padrão ela não põe legenda: este prompt pede. Evite os estilos dankoe e zackdfilms, que imitam criadores específicos. Na web, ela pode não exportar o MP4; nesse caso entrega o pacote para renderizar no Claude Code.",
+    conteudo: `Use Animation Studio /[ESTILO: pixelart, chalkboard, glowsketch, ps2, comicart, flatvector, cgimotion ou legostyle]
+
+Roteiro (use exatamente este texto): [NARRAÇÃO LIMPA]
+Plano do vídeo (do Passo 2): [PACOTE DO VÍDEO, ou "está nesta conversa"]
+Áudio: anexei o MP3 da narração (Passo 3). Ele é a fonte da verdade: use o áudio inteiro, sem cortar, sem acelerar e sem trocar a voz.
+
+DIREÇÕES OBRIGATÓRIAS
+1. Formato vertical 9:16, 24 fps, duração igual à do áudio.
+2. Legendas LIGADAS e sincronizadas com o áudio: blocos de 2 palavras, grandes, em maiúsculas, brancas com contorno escuro, números em amarelo, no terço inferior e nunca sobre o rosto.
+3. Painel fixo no topo com os números do pacote (dia, saldo ou evolução), mudando na cena em que o roteiro muda o valor.
+4. Cada cena mostra o que a frase diz naquele momento. O problema aparece acontecendo antes da solução.
+5. O personagem principal é igual em todas as cenas (rosto, roupa e cores). O assunto ocupa de 40 a 60% da altura, sem fundo vazio.
+6. Rótulos curtos colados no objeto que nomeiam, e ícones só quando ajudam a entender. Rótulo e legenda são coisas diferentes.
+7. Cenas de 2,5 a 5 segundos, cada uma diferente da anterior (plano, ângulo ou ação), com transições curtas.
+8. A paleta do pacote em todos os quadros.
+9. Final de 8 a 12 segundos com a pergunta ou a votação do pacote: as duas opções lado a lado, a palavra de voto grande e o selo do próximo episódio, se houver.
+
+ANTES DE ENTREGAR
+- Confira quadros do começo, das transições e do fim: legibilidade, cortes, consistência do estilo e sincronia da legenda.
+- Verifique o arquivo: duração igual à do áudio e áudio presente.
+- Entregue o MP4. Se este ambiente não conseguir gerar MP4, diga isso em uma frase e entregue o pacote de render (fonte, storyboard e quadros) com o passo a passo para renderizar no Claude Code. Não apresente imagem parada como vídeo.`,
+    autor: "Claude, para a FDSS +",
+    atualizado_em: "2026-11-17",
+    origem: ""
+  },
+
+  {
     id: "pp-04-postagem",
-    tema: "Vídeo viral em 4 passos",
-    titulo: "Passo 4 · Descrição e estratégia de postagem (Instagram e TikTok)",
+    tema: "Vídeo viral em 5 passos",
+    titulo: "Passo 5 · Descrição e estratégia de postagem (Instagram e TikTok)",
     tipo: "Prompt",
     funcoes: ["global"],
     tags: ["passo 4", "postagem", "descrição", "hashtags", "estratégia", "instagram", "tiktok"],
